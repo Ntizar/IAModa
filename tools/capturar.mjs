@@ -10,9 +10,11 @@ const CHROME = process.env.CHROME_BIN || 'C:/Program Files/Google/Chrome/Applica
 const [file, anchoArg, prefijo, idsArg, queryArg] = process.argv.slice(2);
 const ancho = Number(anchoArg || 1440);
 const ids = (idsArg || 'tesis,cadena,plan,demos,herramientas,evaluacion').split(',');
-if (!file || !existsSync(file)) { console.error('Falta el HTML:', file); process.exit(2); }
+if (!file || (!/^https?:\/\//.test(file) && !existsSync(file))) { console.error('Falta el HTML:', file); process.exit(2); }
 
-const url = 'file:///' + resolve(file).replace(/\\/g, '/').replace(/^\//, '') + (queryArg ? '?' + queryArg : '');
+const base = /^https?:\/\//.test(file) ? file :
+  'file:///' + resolve(file).replace(/\\/g, '/').replace(/^\//, '');
+const url = base + (queryArg ? '?' + queryArg : '');
 const port = 9533 + Math.floor(Math.random() * 200);
 const chrome = spawn(CHROME, [
   '--headless=new', '--no-first-run', '--hide-scrollbars',
