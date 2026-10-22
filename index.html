@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light" data-nz-marca="ntizar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De la idea a la prenda · IA aplicada al ciclo del producto de moda</title>
+<meta name="description" content="Plan de estudios y taller de herramientas: IA aplicada al patronaje, la simulación, el tejido, la campaña, la ficha técnica y el pasaporte digital europeo.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/packs/all.css">
+<style>
+/* ---------- capa del consumidor: .cm- ---------- */
+.cm-sec { padding-block: var(--nz-space-16); border-top: var(--nz-border-w) solid var(--nz-border-soft); }
+.cm-sec--hero { border-top: 0; padding-block: var(--nz-space-12) var(--nz-space-14); }
+.cm-eyebrow { display: flex; align-items: center; gap: var(--nz-space-2); color: var(--nz-text-mute);
+  font-size: var(--nz-text-xs); font-weight: var(--nz-peso-fuerte); letter-spacing: 0.06em; text-transform: uppercase; }
+.cm-num { display: inline-flex; align-items: center; justify-content: center; min-width: 1.75rem; height: 1.75rem;
+  padding-inline: var(--nz-space-2); border: var(--nz-border-w) solid var(--nz-border); border-radius: var(--nz-radius-sm);
+  color: var(--nz-text-soft); font-size: var(--nz-text-xs); font-variant-numeric: tabular-nums; }
+.cm-head { display: grid; gap: var(--nz-space-2); margin-block: var(--nz-space-4) var(--nz-space-6); }
+.cm-head .nz-h2, .cm-head .nz-h1 { margin: 0; }
+.cm-grid2 { display: grid; gap: var(--nz-space-4); }
+.cm-grid2 > *, .cm-grid3 > *, .cm-split2 > *, .cm-kpis > *, .cm-eslabon > *, .cm-tool > * { min-width: 0; }
+@media (min-width: 960px) { .cm-grid2 { grid-template-columns: 1fr 1fr; gap: var(--nz-space-6); } }
+.cm-grid3 { display: grid; gap: var(--nz-space-4); }
+@media (min-width: 960px) { .cm-grid3 { grid-template-columns: repeat(3, 1fr); } }
+.cm-panel { border: var(--nz-border-w) solid var(--nz-border); border-radius: var(--nz-radius-lg);
+  background: var(--nz-surface); padding: var(--nz-space-5); }
+.cm-panel--mute { background: var(--nz-bg-inset); }
+.cm-panel__cap { display: flex; align-items: baseline; justify-content: space-between; gap: var(--nz-space-3);
+  margin-bottom: var(--nz-space-3); }
+.cm-panel__cap h3, .cm-panel__cap h4 { margin: 0; }
+.cm-stage { position: relative; background: var(--nz-bg-inset); border: var(--nz-border-w) solid var(--nz-border-soft);
+  border-radius: var(--nz-radius-md); padding: var(--nz-space-3); }
+.cm-stage--tight { padding: var(--nz-space-2); }
+.cm-canvas { display: block; width: 100%; height: auto; border-radius: var(--nz-radius-sm); background: var(--nz-bg); touch-action: none; }
+.cm-ctl { display: grid; gap: var(--nz-space-1); margin-bottom: var(--nz-space-3); }
+.cm-ctl__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--nz-space-2); }
+.cm-ctl__val { font-variant-numeric: tabular-nums; color: var(--nz-text); font-size: var(--nz-text-sm); }
+.cm-ctl .nz-range { width: 100%; }
+.cm-demo { scroll-margin-block-start: 5rem; }
+.cm-demo__tag { display: inline-flex; align-items: center; gap: var(--nz-space-2); }
+.cm-tabpanel[hidden] { display: none; }
+.cm-tabpanel { padding-block: var(--nz-space-5); }
+.cm-flow { display: grid; gap: var(--nz-space-3); counter-reset: paso; }
+.cm-flow li { list-style: none; display: grid; grid-template-columns: 1.75rem 1fr; gap: var(--nz-space-3);
+  align-items: start; padding-block: var(--nz-space-2); border-bottom: var(--nz-border-w) solid var(--nz-border-soft); }
+.cm-flow li:last-child { border-bottom: 0; }
+.cm-flow__n { display: inline-flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem;
+  border-radius: var(--nz-radius-full); border: var(--nz-border-w) solid var(--nz-border); color: var(--nz-text-soft);
+  font-size: var(--nz-text-2xs); font-variant-numeric: tabular-nums; }
+.cm-flow p { margin: 0; }
+.cm-link { color: var(--nz-brand); text-decoration: underline; text-underline-offset: 2px; }
+.cm-mono { font-family: var(--nz-font-mono); font-size: var(--nz-text-xs); }
+.cm-kpis { display: grid; gap: var(--nz-space-3); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 640px) { .cm-kpis { grid-template-columns: repeat(4, 1fr); } }
+.cm-cadena { display: grid; gap: 0; }
+.cm-eslabon { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--nz-space-3);
+  padding-block: var(--nz-space-4); border-bottom: var(--nz-border-w) solid var(--nz-border-soft); }
+.cm-eslabon__n { display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem;
+  border-radius: var(--nz-radius-full); background: var(--nz-brand-tint); color: var(--nz-brand);
+  font-size: var(--nz-text-sm); font-variant-numeric: tabular-nums; }
+.cm-eslabon--acento .cm-eslabon__n { background: var(--nz-accent-tint); color: var(--nz-accent-text); }
+.cm-eslabon__c { display: grid; gap: var(--nz-space-2); min-width: 0; }
+.cm-eslabon__c h3 { margin: 0; }
+.cm-eslabon__c p { margin: 0; }
+.cm-split2 { display: grid; gap: var(--nz-space-3); }
+@media (min-width: 640px) { .cm-split2 { grid-template-columns: 1fr 1fr; } }
+.cm-mini { font-size: var(--nz-text-xs); color: var(--nz-text-soft); }
+.cm-legend { display: flex; flex-wrap: wrap; gap: var(--nz-space-3); font-size: var(--nz-text-xs); color: var(--nz-text-soft); }
+.cm-key { display: inline-flex; align-items: center; gap: var(--nz-space-2); }
+.cm-key i { width: 0.75rem; height: 0.75rem; border-radius: 2px; border: var(--nz-border-w) solid var(--nz-border-strong); display: inline-block; }
+.cm-sticky-nav { position: sticky; top: 0; z-index: 20; background: var(--nz-surface); }
+.cm-foot { padding-block: var(--nz-space-10); color: var(--nz-text-soft); font-size: var(--nz-text-sm); }
+.cm-pillrow { display: flex; flex-wrap: wrap; gap: var(--nz-space-2); }
+.cm-tool { display: grid; gap: var(--nz-space-2); padding-block: var(--nz-space-3);
+  border-bottom: var(--nz-border-w) solid var(--nz-border-soft); }
+.cm-tool__top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--nz-space-2); }
+.cm-tool__top strong { font-weight: var(--nz-peso-fuerte); }
+.cm-tool p { margin: 0; color: var(--nz-text-soft); font-size: var(--nz-text-sm); }
+.cm-lic { display: flex; flex-wrap: wrap; gap: var(--nz-space-3); font-size: var(--nz-text-2xs); color: var(--nz-text-soft); }
+.cm-big { font-variant-numeric: tabular-nums; }
+.cm-scroll { overflow-x: auto; }
+/* caption de tabla apilable: en movil ocupa todo el ancho (si no, se encoge) */
+.nz-table__caption { display: block; width: 100%; padding-inline: 0; }
+/* en la tabla apilada del plan, el nombre de la sesion manda sobre las etiquetas */
+#plan .nz-table--apilable tbody td:first-of-type { font-weight: var(--nz-peso-fuerte); color: var(--nz-text); font-size: var(--nz-text-base); }
+@media (min-width: 640px) {
+  #plan .nz-table--apilable tbody td:first-of-type { font-weight: var(--nz-peso-normal); color: inherit; font-size: inherit; }
+}
+
+/* ---------- alcance de cada herramienta ---------- */
+.cm-alcance { display: inline-flex; align-items: center; gap: var(--nz-space-2); font-size: var(--nz-text-2xs);
+  color: var(--nz-text-soft); white-space: nowrap; min-width: 8.6rem; }
+.cm-alcance__bar { display: inline-flex; gap: 3px; }
+.cm-alcance__seg { width: 7px; height: 13px; border-radius: 2px; border: var(--nz-border-w) solid var(--nz-border); background: var(--nz-bg-inset); }
+.cm-alcance__seg.is-on { background: var(--nz-brand); border-color: var(--nz-brand); }
+.cm-alcance--4 { color: var(--nz-accent-text); }
+.cm-alcance--4 .cm-alcance__seg.is-on { background: var(--nz-brand); border-color: var(--nz-brand); }
+.cm-escala__n--4 { border-color: var(--nz-accent); }
+.cm-tool__alcance { display: grid; grid-template-columns: 5.6rem 1fr; column-gap: var(--nz-space-2); row-gap: 3px;
+  margin-top: var(--nz-space-2); font-size: var(--nz-text-xs); }
+.cm-tool__alcance > span { display: contents; }
+.cm-tool__alcance span { color: var(--nz-text-soft); }
+.cm-tool__alcance b { color: var(--nz-text); font-weight: var(--nz-peso-fuerte); }
+.cm-escala { display: grid; gap: var(--nz-space-2); }
+@media (min-width: 640px) { .cm-escala { grid-template-columns: repeat(4, 1fr); } }
+.cm-escala__n { display: grid; gap: 2px; padding: var(--nz-space-3); border: var(--nz-border-w) solid var(--nz-border-soft);
+  border-radius: var(--nz-radius-md); background: var(--nz-surface); }
+.cm-escala__n strong { font-size: var(--nz-text-sm); font-weight: var(--nz-peso-fuerte); }
+.cm-escala__n span { font-size: var(--nz-text-2xs); color: var(--nz-text-soft); }
+/* ---------- probador 3D ---------- */
+.cm-probador__grid { display: grid; gap: var(--nz-space-4); }
+.cm-probador__grid > * { min-width: 0; }
+@media (min-width: 960px) { .cm-probador__grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: var(--nz-space-6); } }
+.cm-lienzo3d { position: relative; height: min(58vh, 420px); border-radius: var(--nz-radius-md); background: var(--nz-bg-inset);
+  border: var(--nz-border-w) solid var(--nz-border-soft); overflow: hidden; touch-action: none; }
+.cm-lienzo3d canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+.cm-lienzo3d canvas:active { cursor: grabbing; }
+.cm-estado3d { position: absolute; left: var(--nz-space-3); bottom: var(--nz-space-3); font-size: var(--nz-text-2xs);
+  color: var(--nz-text-soft); background: var(--nz-surface); border: var(--nz-border-w) solid var(--nz-border-soft);
+  border-radius: var(--nz-radius-full); padding: 2px var(--nz-space-3); pointer-events: none; }
+.cm-pieza { display: grid; gap: 1px; }
+.cm-pieza + .cm-pieza { margin-top: var(--nz-space-3); }
+.cm-pieza__t { display: flex; align-items: baseline; justify-content: space-between; gap: var(--nz-space-2); }
+.cm-pieza__t strong { font-size: var(--nz-text-sm); font-weight: var(--nz-peso-fuerte); }
+.cm-pieza__t span { font-size: var(--nz-text-2xs); color: var(--nz-text-soft); font-variant-numeric: tabular-nums; }
+.cm-ej { display: grid; gap: var(--nz-space-3); }
+.cm-ej__meta { display: flex; flex-wrap: wrap; gap: var(--nz-space-2); }
+/* tabla de coste: en movil no impone ancho minimo (base 1 columna, crece a 640) */
+#demo-ficha .nz-table { min-width: 0; }
+@media (min-width: 640px) { #demo-ficha .nz-table { min-width: 30rem; } }
+</style>
+</head>
+<body class="nz">
+<!--FIN:B1-->
+<div class="cm-sticky-nav">
+<nav class="nz-navbar nz-navbar--bordered" aria-label="Secciones del documento">
+  <span class="nz-navbar__brand"><svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-053"/></svg>Idea&nbsp;→&nbsp;prenda</span>
+  <span class="nz-navbar__links">
+    <a class="nz-navbar__link" href="#tesis">Tesis</a>
+    <a class="nz-navbar__link" href="#cadena">Cadena</a>
+    <a class="nz-navbar__link" href="#plan">Plan</a>
+    <a class="nz-navbar__link" href="#demos">Demos</a>
+    <a class="nz-navbar__link" href="#probador">Probador 3D</a>
+    <a class="nz-navbar__link" href="#herramientas">Herramientas</a>
+    <a class="nz-navbar__link" href="#ejercicios">Ejercicios</a>
+    <a class="nz-navbar__link" href="#evaluacion">Evaluación</a>
+  </span>
+</nav>
+</div>
+
+<main>
+<header class="nz-container cm-sec cm-sec--hero" id="arriba">
+  <p class="cm-eyebrow"><span class="nz-badge nz-badge--brand">Propuesta de asignatura</span> Máster de diseño y tecnología de moda</p>
+  <h1 class="nz-h1" style="margin-block:var(--nz-space-3) var(--nz-space-4);max-width:22ch">De la idea a la prenda</h1>
+  <p class="nz-lead" style="max-width:64ch">Doce sesiones para que un diseñador use la IA en <strong class="nz-text--peso-fuerte">todo el ciclo del producto</strong>: patrón, simulación, tejido, campaña, ficha técnica y pasaporte digital europeo. Con una regla que ordena el curso entero: cada clase deja un artefacto que se puede romper.</p>
+
+  <div class="cm-kpis" style="margin-block:var(--nz-space-6)">
+    <div class="nz-kpi"><span class="nz-kpi__label">Sesiones</span><span class="nz-kpi__value">12</span><span class="nz-kpi__delta">2,5 h cada una</span></div>
+    <div class="nz-kpi"><span class="nz-kpi__label">Talleres-herramienta</span><span class="nz-kpi__value">5</span><span class="nz-kpi__delta">pestañas abajo</span></div>
+    <div class="nz-kpi nz-kpi--accent"><span class="nz-kpi__label">Eslabones cubiertos</span><span class="nz-kpi__value nz-kpi__value--accent">9</span><span class="nz-kpi__delta">de la idea al DPP</span></div>
+    <div class="nz-kpi"><span class="nz-kpi__label">Prenda física</span><span class="nz-kpi__value">1</span><span class="nz-kpi__delta">patrón impreso y cosido</span></div>
+  </div>
+
+  <div class="cm-pillrow">
+    <a class="nz-btn nz-btn--primary" href="#plan">Ver el plan de estudios</a>
+    <a class="nz-btn nz-btn--outline" href="#demos">Probar las cinco demos</a>
+    <a class="nz-btn nz-btn--ghost" href="#herramientas">Herramientas para una marca</a>
+  </div>
+
+  <div class="nz-callout nz-callout--tip" style="margin-top:var(--nz-space-6)">
+    <p><strong class="nz-text--peso-fuerte">No es una maqueta.</strong> Las demos de esta página calculan de verdad: el patrón se redibuja con tus medidas, la tela se simula con física de muelles, el estampado repite sin costura, la ficha recalcula consumo y coste, y el pasaporte valida campos obligatorios. Lo que no verás aquí es una imagen generada por IA haciéndose pasar por una prenda que existe.</p>
+  </div>
+</header>
+<!--FIN:B2-->
+<section class="nz-container cm-sec" id="tesis">
+  <p class="cm-eyebrow"><span class="cm-num">01</span> La tesis</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Todo el mundo enseña la capa de arriba. El valor está en las de abajo.</h2>
+    <p class="nz-lead">La IA generativa de imagen es la parte fácil: caduca cada trimestre y no distingue a un diseñador de otro. Lo que sí distingue es saber meterla en el resto de la cadena, donde hay patrón, tejido, márgenes y una fábrica esperando un dato.</p>
+  </div>
+
+  <div class="cm-grid2">
+    <div class="cm-panel cm-panel--mute">
+      <div class="cm-panel__cap"><h3 class="nz-h3">La capa commodity</h3><span class="nz-badge nz-badge--neutral">ya existe</span></div>
+      <ul class="nz-list nz-list--compact">
+        <li class="nz-list__item">Moodboards y paletas con Midjourney, Firefly o Magnific.</li>
+        <li class="nz-list__item">Bocetos y variantes de silueta sin medida detrás.</li>
+        <li class="nz-list__item">Vídeo corto para redes y clones de voz.</li>
+        <li class="nz-list__item">Prompts «secretos» que caducan con la siguiente versión del modelo.</li>
+      </ul>
+      <p class="cm-mini" style="margin-block:var(--nz-space-3) 0">Se aprende en un fin de semana. Y por eso no se paga.</p>
+    </div>
+    <div class="cm-panel">
+      <div class="cm-panel__cap"><h3 class="nz-h3">La cadena que sí distingue</h3><span class="nz-badge nz-badge--brand">el hueco</span></div>
+      <ul class="nz-list nz-list--check">
+        <li class="nz-list__item">Patrón parametrizado: la prenda cambia con el cuerpo y el tejido.</li>
+        <li class="nz-list__item">Simulación que se puede desmentir cosiéndola en tela real.</li>
+        <li class="nz-list__item">Estampado que repite sin costura y aguanta la impresión.</li>
+        <li class="nz-list__item">Ficha técnica, consumo de tejido y coste en minutos, no en semanas.</li>
+        <li class="nz-list__item">Pasaporte digital: la normativa europea ya tiene fecha.</li>
+      </ul>
+      <p class="cm-mini" style="margin-block:var(--nz-space-3) 0">Se aprende en doce sesiones. Y es lo que se contrata.</p>
+    </div>
+  </div>
+
+  <div class="nz-callout nz-callout--accent" style="margin-top:var(--nz-space-6)">
+    <p><strong class="nz-text--peso-fuerte">La regla anti-slop:</strong> está prohibido entregar una imagen generada sin el patrón, la ficha o el dato que la sostiene. Es la única forma de que el portfolio del alumno sirva para algo más que para impresionar en Instagram.</p>
+  </div>
+</section>
+<!--FIN:B3-->
+<section class="nz-container cm-sec" id="cadena">
+  <p class="cm-eyebrow"><span class="cm-num">02</span> La cadena del producto</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Nueve eslabones. En tres de ellos no hay competencia.</h2>
+    <p class="nz-lead">Este es el mapa del curso. Cada eslabón dice qué hace bien la IA y dónde falla siempre, porque enseñar el fallo es más útil que enseñar el truco.</p>
+  </div>
+
+  <div class="cm-cadena">
+    <div class="cm-eslabon">
+      <span class="cm-eslabon__n">1</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Idea, brief y surtido</h3><span class="nz-badge nz-badge--neutral">sesión 1</span></div>
+        <p>Cien variantes de silueta en una tarde para escoger tres. Moodboards que se pueden medir en lugar de describir con adjetivos.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> coherencia de colección. Un modelo no sabe que tu marca vende plumíferos, no vestidos de gasa.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon">
+      <span class="cm-eslabon__n">2</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Archivo y memoria de la marca</h3><span class="nz-badge nz-badge--neutral">sesión 2</span></div>
+        <p>Buscar por significado en veinte años de colecciones: «chaqueta de trabajo azul con bolsillo oblicuo». Se monta con embeddings de moda (FashionCLIP) y un buscador propio.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> confunde parecido visual con construcción. Dos prendas idénticas de foto pueden tener patrones opuestos.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon cm-eslabon--acento">
+      <span class="cm-eslabon__n">3</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Ficha técnica: de boceto a BOM y POM</h3><span class="nz-badge nz-badge--accent">diferencial · sesión 10</span></div>
+        <p>Un boceto entra; sale un borrador de ficha con materiales, puntos de medida, escalado y notas de confección. El trabajo de 3 a 8 horas se convierte en revisión de 10 minutos.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> se inventa medidas plausibles. La validación humana no es opcional: es el oficio.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon cm-eslabon--acento">
+      <span class="cm-eslabon__n">4</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Patrón: la prenda como código</h3><span class="nz-badge nz-badge--accent">diferencial · sesiones 3 y 4</span></div>
+        <p>Un patrón parametrizado no es un dibujo: es una función. Cambia el pecho y la sisa se recalcula sola; cambia el tejido y cambia la holgura. Con código se puede versionar, comparar y fabricar.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> geometría sin física. La copa de manga más larga que la sisa es el error clásico que ninguna IA detecta sin reglas.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon">
+      <span class="cm-eslabon__n">5</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Simulación y fitting</h3><span class="nz-badge nz-badge--neutral">sesión 5</span></div>
+        <p>La prenda se cose en un motor de tela y cae sobre un avatar medido. Se prueban tres cuerpos antes de cortar un metro de tela.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> el motor no es el tejido. Sirve para descartar, no para aprobar una muestra.</p>
+      </div>
+    </div>
+  </div>
+  <p class="cm-mini" style="margin-top:var(--nz-space-4)">Continúa con tejido, campaña, coste y trazabilidad ↓</p>
+</section>
+<!--FIN:B4-->
+<section class="nz-container" aria-label="Continuación de la cadena del producto" style="padding-bottom:var(--nz-space-16)">
+  <div class="cm-cadena">
+    <div class="cm-eslabon">
+      <span class="cm-eslabon__n">6</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Tejido, estampado y colorway</h3><span class="nz-badge nz-badge--neutral">sesiones 7 y 8</span></div>
+        <p>Rapports que repiten sin costura, variantes de color sobre el mismo dibujo y texturas con caída creíble asignadas a la simulación.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> resolución, número de tintas y elasticidad real. Un estampado precioso en pantalla se rompe al repetirlo en 1,50 m de tela.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon">
+      <span class="cm-eslabon__n">7</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Imagen y campaña</h3><span class="nz-badge nz-badge--neutral">sesión 9</span></div>
+        <p>La prenda real puesta sobre un modelo virtual coherente, con luz y fondo de estudio. Seis imágenes de campaña antes de tener la primera muestra.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> derechos de imagen, coherencia de trama y manos. Y en que la prenda generada no es la que se va a fabricar: hay que etiquetarlo.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon cm-eslabon--acento">
+      <span class="cm-eslabon__n">8</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Coste, consumo de tejido y marcada</h3><span class="nz-badge nz-badge--accent">diferencial · sesión 10</span></div>
+        <p>El mismo motor del patrón calcula metros de tela, merma, coste por prenda y precio de venta. La IA deja de ser un juguete creativo y entra en la hoja de cálculo.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> los precios de proveedor no están en el modelo. Y el nesting real tiene restricciones de dirección de hilo que un algoritmo ingenuo ignora.</p>
+      </div>
+    </div>
+
+    <div class="cm-eslabon cm-eslabon--acento">
+      <span class="cm-eslabon__n">9</span>
+      <div class="cm-eslabon__c">
+        <div class="cm-panel__cap"><h3 class="nz-h3">Trazabilidad y pasaporte digital (DPP)</h3><span class="nz-badge nz-badge--accent">diferencial · sesión 11</span></div>
+        <p>Composición, origen de fibra, sustancias preocupantes, huella y fin de vida, en un registro verificable. La normativa europea ya tiene calendario y casi nadie lo está enseñando.</p>
+        <p class="cm-mini"><strong class="nz-text--peso-fuerte">Falla en:</strong> el dato no está en la marca, está en el proveedor de nivel 2 y 3. Ahí es donde un perfil con IA y criterio vale dinero.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cm-grid2" style="margin-top:var(--nz-space-8)">
+    <div class="cm-panel">
+      <h3 class="nz-h3" style="margin-top:0">El bucle que cierra el curso</h3>
+      <p>Ningún módulo termina en la pantalla. El patrón se imprime a escala 1:1, se corta en tela y se cose. La prenda vuelve al escáner y se compara con la simulación. Ese viaje de ida y vuelta —digital, físico, digital— es lo que ningún curso de «IA creativa» puede imitar.</p>
+      <div class="cm-pillrow" style="margin-top:var(--nz-space-3)">
+        <span class="nz-chip">patrón</span><span class="nz-chip">SVG 1:1</span><span class="nz-chip">tela</span><span class="nz-chip">prenda</span><span class="nz-chip nz-chip--accent">medición</span>
+      </div>
+    </div>
+    <div class="cm-panel cm-panel--mute">
+      <h3 class="nz-h3" style="margin-top:0">Lo que se lleva el alumno</h3>
+      <div class="nz-dl nz-dl--2col">
+        <div class="nz-dl__row"><dt class="nz-dl__dt">Patrones</dt><dd class="nz-dl__dd">1 parametrizado y 1 imprimible</dd></div>
+        <div class="nz-dl__row"><dt class="nz-dl__dt">Simulación</dt><dd class="nz-dl__dd">prenda cosida sobre su avatar</dd></div>
+        <div class="nz-dl__row"><dt class="nz-dl__dt">Tejido</dt><dd class="nz-dl__dd">rapport 30 × 30 cm + ficha de impresión</dd></div>
+        <div class="nz-dl__row"><dt class="nz-dl__dt">Negocio</dt><dd class="nz-dl__dd">tech pack con consumo y coste</dd></div>
+        <div class="nz-dl__row"><dt class="nz-dl__dt">Normativa</dt><dd class="nz-dl__dd">pasaporte digital de una prenda</dd></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--FIN:B5-->
+<section class="nz-container cm-sec" id="plan">
+  <p class="cm-eyebrow"><span class="cm-num">03</span> Plan de estudios</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Doce sesiones, doce artefactos</h2>
+    <p class="nz-lead">Tres bloques: criterio (2 sesiones), cadena digital (7) e industria y responsabilidad (3). Ninguna sesión acaba sin algo que el alumno pueda abrir, imprimir o escanear.</p>
+  </div>
+
+  <div class="cm-pillrow" style="margin-bottom:var(--nz-space-4)">
+    <span class="nz-badge nz-badge--brand">Bloque A · criterio</span>
+    <span class="nz-badge nz-badge--brand">Bloque B · cadena digital</span>
+    <span class="nz-badge nz-badge--accent">Bloque C · industria</span>
+  </div>
+
+  <div class="nz-table-wrap nz-table-wrap--apilable">
+    <table class="nz-table nz-table--apilable nz-table--comfortable nz-table--hover">
+      <caption class="nz-table__caption">Programa de la asignatura · 12 × 2,5 h = 30 h presenciales</caption>
+      <thead>
+        <tr><th scope="col">#</th><th scope="col">Sesión</th><th scope="col">Herramienta</th><th scope="col">Artefacto que se lleva</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">01</th><td data-etiqueta="Sesión">Qué es y qué no es la IA en moda</td><td data-etiqueta="Herramienta">LLM y modelos de visión, sin software de moda</td><td data-etiqueta="Artefacto">Auditoría de 5 resultados de IA con rúbrica propia</td></tr>
+        <tr><th scope="row">02</th><td data-etiqueta="Sesión">El archivo como memoria de la marca</td><td data-etiqueta="Herramienta">FashionCLIP, embeddings, búsqueda semántica</td><td data-etiqueta="Artefacto">Buscador de 200 imágenes del taller</td></tr>
+        <tr><th scope="row">03</th><td data-etiqueta="Sesión">Patrón paramétrico I: la prenda como código</td><td data-etiqueta="Herramienta">Python + GarmentCode · alternativa visual Seamly2D</td><td data-etiqueta="Artefacto">Camiseta base que se adapta a 3 cuerpos</td></tr>
+        <tr><th scope="row">04</th><td data-etiqueta="Sesión">Patrón paramétrico II: del boceto al JSON</td><td data-etiqueta="Herramienta">Modelo de visión → patrón (ChatGarment, AIpparel)</td><td data-etiqueta="Artefacto">Patrón generado + informe de por qué falla</td></tr>
+        <tr><th scope="row">05</th><td data-etiqueta="Sesión">Simulación y fitting</td><td data-etiqueta="Herramienta">Blender + add-on de costura (opensew, Cloth Lab)</td><td data-etiqueta="Artefacto">Prenda drapeada sobre avatar propio, con test de marcha</td></tr>
+        <tr><th scope="row">06</th><td data-etiqueta="Sesión">Del 3D al patrón imprimible</td><td data-etiqueta="Herramienta">seams-to-sewing-pattern, exportación SVG</td><td data-etiqueta="Artefacto">Patrón 1:1 impreso y probado en tela real</td></tr>
+        <tr><th scope="row">07</th><td data-etiqueta="Sesión">Tejido I: estampado que tilea</td><td data-etiqueta="Herramienta">ComfyUI + nodo de tiling sin costura</td><td data-etiqueta="Artefacto">Rapport 30 × 30 cm con ficha de impresión</td></tr>
+        <tr><th scope="row">08</th><td data-etiqueta="Sesión">Tejido II: textura y caída</td><td data-etiqueta="Herramienta">Materiales PBR, generación de texturas</td><td data-etiqueta="Artefacto">Material asignado con caída creíble</td></tr>
+        <tr><th scope="row">09</th><td data-etiqueta="Sesión">Imagen y campaña</td><td data-etiqueta="Herramienta">Try-on (CatVTON, IDM-VTON), IP-Adapter, luz</td><td data-etiqueta="Artefacto">Campaña de 6 imágenes con modelo consistente</td></tr>
+        <tr><th scope="row">10</th><td data-etiqueta="Sesión">Ficha técnica, consumo y coste</td><td data-etiqueta="Herramienta">LLM + plantilla, BOM/POM, marcada</td><td data-etiqueta="Artefacto">Tech pack exportable con coste FOB</td></tr>
+        <tr><th scope="row">11</th><td data-etiqueta="Sesión">Normativa y trazabilidad</td><td data-etiqueta="Herramienta">ESPR/DPP: extracción y validación de datos</td><td data-etiqueta="Artefacto">Pasaporte digital con soporte físico</td></tr>
+        <tr><th scope="row">12</th><td data-etiqueta="Sesión">Proyecto final y tribunal</td><td data-etiqueta="Herramienta">Todo el stack + marca invitada</td><td data-etiqueta="Artefacto">Cápsula de 4 looks + 1 prenda física + repositorio</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cm-mini" style="margin-top:var(--nz-space-3)">Bloque A: sesiones 01-02 · Bloque B: 03-09 · Bloque C: 10-12. Los bloques A y C son obligatorios para todos; el B se puede cursar en dos velocidades: recorrido guiado (sin programar) o recorrido de autor (con código).</p>
+</section>
+<!--FIN:B6-->
+<section class="nz-container cm-sec" id="demos">
+  <p class="cm-eyebrow"><span class="cm-num">04</span> Qué se puede hacer</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Cinco demos que se tocan</h2>
+    <p class="nz-lead">No son capturas: son cálculos. Mueve los controles y observa cómo cambia la prenda, el consumo de tela, el coste y el pasaporte. Es exactamente lo que un alumno entrega cada semana.</p>
+  </div>
+
+  <div class="cm-panel cm-demo" id="demo-patron">
+    <div class="cm-panel__cap">
+      <div class="cm-demo__tag">
+        <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-053"/></svg>
+        <div><p class="cm-mini" style="margin:0">Demo 01 · patronaje</p><h3 class="nz-h3" style="margin:0">La prenda como función</h3></div>
+      </div>
+      <span class="nz-badge nz-badge--brand">se recalcula en vivo</span>
+    </div>
+    <p style="margin-top:0">Un patrón no es un dibujo: es una fórmula. Aquí el delantero y el trasero de una camiseta se redibujan con tus medidas. La sisa, el escote y el coste salen de las mismas cuatro variables.</p>
+
+    <div class="cm-grid2" style="margin-top:var(--nz-space-4)">
+      <div class="cm-stage">
+        <svg id="patronSvg" class="cm-canvas" viewBox="0 0 92 82" role="img" aria-label="Patrón de camiseta: delantero a la izquierda y trasero a la derecha, con líneas de sisa, escote y bajo.">
+          <g fill="none" stroke="var(--nz-brand)" stroke-width="0.45" stroke-linejoin="round">
+            <g id="piezaDel" transform="translate(4,6)">
+              <path id="pathDel" d="M 0 7.59 C 0.99 1.90 3.96 0 6.60 0 L 24.60 4.50 C 29.10 9.27 26.50 13.45 25.00 21.70 L 23.75 28.56 L 25.50 68 L 0 68 Z"/>
+            </g>
+            <g id="piezaTra" transform="translate(56,6)">
+              <path id="pathTra" d="M 0 2.60 C 0.99 0.65 3.96 0 6.60 0 L 24.60 4.50 C 29.10 9.27 26.50 13.45 25.00 21.70 L 23.75 28.56 L 25.50 68 L 0 68 Z"/>
+            </g>
+          </g>
+          <g stroke="var(--nz-border-strong)" stroke-width="0.25" stroke-dasharray="1.4 1.2" fill="none">
+            <line id="hiloDel" x1="16.75" y1="14" x2="16.75" y2="64"/>
+            <line id="hiloTra" x1="68.75" y1="14" x2="68.75" y2="64"/>
+          </g>
+          <g stroke="var(--nz-accent)" stroke-width="0.3" stroke-dasharray="1 1" fill="none">
+            <line id="cinDel" x1="4" y1="34.56" x2="29.5" y2="34.56"/>
+            <line id="cinTra" x1="56" y1="34.56" x2="81.5" y2="34.56"/>
+          </g>
+          <g fill="var(--nz-text-mute)" font-size="2.4" font-family="var(--nz-font-mono)">
+            <text id="txtDel" x="4" y="80">delantero</text>
+            <text id="txtTra" x="56" y="80">trasero</text>
+          </g>
+        </svg>
+        <div class="cm-legend" style="margin-top:var(--nz-space-2)">
+          <span class="cm-key"><i style="border-color:var(--nz-brand)"></i> contorno del patrón</span>
+          <span class="cm-key"><i style="border-color:var(--nz-border-strong)"></i> línea de hilo</span>
+          <span class="cm-key"><i style="border-color:var(--nz-accent)"></i> línea de cintura · mueve la holgura</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="mPecho">Contorno de pecho</label><output class="cm-ctl__val" for="mPecho" id="vPecho">92 cm</output></div>
+          <input class="nz-range nz-range--brand" id="mPecho" type="range" min="76" max="130" step="1" value="92">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="mCintura">Contorno de cintura</label><output class="cm-ctl__val" for="mCintura" id="vCintura">76 cm</output></div>
+          <input class="nz-range nz-range--brand" id="mCintura" type="range" min="56" max="120" step="1" value="76">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="mLargo">Largo total de prenda</label><output class="cm-ctl__val" for="mLargo" id="vLargo">68 cm</output></div>
+          <input class="nz-range nz-range--brand" id="mLargo" type="range" min="52" max="90" step="1" value="68">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="mHolgura">Holgura de diseño</label><output class="cm-ctl__val" for="mHolgura" id="vHolgura">8 cm</output></div>
+          <input class="nz-range nz-range--accent" id="mHolgura" type="range" min="0" max="24" step="1" value="8">
+        </div>
+
+        <div class="nz-dl nz-dl--2col" id="patronMedidas">
+          <div class="nz-dl__row"><dt class="nz-dl__dt">Ancho de pecho (1/4)</dt><dd class="nz-dl__dd cm-big" id="mAp">25,0 cm</dd></div>
+          <div class="nz-dl__row"><dt class="nz-dl__dt">Profundidad de sisa</dt><dd class="nz-dl__dd cm-big" id="mPs">21,7 cm</dd></div>
+          <div class="nz-dl__row"><dt class="nz-dl__dt">Ancho de escote</dt><dd class="nz-dl__dd cm-big" id="mAe">6,6 cm</dd></div>
+          <div class="nz-dl__row"><dt class="nz-dl__dt">Caída de hombro</dt><dd class="nz-dl__dd cm-big" id="mCh">4,5 cm</dd></div>
+          <div class="nz-dl__row"><dt class="nz-dl__dt">Superficie de tela</dt><dd class="nz-dl__dd cm-big" id="mSup">0,54 m²</dd></div>
+          <div class="nz-dl__row"><dt class="nz-dl__dt">Hilo de costura</dt><dd class="nz-dl__dd cm-big" id="mHilo">4,8 m</dd></div>
+        </div>
+        <p class="cm-mini" style="margin-top:var(--nz-space-3)">Fórmulas de patronaje base, simplificadas a propósito para que se vean. En clase se sustituyen por las de GarmentCode, que además modelan pinzas, copa de manga y costuras.</p>
+      </div>
+    </div>
+  </div>
+<!--FIN:B7-->
+
+  <div class="cm-grid2" style="margin-top:var(--nz-space-6)">
+    <div class="cm-panel cm-demo" id="demo-tela">
+      <div class="cm-panel__cap">
+        <div class="cm-demo__tag">
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-277"/></svg>
+          <div><p class="cm-mini" style="margin:0">Demo 02 · simulación</p><h3 class="nz-h3" style="margin:0">La tela cae, no se dibuja</h3></div>
+        </div>
+        <span class="nz-badge nz-badge--neutral">física de muelles</span>
+      </div>
+      <p style="margin-top:0">Arrastra la tela con el ratón o el dedo. Las restricciones de muelle son las mismas que usan los motores de simulación: si la rigidez es baja, la prenda se estira como un chicle y deja de ser una prenda.</p>
+      <div class="cm-stage cm-stage--tight">
+        <canvas id="cvTela" class="cm-canvas" width="640" height="380" aria-label="Simulación de una pieza de tela colgada que se puede arrastrar">Tu navegador no dibuja canvas: la simulación de tela no está disponible.</canvas>
+      </div>
+      <div class="cm-split2" style="margin-top:var(--nz-space-3)">
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="rigidez">Rigidez del tejido</label><output class="cm-ctl__val" for="rigidez" id="vRigidez">media</output></div>
+          <input class="nz-range nz-range--brand" id="rigidez" type="range" min="1" max="12" step="1" value="6">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="viento">Gravedad</label><output class="cm-ctl__val" for="viento" id="vViento">1,0 g</output></div>
+          <input class="nz-range nz-range--accent" id="viento" type="range" min="0" max="20" step="1" value="10">
+        </div>
+      </div>
+      <div class="cm-pillrow">
+        <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" id="btnSacudir">Sacudir la tela</button>
+        <button class="nz-btn nz-btn--ghost nz-btn--sm" type="button" id="btnResetTela">Volver a colgar</button>
+      </div>
+    </div>
+
+    <div class="cm-panel cm-demo" id="demo-estampado">
+      <div class="cm-panel__cap">
+        <div class="cm-demo__tag">
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-273"/></svg>
+          <div><p class="cm-mini" style="margin:0">Demo 03 · tejido</p><h3 class="nz-h3" style="margin:0">El rapport que repite sin costura</h3></div>
+        </div>
+        <span class="nz-badge nz-badge--neutral">3 × 3 repeticiones</span>
+      </div>
+      <p style="margin-top:0">Esto es lo que separa un dibujo bonito de un estampado vendible: al repetirlo, los bordes tienen que casar. Apaga la casilla y verás la costura que arruina metros de tela.</p>
+      <div class="cm-stage cm-stage--tight">
+        <canvas id="cvEstampado" class="cm-canvas" width="640" height="380" aria-label="Mosaico de nueve repeticiones de un estampado geométrico">Tu navegador no dibuja canvas: el mosaico de estampado no está disponible.</canvas>
+      </div>
+      <div class="cm-split2" style="margin-top:var(--nz-space-3)">
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="escalaMotivo">Escala del motivo</label><output class="cm-ctl__val" for="escalaMotivo" id="vEscala">100 %</output></div>
+          <input class="nz-range nz-range--brand" id="escalaMotivo" type="range" min="60" max="180" step="5" value="100">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="tinta">Densidad de dibujo</label><output class="cm-ctl__val" for="tinta" id="vTinta">media</output></div>
+          <input class="nz-range nz-range--accent" id="tinta" type="range" min="2" max="9" step="1" value="5">
+        </div>
+      </div>
+      <label class="nz-switch"><input type="checkbox" id="seamless" checked><span class="nz-switch__track"><span class="nz-switch__thumb"></span></span><span class="nz-switch__label">Repetición sin costura</span></label>
+    </div>
+  </div>
+<!--FIN:B8-->
+
+  <div class="cm-grid2" style="margin-top:var(--nz-space-6)">
+    <div class="cm-panel cm-demo" id="demo-ficha">
+      <div class="cm-panel__cap">
+        <div class="cm-demo__tag">
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-059"/></svg>
+          <div><p class="cm-mini" style="margin:0">Demo 04 · negocio</p><h3 class="nz-h3" style="margin:0">La ficha técnica que se calcula sola</h3></div>
+        </div>
+        <span class="nz-badge nz-badge--accent">dato en acento</span>
+      </div>
+      <p style="margin-top:0">Los mismos sliders del patrón alimentan esta ficha: consumo de tejido, merma, coste unitario y precio de venta. Es el momento en que la IA deja de ser creativa y empieza a ser rentable.</p>
+
+      <div class="cm-split2">
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="precioTejido">Tejido</label><output class="cm-ctl__val" for="precioTejido" id="vTejido">9,50 €/m</output></div>
+          <input class="nz-range nz-range--brand" id="precioTejido" type="range" min="3" max="40" step="0.5" value="9.5">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="confeccion">Confección</label><output class="cm-ctl__val" for="confeccion" id="vConfeccion">11,00 €</output></div>
+          <input class="nz-range nz-range--brand" id="confeccion" type="range" min="4" max="45" step="0.5" value="11">
+        </div>
+      </div>
+
+      <div class="nz-table-wrap" style="margin-top:var(--nz-space-3)">
+        <table class="nz-table nz-table--compact">
+          <caption class="nz-table__caption">Coste unitario estimado · talla base</caption>
+          <tbody>
+            <tr><td>Consumo de tejido (ancho útil 1,50 m)</td><td class="nz-table__num" id="fConsumo">0,42 m</td></tr>
+            <tr><td>Merma por marcada (14 %)</td><td class="nz-table__num" id="fMerma">0,06 m</td></tr>
+            <tr><td>Coste de tejido</td><td class="nz-table__num" id="fCosteTejido">4,57 €</td></tr>
+            <tr><td>Confección + fornituras</td><td class="nz-table__num" id="fConfeccion">11,00 €</td></tr>
+            <tr><td class="nz-table__strong">Coste total</td><td class="nz-table__num nz-table__strong" id="fCosteTotal">15,57 €</td></tr>
+            <tr><td class="nz-table__strong">PVP sugerido (×2,6)</td><td class="nz-table__num nz-table__status--brand cm-big" id="fPvp">40,48 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cm-mini" style="margin-top:var(--nz-space-3)">El ×2,6 es un multiplicador de manual, no una verdad de mercado. En clase se discute con los números reales de una marca invitada.</p>
+    </div>
+
+    <div class="cm-panel cm-demo" id="demo-dpp">
+      <div class="cm-panel__cap">
+        <div class="cm-demo__tag">
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-240"/></svg>
+          <div><p class="cm-mini" style="margin:0">Demo 05 · normativa</p><h3 class="nz-h3" style="margin:0">Pasaporte digital: 8 campos, cero excusas</h3></div>
+        </div>
+        <span class="nz-badge nz-badge--warning">ESPR 2024/1781</span>
+      </div>
+      <p style="margin-top:0">El reglamento europeo de ecodiseño obliga a un pasaporte digital por producto, verificable por la autoridad. Marca los campos que ya tienes: el contador te dice lo que falta.</p>
+
+      <div class="nz-progress nz-progress--accent nz-progress--with-label" id="dppBarra">
+        <div class="nz-progress__bar" id="dppBar" style="width:37%"></div>
+      </div>
+      <p class="cm-mini" id="dppEstado" style="margin-block:var(--nz-space-2) var(--nz-space-3)">3 de 8 campos obligatorios cubiertos</p>
+
+      <div class="cm-grid2" style="gap:var(--nz-space-2)">
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="composicion" checked><span class="nz-checkbox__box"></span>Composición de materiales</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="origen" checked><span class="nz-checkbox__box"></span>País de fabricación</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="huella" checked><span class="nz-checkbox__box"></span>Huella de carbono</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="agua"><span class="nz-checkbox__box"></span>Consumo de agua</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="reciclabilidad"><span class="nz-checkbox__box"></span>Reciclabilidad</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="cuidado"><span class="nz-checkbox__box"></span>Instrucciones de cuidado</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="durabilidad"><span class="nz-checkbox__box"></span>Durabilidad</label>
+        <label class="nz-checkbox"><input type="checkbox" class="dpp-campo" data-campo="sustancias"><span class="nz-checkbox__box"></span>Sustancias preocupantes</label>
+      </div>
+
+      <div class="nz-callout nz-callout--note" style="margin-top:var(--nz-space-3)">
+        <p><strong class="nz-text--peso-fuerte">Calendario real:</strong> registro central en julio de 2026; prohibición de destruir stock textil para grandes empresas desde esa fecha; acto delegado textil previsiblemente en el primer trimestre de 2027 y obligación efectiva unos 18 meses después.</p>
+      </div>
+      <details style="margin-top:var(--nz-space-3)">
+        <summary class="cm-mini" style="cursor:pointer">Ver el registro que se genera</summary>
+        <pre class="nz-code nz-code--block nz-code--sm" id="dppJson" style="white-space:pre-wrap;margin-top:var(--nz-space-2)"></pre>
+      </details>
+    </div>
+  </div>
+
+  <div class="nz-alert nz-alert--info" style="margin-top:var(--nz-space-6)">
+    <div class="nz-alert__body"><span class="nz-alert__title">Lo que estas demos no son</span><span class="nz-alert__msg">No son modelos de IA: son las reglas del oficio escritas en código. Eso es precisamente lo que se enseña primero. Un modelo que escupe un patrón sin estas reglas produce geometría plausible y prendas imposibles.</span></div>
+  </div>
+</section>
+<!--FIN:B9-->
+<section class="nz-container cm-sec" id="probador">
+  <p class="cm-eyebrow"><span class="cm-num">05</span> Probador paramétrico</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">El maniquí que se adapta a ti — y te devuelve el patrón</h2>
+    <p class="nz-lead">Elige la prenda, cambia las medidas y mira cómo se reconstruye en 3D. En la columna de la derecha, el mismo motor devuelve las piezas listas para imprimir. No es un simulador de tejido: es <strong class="nz-text--peso-fuerte">geometría paramétrica</strong>, que es exactamente lo que hay debajo de una prenda que «se ajusta sola».</p>
+  </div>
+
+  <div class="cm-probador__grid">
+    <div class="cm-stage" style="display:grid;gap:var(--nz-space-2)">
+      <div class="cm-lienzo3d">
+        <canvas id="cv3d" aria-label="Maniquí 3D con la prenda seleccionada puesta"></canvas>
+        <span class="cm-estado3d" id="estado3d">Cargando motor 3D…</span>
+      </div>
+      <div class="cm-legend">
+        <span class="cm-key">arrastra para girar</span>
+        <span class="cm-key">rueda o pinza para acercar</span>
+        <span class="cm-key">el patrón se recalcula a la vez</span>
+      </div>
+    </div>
+
+    <div class="cm-panel">
+      <div class="cm-field" style="margin-bottom:var(--nz-space-3)">
+        <span class="nz-field__label">Prenda</span>
+        <div class="nz-segmented nz-segmented--sm cm-seg-prendas" id="segPrenda" role="group" aria-label="Tipo de prenda" style="flex-wrap:wrap">
+          <button type="button" aria-selected="true" data-prenda="camiseta">Camiseta</button>
+          <button type="button" aria-selected="false" data-prenda="vestido">Vestido</button>
+          <button type="button" aria-selected="false" data-prenda="falda">Falda</button>
+          <button type="button" aria-selected="false" data-prenda="pantalon">Pantalón</button>
+          <button type="button" aria-selected="false" data-prenda="chaqueta">Chaqueta</button>
+        </div>
+      </div>
+
+      <div class="cm-split2">
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="pAltura">Altura</label><output class="cm-ctl__val" for="pAltura" id="pVAltura">170 cm</output></div>
+          <input class="nz-range nz-range--brand" id="pAltura" type="range" min="150" max="198" step="1" value="170">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="pPecho">Pecho</label><output class="cm-ctl__val" for="pPecho" id="pVPecho">92 cm</output></div>
+          <input class="nz-range nz-range--brand" id="pPecho" type="range" min="74" max="132" step="1" value="92">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="pCintura">Cintura</label><output class="cm-ctl__val" for="pCintura" id="pVCintura">74 cm</output></div>
+          <input class="nz-range nz-range--brand" id="pCintura" type="range" min="54" max="124" step="1" value="74">
+        </div>
+        <div class="cm-ctl">
+          <div class="cm-ctl__top"><label for="pCadera">Cadera</label><output class="cm-ctl__val" for="pCadera" id="pVCadera">98 cm</output></div>
+          <input class="nz-range nz-range--brand" id="pCadera" type="range" min="76" max="140" step="1" value="98">
+        </div>
+      </div>
+      <div class="cm-ctl">
+        <div class="cm-ctl__top"><label for="pLargo">Largo de la prenda</label><output class="cm-ctl__val" for="pLargo" id="pVLargo">100 %</output></div>
+        <input class="nz-range nz-range--accent" id="pLargo" type="range" min="55" max="125" step="1" value="100">
+      </div>
+
+      <div class="nodisp" style="display:flex;flex-wrap:wrap;gap:var(--nz-space-3);align-items:center;margin-block:var(--nz-space-2)">
+        <label class="nz-switch"><input type="checkbox" id="verCuerpo" checked><span class="nz-switch__track"><span class="nz-switch__thumb"></span></span><span class="nz-switch__label">Ver cuerpo</span></label>
+        <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" id="btnSvg">Descargar patrón SVG</button>
+      </div>
+      <p class="cm-mini" style="margin:var(--nz-space-2) 0 0">Si el motor 3D no carga (sin red), el patrón 2D sigue funcionando: es el mismo cálculo, sin malla.</p>
+    </div>
+
+    <div class="cm-panel cm-panel--mute" style="grid-column:1/-1">
+      <div class="cm-panel__cap">
+        <h3 class="nz-h3" style="margin:0">Patrón generado</h3>
+        <span class="nz-badge nz-badge--accent" id="badgePrenda">camiseta</span>
+      </div>
+      <div class="cm-grid2">
+        <div class="cm-stage cm-stage--tight">
+          <svg id="svgProbador" class="cm-canvas" viewBox="0 0 200 120" role="img" aria-label="Piezas del patrón de la prenda seleccionada, con sus medidas">
+            <g id="piezasProbador" fill="none" stroke="var(--nz-brand)" stroke-width="0.5" stroke-linejoin="round"></g>
+            <text id="svgVacio" x="10" y="20" font-size="4" fill="var(--nz-text-soft)">El patrón se dibuja al mover los controles.</text>
+          </svg>
+        </div>
+        <div>
+          <div id="listaPiezas" class="cm-pieza"></div>
+          <p class="cm-mini" style="margin-top:var(--nz-space-3)">En clase esto se exporta a SVG a escala 1:1, se imprime en A4 por teselas, se pega y se corta. La simulación te dice si vale la pena; la tela te dice la verdad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="nz-container cm-sec" id="herramientas">
+  <p class="cm-eyebrow"><span class="cm-num">06</span> Talleres-herramienta</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Cinco cajas de herramientas para una sastrería o una marca pequeña</h2>
+    <p class="nz-lead">Esto no es un catálogo: es el equipo mínimo con el que un alumno puede montar su propio estudio. Cada pestaña trae el flujo, lo gratis frente a lo de pago y la trampa que nadie te cuenta.</p>
+  </div>
+
+  <div class="cm-escala" style="margin-bottom:var(--nz-space-6)">
+    <div class="cm-escala__n"><strong>1 · Aprender</strong><span>Entiendes el concepto y lo pruebas. No se entrega a un cliente.</span></div>
+    <div class="cm-escala__n"><strong>2 · Taller</strong><span>Produces piezas para ti o para un encargo pequeño, con revisión.</span></div>
+    <div class="cm-escala__n"><strong>3 · Producir</strong><span>Entra en un flujo real: coste, ficha, corte, fábrica.</span></div>
+    <div class="cm-escala__n cm-escala__n--4"><strong>4 · Industria</strong><span>Es lo que la marca o la fábrica ya usan o exigen (estándar, licencia u obligación legal).</span></div>
+  </div>
+  <p class="cm-mini" style="margin-bottom:var(--nz-space-5)">El nivel mide <strong class="nz-text--peso-fuerte">alcance</strong>, no calidad. Una herramienta de nivel 2 puede ser mejor para aprender que una de nivel 4; y una de nivel 4 sin criterio produce basura más rápido.</p>
+
+  <div class="nz-tabs" role="tablist" aria-label="Herramientas por área de trabajo">
+    <button class="nz-tabs__tab" role="tab" id="tab-patron" aria-controls="panel-patron" aria-selected="true">Patronaje</button>
+    <button class="nz-tabs__tab" role="tab" id="tab-sim" aria-controls="panel-sim" aria-selected="false">Simulación</button>
+    <button class="nz-tabs__tab" role="tab" id="tab-tejido" aria-controls="panel-tejido" aria-selected="false">Tejido</button>
+    <button class="nz-tabs__tab" role="tab" id="tab-imagen" aria-controls="panel-imagen" aria-selected="false">Imagen</button>
+    <button class="nz-tabs__tab" role="tab" id="tab-ficha" aria-controls="panel-ficha" aria-selected="false">Ficha y DPP</button>
+  </div>
+
+  <div class="cm-tabpanel" role="tabpanel" id="panel-patron" aria-labelledby="tab-patron">
+    <div class="cm-grid2">
+      <div>
+        <h3 class="nz-h3" style="margin-top:0">Patronaje: de la talla al algoritmo</h3>
+        <p>La usas cuando quieres que un patrón sirva para muchos cuerpos sin volver a dibujarlo. Es la herramienta que convierte un taller artesano en un sistema: cambias una medida y se recalcula la sisa, la copa y el escalado.</p>
+        <ol class="cm-flow">
+          <li><span class="cm-flow__n">1</span><p><strong class="nz-text--peso-fuerte">Mide.</strong> Tabla de medidas propia (o avatar medido). Sin esto, todo lo demás es decoración.</p></li>
+          <li><span class="cm-flow__n">2</span><p><strong class="nz-text--peso-fuerte">Blinda el bloque base.</strong> Un patrón bien construido aguanta veinte variaciones; uno mal construido no aguanta ninguna.</p></li>
+          <li><span class="cm-flow__n">3</span><p><strong class="nz-text--peso-fuerte">Parametriza.</strong> Escribe el patrón como función (código) o como documento paramétrico (Seamly2D).</p></li>
+          <li><span class="cm-flow__n">4</span><p><strong class="nz-text--peso-fuerte">Exporta y prueba.</strong> SVG o DXF, y a la simulación o a la mesa de corte.</p></li>
+        </ol>
+        <div class="nz-callout nz-callout--warn" style="margin-top:var(--nz-space-4)">
+          <p><strong class="nz-text--peso-fuerte">La trampa:</strong> la copa de manga más larga que la sisa. Es el error que delata a un aficionado y que ningún modelo detecta solo: la manga se frunce. Se arregla con una regla de validación, no con más IA.</p>
+        </div>
+      </div>
+      <div class="cm-panel cm-panel--mute">
+        <div class="cm-panel__cap"><h4 class="nz-h3" style="font-size:var(--nz-text-base);margin:0">Con qué se hace</h4><span class="nz-badge nz-badge--neutral">5 opciones</span></div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>GarmentCode (PyGarment)</strong><span class="cm-alcance cm-alcance--4" title="Nivel de alcance: Industria"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span></span>Industria</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Framework en Python para diseñar patrones paramétricos modulares. Es la base de casi toda la investigación del área y el punto de entrada del curso.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: patrones paramétricos complejos, versionables y reproducibles; es la puerta a la investigación del área.</span><span><b>Techo</b>: no simula tela ni genera ficha: el ajuste real sigue siendo tuyo.</span></p>
+          <div class="cm-lic"><span>MIT</span><span>Python</span><span>dificultad alta</span><a class="cm-link" href="https://github.com/maria-korosteleva/GarmentCode" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Seamly2D</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Patronaje paramétrico visual, multitala y multiusuario. La puerta para el alumno que no quiere programar pero sí quiere un patrón que se adapte.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: un patrón multitala listo para cortar, sin escribir código.</span><span><b>Techo</b>: no tiene 3D, ni costes, ni validación de costuras.</span></p>
+          <div class="cm-lic"><span>GPLv3</span><span>Windows · macOS · Linux</span><span>dificultad media</span><a class="cm-link" href="https://github.com/FashionFreedom/Seamly2D" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>FreeSewing</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Patrones como código en JavaScript, con comunidad activa y publicación inmediata. Ideal para el ejercicio «mi primer patrón generado».</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: patrones como código publicables en web con tu tabla de medidas.</span><span><b>Techo</b>: catálogo acotado y sin salida industrial.</span></p>
+          <div class="cm-lic"><span>open source</span><span>JavaScript</span><span>dificultad media</span><a class="cm-link" href="https://freesewing.eu" target="_blank" rel="noopener">freesewing.eu</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>ChatGarment</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--warning">GPU</span></div>
+          <p>Modelo de visión y lenguaje que estima y edita patrones por diálogo. Perfecto para demostrar el estado del arte y sus fallos en la misma sesión.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: de una foto o una frase a un patrón en segundos, para explorar.</span><span><b>Techo</b>: geometría plausible: no garantiza costuras, márgenes ni escalado.</span></p>
+          <div class="cm-lic"><span>Apache 2.0</span><span>Python</span><span>dificultad alta</span><a class="cm-link" href="https://github.com/biansy000/ChatGarment" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>CLO 3D · Style3D</strong><span class="cm-alcance cm-alcance--4" title="Nivel de alcance: Industria"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span></span>Industria</span><span class="nz-badge nz-badge--danger">de pago</span></div>
+          <p>El estándar de la industria. No se enseña como herramienta principal, pero sí como destino de exportación: si tu patrón no entra en CLO, no entra en una fábrica.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: fitting y ficha que una fábrica acepta sin discutir.</span><span><b>Techo</b>: licencia cara y no enseña patronaje: sin bloque base, la herramienta no salva.</span></p>
+          <div class="cm-lic"><span>licencia comercial</span><span>DXF · AAMA</span><span>dificultad media</span><a class="cm-link" href="https://www.clo3d.com" target="_blank" rel="noopener">clo3d.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cm-tabpanel" role="tabpanel" id="panel-sim" aria-labelledby="tab-sim">
+    <div class="cm-grid2">
+      <div>
+        <h3 class="nz-h3" style="margin-top:0">Simulación: descartar antes de cortar</h3>
+        <p>La usas para tirar ideas sin gastar tela. Una prenda simulada no aprueba nada: sirve para decidir qué merece una muestra física. Es un filtro, no un veredicto.</p>
+        <ol class="cm-flow">
+          <li><span class="cm-flow__n">1</span><p><strong class="nz-text--peso-fuerte">Prepara el avatar.</strong> Medido, con pose neutra y proporciones reales de tu cliente, no de una modelo.</p></li>
+          <li><span class="cm-flow__n">2</span><p><strong class="nz-text--peso-fuerte">Cose, no superpongas.</strong> Un patrón cosido con costuras reales se comporta distinto a una malla pegada al cuerpo.</p></li>
+          <li><span class="cm-flow__n">3</span><p><strong class="nz-text--peso-fuerte">Asigna tejido con física.</strong> Rigidez, peso y caída. Un denim y una seda no se diferencian en el color.</p></li>
+          <li><span class="cm-flow__n">4</span><p><strong class="nz-text--peso-fuerte">Muévela.</strong> El test de marcha revela lo que la pose estática esconde: tirantez, aletas, aberturas.</p></li>
+        </ol>
+        <div class="nz-callout nz-callout--warn" style="margin-top:var(--nz-space-4)">
+          <p><strong class="nz-text--peso-fuerte">La trampa:</strong> confundir una simulación bonita con un ajuste correcto. El motor no conoce el tejido real ni el cuerpo real; el espejo del taller sigue mandando.</p>
+        </div>
+      </div>
+      <div class="cm-panel cm-panel--mute">
+        <div class="cm-panel__cap"><h4 class="nz-h3" style="font-size:var(--nz-text-base);margin:0">Con qué se hace</h4><span class="nz-badge nz-badge--neutral">5 opciones</span></div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Blender + Cloth Lab</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>El motor de tela de Blender con un add-on que añade patrones, costuras, presets de tejido, arrugas y desgarro. Cero coste, curva de aprendizaje real.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: descartar diseños y ver la caída antes de cortar tela.</span><span><b>Techo</b>: el motor no es el tejido: sirve para decidir, no para aprobar.</span></p>
+          <div class="cm-lic"><span>GPL</span><span>Blender 4.5+</span><span>dificultad media</span><a class="cm-link" href="https://slohero.com/tools/blender/en/" target="_blank" rel="noopener">descarga</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>opensew-2</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Add-on en Python puro que mide tu personaje y dibuja bloques paramétricos, cose en cuatro fases y prueba la prenda con paso normal y paso de pasarela.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: bloques paramétricos medidos del avatar, costura por fases y test de paso de pasarela.</span><span><b>Techo</b>: sin pinzas, pliegues ni márgenes; atado a Blender 5.2.</span></p>
+          <div class="cm-lic"><span>GPL-3.0</span><span>Blender 5.2</span><span>dificultad media</span><a class="cm-link" href="https://github.com/MarcelloMorettoni/opensew-2" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Garment Tool</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>El clásico para coser patrones 2D dentro de Blender: simetrizar, dividir, coser y asignar física por pieza. Documentación larga y estable.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: coser patrones 2D y drapear sobre el cuerpo dentro de Blender.</span><span><b>Techo</b>: es modelado, no patronaje: el patrón lo traes tú.</span></p>
+          <div class="cm-lic"><span>gratis</span><span>Blender 3.6+</span><span>dificultad media</span><a class="cm-link" href="https://joseconseco.github.io/GarmentToolDocs/" target="_blank" rel="noopener">documentación</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>seams-to-sewing-pattern</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Convierte una malla 3D en un patrón SVG imprimible. Es la pieza que cierra el bucle digital → tela y la que más impresiona en clase.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: de una malla 3D a un patrón SVG que se imprime y se cose.</span><span><b>Techo</b>: aproxima; no sustituye a un patronista en prendas complejas.</span></p>
+          <div class="cm-lic"><span>GPL-3.0</span><span>Blender</span><span>dificultad baja</span><a class="cm-link" href="https://github.com/artyredd/blender-seams-to-sewing-pattern" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>CLO 3D · Browzwear · Lectra</strong><span class="cm-alcance cm-alcance--4" title="Nivel de alcance: Industria"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span></span>Industria</span><span class="nz-badge nz-badge--danger">de pago</span></div>
+          <p>Lo que usan las marcas. La clase enseña a exportar hacia ellos y a leer sus informes de ajuste, sin depender de una licencia para aprobar la asignatura.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: el flujo que usan las marcas: ajuste, tech pack y aprobación.</span><span><b>Techo</b>: coste de licencia y formación larga.</span></p>
+          <div class="cm-lic"><span>licencia comercial</span><span>DXF · AAMA</span><span>dificultad media</span><a class="cm-link" href="https://www.clo3d.com" target="_blank" rel="noopener">clo3d.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--FIN:B10-->
+
+  <div class="cm-tabpanel" role="tabpanel" id="panel-tejido" aria-labelledby="tab-tejido">
+    <div class="cm-grid2">
+      <div>
+        <h3 class="nz-h3" style="margin-top:0">Tejido: del dibujo al metro de tela</h3>
+        <p>La usas cuando diseñas estampado propio o quieres variantes de color sin volver a dibujar. El objetivo no es una imagen: es un archivo que una imprenta pueda ejecutar sin llamarte por teléfono.</p>
+        <ol class="cm-flow">
+          <li><span class="cm-flow__n">1</span><p><strong class="nz-text--peso-fuerte">Define el rapport.</strong> Tamaño real del módulo (por ejemplo 30 × 30 cm) y qué parte es sangre.</p></li>
+          <li><span class="cm-flow__n">2</span><p><strong class="nz-text--peso-fuerte">Genera con tiling.</strong> El nodo correcto hace que el modelo vea el borde opuesto mientras dibuja; sin él, la costura es inevitable.</p></li>
+          <li><span class="cm-flow__n">3</span><p><strong>Comprueba de verdad.</strong> Mosaico 3 × 3 a tamaño real, 300 ppp y separación de tintas si es serigrafía.</p></li>
+          <li><span class="cm-flow__n">4</span><p><strong>Prueba en tela.</strong> Un metro de prueba cuesta menos que un rollo equivocado.</p></li>
+        </ol>
+        <div class="nz-callout nz-callout--warn" style="margin-top:var(--nz-space-4)">
+          <p><strong class="nz-text--peso-fuerte">La trampa:</strong> el color de pantalla no es el color de la tela, y el tiling de los modelos de difusión no funciona igual en todas las arquitecturas: en los transformers puros el nodo de repetición se ignora sin avisar.</p>
+        </div>
+      </div>
+      <div class="cm-panel cm-panel--mute">
+        <div class="cm-panel__cap"><h4 class="nz-h3" style="font-size:var(--nz-text-base);margin:0">Con qué se hace</h4><span class="nz-badge nz-badge--neutral">5 opciones</span></div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>ComfyUI + seamless tiling</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Nodo que replica la casilla de repetición de los editores clásicos, con tiling independiente en horizontal y vertical. Verificado en SDXL y Flux.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: un rapport que repite sin costura, con control de escala.</span><span><b>Techo</b>: no resuelve resolución de impresión ni separación de tintas.</span></p>
+          <div class="cm-lic"><span>GPL-3.0</span><span>GPU 8 GB+</span><span>dificultad media</span><a class="cm-link" href="https://github.com/spinagon/ComfyUI-seamless-tiling" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>PatternDiffusion</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Envoltorio pequeño para generar patrones repetibles orientados a textil no fotorrealista. Ideal para el primer rapport del alumno sin montar un stack enorme.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: primeros rapports textiles sin montar un stack enorme.</span><span><b>Techo</b>: modelo antiguo, poca variedad y sin control fino.</span></p>
+          <div class="cm-lic"><span>open source</span><span>SD 2.0</span><span>dificultad baja</span><a class="cm-link" href="https://github.com/realstevewarner/PatternDiffusion" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>FabricDiffusion · Cloth2Tex</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--warning">investigación</span></div>
+          <p>Generación de texturas físicas para prendas 3D: el puente entre un estampado plano y una tela que reacciona a la luz en la simulación.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: texturas físicas que responden a la luz en la simulación.</span><span><b>Techo</b>: requiere GPU y criterio: no es un botón de «tela realista».</span></p>
+          <div class="cm-lic"><span>MIT / research</span><span>Python</span><span>dificultad alta</span><a class="cm-link" href="https://github.com/HumanAIGC/Cloth2Tex" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Krita · Inkscape · GIMP</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Retoque, vectorización y separación de tintas. La IA genera; estas herramientas hacen que el archivo sea imprimible.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: un archivo imprimible: vector, tintas y repetición comprobada.</span><span><b>Techo</b>: no genera: ordena lo que la IA produjo.</span></p>
+          <div class="cm-lic"><span>GPL</span><span>escritorio</span><span>dificultad baja</span><a class="cm-link" href="https://krita.org" target="_blank" rel="noopener">krita.org</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Photoshop (Firefly) · Magnific</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--danger">de pago</span></div>
+          <p>Escalado, variaciones y acabado fino. Útiles cuando el archivo ya está bien construido; inútiles como sustituto del rapport.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: acabado, escalado y variaciones con licencia comercial.</span><span><b>Techo</b>: no arregla un rapport mal construido.</span></p>
+          <div class="cm-lic"><span>suscripción</span><span>web</span><span>dificultad baja</span><a class="cm-link" href="https://www.magnific.ai" target="_blank" rel="noopener">magnific.ai</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cm-tabpanel" role="tabpanel" id="panel-imagen" aria-labelledby="tab-imagen">
+    <div class="cm-grid2">
+      <div>
+        <h3 class="nz-h3" style="margin-top:0">Imagen: la campaña antes de la muestra</h3>
+        <p>La usas para enseñar la colección sin convocar un shooting. La clave es que la prenda que se ve sea la prenda que se va a fabricar: si el modelo se inventa una costura, has vendido humo.</p>
+        <ol class="cm-flow">
+          <li><span class="cm-flow__n">1</span><p><strong class="nz-text--peso-fuerte">Fotografía la prenda real.</strong> Flat lay limpio, luz plana, sin sombras duras. Es la entrada del sistema.</p></li>
+          <li><span class="cm-flow__n">2</span><p><strong class="nz-text--peso-fuerte">Recorta y enmascara.</strong> Una máscara buena vale más que veinte prompts.</p></li>
+          <li><span class="cm-flow__n">3</span><p><strong class="nz-text--peso-fuerte">Pon el cuerpo.</strong> Try-on con pose y prenda, o modelo generado con identidad consistente entre imágenes.</p></li>
+          <li><span class="cm-flow__n">4</span><p><strong class="nz-text--peso-fuerte">Unifica luz y etiqueta.</strong> Misma dirección de luz en toda la serie y aviso de contenido generado donde toque.</p></li>
+        </ol>
+        <div class="nz-callout nz-callout--warn" style="margin-top:var(--nz-space-4)">
+          <p><strong class="nz-text--peso-fuerte">La trampa:</strong> los derechos de imagen y la coherencia. Un modelo generado no firma un consentimiento, y seis imágenes con seis caras distintas no son una campaña.</p>
+        </div>
+      </div>
+      <div class="cm-panel cm-panel--mute">
+        <div class="cm-panel__cap"><h4 class="nz-h3" style="font-size:var(--nz-text-base);margin:0">Con qué se hace</h4><span class="nz-badge nz-badge--neutral">6 opciones</span></div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>ComfyUI + CatVTON</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Try-on por inpainting con máscara y prenda de referencia. Más ligero que las alternativas con pose estimation y suficiente para producto.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: poner tu prenda en un cuerpo con una máscara decente.</span><span><b>Techo</b>: pierde detalle fino y no inventa la espalda.</span></p>
+          <div class="cm-lic"><span>open source</span><span>GPU 8-12 GB</span><span>dificultad media</span><a class="cm-link" href="https://github.com/Zheng-Chong/CatVTON" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>IDM-VTON</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--warning">GPU</span></div>
+          <p>Try-on con estimación de pose y warping de la prenda. Más fiel en prendas complejas; pide 16 GB de VRAM o alquiler por uso.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: try-on fiel en prendas complejas con pose estimada.</span><span><b>Techo</b>: 16 GB de VRAM o alquiler por uso.</span></p>
+          <div class="cm-lic"><span>open source</span><span>16 GB VRAM</span><span>dificultad alta</span><a class="cm-link" href="https://github.com/yisol/IDM-VTON" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>IP-Adapter · FaceID</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Mantiene la misma cara y el mismo estilo entre imágenes. Es lo que convierte seis fotos sueltas en una campaña.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: la misma cara y el mismo estilo en toda la serie.</span><span><b>Techo</b>: consistencia no es realismo: la piel sigue cantando.</span></p>
+          <div class="cm-lic"><span>open source</span><span>ComfyUI</span><span>dificultad media</span><a class="cm-link" href="https://github.com/tencent-ailab/IP-Adapter" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>IC-Light</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Reilumina una imagen para que la luz del sujeto case con el fondo. El detalle que separa una foto creíble de un collage.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: que la luz del sujeto case con el fondo.</span><span><b>Techo</b>: no corrige sombras malas de origen.</span></p>
+          <div class="cm-lic"><span>open source</span><span>ComfyUI</span><span>dificultad media</span><a class="cm-link" href="https://github.com/lllyasviel/IC-Light" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Flux · SDXL + LoRA de marca</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Entrena un LoRA con el archivo de la marca para que el estilo sea reconocible. Es la diferencia entre «una foto de IA» y «una foto de tu marca».</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: un estilo propio reconocible entrenado con tu archivo.</span><span><b>Techo</b>: GPU, dataset limpio y tiempo de entrenamiento.</span></p>
+          <div class="cm-lic"><span>open source</span><span>GPU</span><span>dificultad alta</span><a class="cm-link" href="https://github.com/black-forest-labs/flux" target="_blank" rel="noopener">repositorio</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Firefly · Krea · Magnific</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--danger">de pago</span></div>
+          <p>Licencia comercial clara y acabado rápido. Cuando la marca necesita dormir tranquila con el uso de imagen, esto cuenta.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: imagen con licencia comercial clara para enseñar al cliente.</span><span><b>Techo</b>: suscripción y resultados menos controlables.</span></p>
+          <div class="cm-lic"><span>suscripción</span><span>web</span><span>dificultad baja</span><a class="cm-link" href="https://www.adobe.com/es/products/firefly.html" target="_blank" rel="noopener">adobe.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--FIN:B11-->
+
+  <div class="cm-tabpanel" role="tabpanel" id="panel-ficha" aria-labelledby="tab-ficha">
+    <div class="cm-grid2">
+      <div>
+        <h3 class="nz-h3" style="margin-top:0">Ficha, coste y trazabilidad: el papeleo que decide si comes</h3>
+        <p>La usas en cuanto dejas de coser para ti y empiezas a producir para otros. Aquí la IA no compite con la creatividad: compite con tres horas de Excel, y gana.</p>
+        <ol class="cm-flow">
+          <li><span class="cm-flow__n">1</span><p><strong class="nz-text--peso-fuerte">Boceto estructurado.</strong> Si el dibujo no marca costuras ni cierres, ningún modelo puede deducirlos.</p></li>
+          <li><span class="cm-flow__n">2</span><p><strong class="nz-text--peso-fuerte">BOM y puntos de medida.</strong> Con biblioteca propia de materiales y tolerancias: ahí está el valor, no en el prompt.</p></li>
+          <li><span class="cm-flow__n">3</span><p><strong class="nz-text--peso-fuerte">Consumo y marcada.</strong> El nesting decide tu margen más que el precio de venta.</p></li>
+          <li><span class="cm-flow__n">4</span><p><strong class="nz-text--peso-fuerte">Evidencia y pasaporte.</strong> Cada dato con su fuente. Un DPP sin trazabilidad es una declaración, y las declaraciones se inspeccionan.</p></li>
+        </ol>
+        <div class="nz-callout nz-callout--warn" style="margin-top:var(--nz-space-4)">
+          <p><strong class="nz-text--peso-fuerte">La trampa:</strong> pedirle al modelo precios de proveedor o plazos de fábrica. Eso no está en los datos: está en tu teléfono. La IA redacta y valida; no negocia.</p>
+        </div>
+      </div>
+      <div class="cm-panel cm-panel--mute">
+        <div class="cm-panel__cap"><h4 class="nz-h3" style="font-size:var(--nz-text-base);margin:0">Con qué se hace</h4><span class="nz-badge nz-badge--neutral">6 opciones</span></div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>LLM + plantilla JSON</strong><span class="cm-alcance" title="Nivel de alcance: Taller"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span><span class="cm-alcance__seg"></span></span>Taller</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Un modelo de lenguaje con un esquema estricto de ficha técnica: materiales, medidas, construcción. Barato, rápido y revisable línea a línea.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: borradores de ficha con BOM y medidas revisables línea a línea.</span><span><b>Techo</b>: se inventa cifras: sin biblioteca propia no vale.</span></p>
+          <div class="cm-lic"><span>API o local</span><span>JSON Schema</span><span>dificultad media</span><a class="cm-link" href="https://json-schema.org" target="_blank" rel="noopener">json-schema.org</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Techpacker</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--danger">de pago</span></div>
+          <p>Editor de fichas por tarjetas, integración con Illustrator y colaboración con fábrica. El más aceptado por talleres pequeños.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: fichas que la fábrica entiende y comenta.</span><span><b>Techo</b>: no genera el contenido: lo ordena.</span></p>
+          <div class="cm-lic"><span>desde ~49 $/mes</span><span>web</span><span>dificultad baja</span><a class="cm-link" href="https://techpacker.com" target="_blank" rel="noopener">techpacker.com</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>The F* Word · Calico AI</strong><span class="cm-alcance cm-alcance--4" title="Nivel de alcance: Industria"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span></span>Industria</span><span class="nz-badge nz-badge--danger">de pago</span></div>
+          <p>Generación de tech packs desde un boceto en minutos, con BOM, medidas y notas de construcción. Referencia de hacia dónde va el sector.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: tech pack completo desde un boceto en minutos, con coste y BOM.</span><span><b>Techo</b>: suscripción y dependencia de su biblioteca de materiales.</span></p>
+          <div class="cm-lic"><span>suscripción</span><span>web</span><span>dificultad baja</span><a class="cm-link" href="https://thefword.ai" target="_blank" rel="noopener">thefword.ai</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>deepnest · SVGnest</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>Optimización de marcada: colocar las piezas para gastar menos tela. Un 5 % de ahorro en producción es dinero directo al margen.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: marcada optimizada: menos metros por prenda.</span><span><b>Techo</b>: no conoce dirección de hilo ni defectos de tela.</span></p>
+          <div class="cm-lic"><span>open source</span><span>SVG · DXF</span><span>dificultad media</span><a class="cm-link" href="https://deepnest.io" target="_blank" rel="noopener">deepnest.io</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Sheets + Python (openpyxl)</strong><span class="cm-alcance" title="Nivel de alcance: Producir"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg"></span></span>Producir</span><span class="nz-badge nz-badge--success">gratis</span></div>
+          <p>El cuadro de costes real: escandallo, mermas, escenarios de precio. Feo, honesto y exacto; lo que usa cualquier taller que gane dinero.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: el escandallo real: mermas, escenarios y precio de venta.</span><span><b>Techo</b>: feo y manual; hay que mantenerlo.</span></p>
+          <div class="cm-lic"><span>gratis</span><span>Python</span><span>dificultad baja</span><a class="cm-link" href="https://openpyxl.readthedocs.io" target="_blank" rel="noopener">openpyxl</a></div>
+        </div>
+        <div class="cm-tool">
+          <div class="cm-tool__top"><strong>Registro DPP · GS1 Digital Link</strong><span class="cm-alcance cm-alcance--4" title="Nivel de alcance: Industria"><span class="cm-alcance__bar"><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span><span class="cm-alcance__seg is-on"></span></span>Industria</span><span class="nz-badge nz-badge--warning">normativa</span></div>
+          <p>El soporte físico del pasaporte (QR) y el registro europeo. Aquí se juega la parte del curso que ninguna marca puede aplazar.</p><p class="cm-tool__alcance"><span><b>Te lleva a</b>: el pasaporte que la autoridad puede verificar, no un PDF decorativo.</span><span><b>Techo</b>: sin datos de proveedor, el QR abre un folleto vacío.</span></p>
+          <div class="cm-lic"><span>UE 2024/1781</span><span>QR · NFC</span><span>dificultad baja</span><a class="cm-link" href="https://gs1.org/standards/gs1-digital-link" target="_blank" rel="noopener">gs1.org</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--FIN:B12-->
+<section class="nz-container cm-sec" id="ejercicios">
+  <p class="cm-eyebrow"><span class="cm-num">07</span> Ejercicios de ejemplo</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Dos ejercicios que separan al que promptea del que diseña</h2>
+    <p class="nz-lead">Cada uno se entrega con artefacto físico o verificable. Los dos se pueden resolver con herramientas gratuitas; el dinero solo acelera, no aprueba.</p>
+  </div>
+
+  <div class="cm-grid2">
+    <div class="cm-panel cm-ej">
+      <div class="cm-panel__cap">
+        <h3 class="nz-h3" style="margin:0">Ejercicio 1 · El patrón que obedece</h3>
+        <span class="nz-badge nz-badge--brand">obligatorio</span>
+      </div>
+      <div class="cm-ej__meta">
+        <span class="nz-chip">Sesiones 3-6</span>
+        <span class="nz-chip">6 h de clase + 4 h de taller</span>
+        <span class="nz-chip nz-chip--accent">entrega física</span>
+      </div>
+      <p><strong class="nz-text--peso-fuerte">Enunciado.</strong> Elige una prenda simple —camiseta de manga corta o falda recta— y constrúyela como <em>función</em>: un patrón que se recalcule con la tabla de medidas. Después compruébalo de dos maneras: simulándolo en 3D y cosiéndolo en tela. La pregunta del ejercicio no es «¿queda bonito?», es <strong class="nz-text--peso-fuerte">¿cuánto se desvía mi modelo de la realidad?</strong></p>
+
+      <div class="nz-callout nz-callout--note">
+        <p><strong class="nz-text--peso-fuerte">Entregables</strong></p>
+      </div>
+      <ol class="cm-flow">
+        <li><span class="cm-flow__n">1</span><p>El patrón parametrizado (script de GarmentCode o archivo de Seamly2D) con la tabla de medidas de tres cuerpos distintos: el tuyo, uno más grande y uno más pequeño.</p></li>
+        <li><span class="cm-flow__n">2</span><p>Las tres prendas simuladas en Blender, con captura frontal, lateral y <strong class="nz-text--peso-fuerte">test de marcha</strong> de cuatro pasos.</p></li>
+        <li><span class="cm-flow__n">3</span><p>El patrón en SVG a escala 1:1, impreso y montado, y la foto de la prenda cosida puesta en el cuerpo real.</p></li>
+        <li><span class="cm-flow__n">4</span><p>Una tabla de desviaciones: sisa, escote, largo y ancho real frente al simulado, con una frase explicando cada diferencia.</p></li>
+      </ol>
+
+      <div class="nz-table-wrap nz-table-wrap--apilable">
+        <table class="nz-table nz-table--apilable nz-table--compact">
+          <caption class="nz-table__caption">Cómo se corrige (40 puntos)</caption>
+          <thead><tr><th scope="col">Criterio</th><th scope="col">Qué se mira</th><th scope="col" class="nz-table__right">Puntos</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Cierra</th><td data-etiqueta="Qué se mira">La prenda se pone sin pinzas de sastre y el escote no se abre</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">15</td></tr>
+            <tr><th scope="row">Casa</th><td data-etiqueta="Qué se mira">La copa de manga mide lo mismo que la sisa (±5 mm)</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">10</td></tr>
+            <tr><th scope="row">Escala</th><td data-etiqueta="Qué se mira">Los tres cuerpos salen del mismo código, sin retoques a mano</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">10</td></tr>
+            <tr><th scope="row">Honestidad</th><td data-etiqueta="Qué se mira">La tabla de desviaciones explica los fallos, no los esconde</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nz-callout nz-callout--warn">
+        <p><strong class="nz-text--peso-fuerte">La trampa:</strong> si la simulación y la tela coinciden al 100 %, has medido mal. Siempre hay desviación: la tela pesa, cede y tira. El ejercicio aprueba a quien la documenta.</p>
+      </div>
+      <p class="cm-mini">Señal de que está bien: puedes dar el patrón a otra persona, con otra talla, y le queda.</p>
+    </div>
+
+    <div class="cm-panel cm-ej">
+      <div class="cm-panel__cap">
+        <h3 class="nz-h3" style="margin:0">Ejercicio 2 · El rapport que aguanta la imprenta</h3>
+        <span class="nz-badge nz-badge--accent">diferencial</span>
+      </div>
+      <div class="cm-ej__meta">
+        <span class="nz-chip">Sesiones 7, 9, 10 y 11</span>
+        <span class="nz-chip">8 h + 2 h de revisión</span>
+        <span class="nz-chip nz-chip--accent">cadena completa</span>
+      </div>
+      <p><strong class="nz-text--peso-fuerte">Enunciado.</strong> Diseña un estampado original para una prenda concreta y llévalo hasta el final del ciclo: del archivo imprimible a la campaña, del coste al pasaporte digital. Es el ejercicio que demuestra si el alumno entiende el negocio o solo la herramienta.</p>
+
+      <div class="nz-callout nz-callout--note">
+        <p><strong class="nz-text--peso-fuerte">Entregables</strong></p>
+      </div>
+      <ol class="cm-flow">
+        <li><span class="cm-flow__n">1</span><p>El rapport de 30 × 30 cm a 300 ppp, con prueba de mosaico 3 × 3 que demuestre que no hay costura.</p></li>
+        <li><span class="cm-flow__n">2</span><p>La ficha de impresión: sustrato, número de tintas, sistema (serigrafía, sublimación o DTG) y tamaño real del motivo.</p></li>
+        <li><span class="cm-flow__n">3</span><p>Tres imágenes de campaña con la prenda real sobre modelo virtual consistente, con la misma dirección de luz.</p></li>
+        <li><span class="cm-flow__n">4</span><p>El tech pack con BOM, consumo de tejido y coste unitario; y el pasaporte digital con los ocho campos obligatorios y su fuente.</p></li>
+      </ol>
+
+      <div class="nz-table-wrap nz-table-wrap--apilable">
+        <table class="nz-table nz-table--apilable nz-table--compact">
+          <caption class="nz-table__caption">Cómo se corrige (40 puntos)</caption>
+          <thead><tr><th scope="col">Criterio</th><th scope="col">Qué se mira</th><th scope="col" class="nz-table__right">Puntos</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Repite</th><td data-etiqueta="Qué se mira">Mosaico 3 × 3 sin costura visible, a tamaño real</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">12</td></tr>
+            <tr><th scope="row">Imprimible</th><td data-etiqueta="Qué se mira">Tintas, resolución y sustrato coherentes con el archivo</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">8</td></tr>
+            <tr><th scope="row">Coherente</th><td data-etiqueta="Qué se mira">El color de la campaña es el color de la ficha</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">10</td></tr>
+            <tr><th scope="row">Trazable</th><td data-etiqueta="Qué se mira">Cada campo del pasaporte tiene fuente, no adjetivos</td><td class="nz-table__num nz-table__right" data-etiqueta="Puntos">10</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="nz-callout nz-callout--warn">
+        <p><strong class="nz-text--peso-fuerte">La trampa:</strong> una imagen preciosa con un rapport que no repite es un suspenso. Y un pasaporte relleno con lo que el modelo «cree» que es el algodón es peor que no tenerlo: es una declaración falsa.</p>
+      </div>
+      <p class="cm-mini">Señal de que está bien: la imprenta puede ejecutar el archivo sin llamarte por teléfono.</p>
+    </div>
+  </div>
+
+  <div class="nz-alert nz-alert--info" style="margin-top:var(--nz-space-6)">
+    <div class="nz-alert__body"><span class="nz-alert__title">Cómo se usan en clase</span><span class="nz-alert__msg">El ejercicio 1 se presenta en la sesión 6 y se corrige en grupo con la prenda puesta: cada alumno prueba la de otro. El ejercicio 2 se lanza en la sesión 7 y se cierra en la 11, de modo que la campaña y el pasaporte se construyen sobre decisiones ya tomadas, no al revés.</span></div>
+  </div>
+</section>
+
+<section class="nz-container cm-sec" id="evaluacion">
+  <p class="cm-eyebrow"><span class="cm-num">08</span> Evaluación y riesgos</p>
+  <div class="cm-head">
+    <h2 class="nz-h2">Se puntúa el criterio, no la estética</h2>
+    <p class="nz-lead">Un alumno puede entregar la prenda más fea del curso y sacar matrícula si el patrón cierra, el coste cuadra y el dato es verificable. Lo contrario también es cierto.</p>
+  </div>
+
+  <div class="cm-grid2">
+    <div class="cm-panel">
+      <div class="cm-panel__cap"><h3 class="nz-h3" style="margin:0">Rúbrica del proyecto final</h3><span class="nz-badge nz-badge--brand">sobre 100</span></div>
+      <div class="nz-table-wrap">
+        <table class="nz-table nz-table--compact nz-table--striped">
+          <thead><tr><th scope="col">Eje</th><th scope="col">Qué se mira</th><th scope="col" class="nz-table__right">Peso</th></tr></thead>
+          <tbody>
+            <tr><td class="nz-table__strong">Corrección técnica</td><td>Costuras que casan, márgenes, hilo, escalado</td><td class="nz-table__num nz-table__right">30</td></tr>
+            <tr><td class="nz-table__strong">Coherencia con el brief</td><td>Que la prenda sea la que se pidió, no la que salió</td><td class="nz-table__num nz-table__right">20</td></tr>
+            <tr><td class="nz-table__strong">Trazabilidad de decisiones</td><td>Por qué ese tejido, ese margen, ese proveedor</td><td class="nz-table__num nz-table__right">20</td></tr>
+            <tr><td class="nz-table__strong">Sostenibilidad y normativa</td><td>DPP completo y verificable, no un PDF decorativo</td><td class="nz-table__num nz-table__right">15</td></tr>
+            <tr><td class="nz-table__strong">Reproducibilidad</td><td>Otro alumno puede repetirlo con el repositorio</td><td class="nz-table__num nz-table__right">15</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cm-mini" style="margin-top:var(--nz-space-3)">Nota de corte del curso: 40 % artefactos semanales · 20 % crítica técnica de un resultado ajeno · 40 % proyecto final con defensa de 10 minutos.</p>
+    </div>
+
+    <div class="cm-panel cm-panel--mute">
+      <div class="cm-panel__cap"><h3 class="nz-h3" style="margin:0">Riesgos y cómo se blindan</h3><span class="nz-badge nz-badge--warning">leer antes de firmar</span></div>
+      <ul class="nz-list">
+        <li class="nz-list__item"><strong class="nz-text--peso-fuerte">Que solo compren la capa generativa.</strong> Si el máster recorta a imagen y vídeo, el profesor es sustituible por un tutorial. Blindaje: el módulo 3-5 (patrón → tela → SVG) es intocable.</li>
+        <li class="nz-list__item"><strong class="nz-text--peso-fuerte">Hardware.</strong> Try-on y difusión piden 12-16 GB de VRAM. Blindaje: Colab, dos equipos con GPU en el aula y alquiler por horas para los picos.</li>
+        <li class="nz-list__item"><strong class="nz-text--peso-fuerte">Licencias.</strong> CLO y Style3D son de pago y las marcas los usan. Blindaje: enseñarlos como destino de exportación, nunca como requisito para aprobar.</li>
+        <li class="nz-list__item"><strong class="nz-text--peso-fuerte">Prometer sustitución.</strong> El mensaje correcto no es «la IA diseña sola», sino «el patronista que sepa esto vale el doble».</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cm-grid3" style="margin-top:var(--nz-space-6)">
+    <div class="cm-panel">
+      <p class="cm-mini" style="margin:0">Gratis para siempre</p>
+      <h3 class="nz-h3" style="margin-block:var(--nz-space-2)">El kit base</h3>
+      <p class="cm-mini" style="margin:0">Blender, Seamly2D, GarmentCode, Krita, Inkscape, ComfyUI, Python. Con esto se puede dar el curso entero.</p>
+    </div>
+    <div class="cm-panel">
+      <p class="cm-mini" style="margin:0">Demo o límite</p>
+      <h3 class="nz-h3" style="margin-block:var(--nz-space-2)">Lo que se prueba</h3>
+      <p class="cm-mini" style="margin:0">CLO 3D, Style3D, Browzwear, Techpacker. Se enseñan, se exporta hacia ellos y no se depende de ellos.</p>
+    </div>
+    <div class="cm-panel">
+      <p class="cm-mini" style="margin:0">Coste real</p>
+      <h3 class="nz-h3" style="margin-block:var(--nz-space-2)">Lo que se paga</h3>
+      <p class="cm-mini" style="margin:0">GPU por horas y APIs de imagen. Presupuesto de aula: unos 30-60 € por alumno y cuatrimestre si se planifica.</p>
+    </div>
+  </div>
+
+  <div class="nz-callout nz-callout--accent" style="margin-top:var(--nz-space-6)">
+    <p><strong class="nz-text--peso-fuerte">La frase que resume la asignatura:</strong> la IA no sustituye al patrónista. Sustituye al que solo sabía rellenar Excel, y hace valioso al que sabe leer lo que la IA acaba de escribir.</p>
+  </div>
+</section>
+
+<footer class="nz-container cm-foot">
+  <p>Propuesta docente para un máster de diseño y tecnología de moda · Documento de trabajo, octubre de 2026.</p>
+  <p>Fuentes verificadas: repositorios de GarmentCode, Seamly2D, ChatGarment, AIpparel, opensew-2, Cloth Lab, Garment Tool, seams-to-sewing-pattern, ComfyUI-seamless-tiling y PatternDiffusion; Reglamento (UE) 2024/1781 y calendario del acto delegado textil; informes públicos de Heuritech, The F* Word, Calico AI y FashionINSTA.</p>
+  <p style="margin-top:var(--nz-space-4)">Hecho con ❤️ por David Antizar</p>
+</footer>
+</main>
+<!--FIN:B13-->
+<script>
+(function () {
+  'use strict';
+  var num = function (v, d) {
+    var s = (Math.round(v * Math.pow(10, d || 0)) / Math.pow(10, d || 0)).toFixed(d || 0);
+    return s.replace('.', ',');
+  };
+
+  /* ---------- 1. patrón paramétrico ---------- */
+  var el = function (id) { return document.getElementById(id); };
+  var mP = el('mPecho'), mC = el('mCintura'), mL = el('mLargo'), mH = el('mHolgura');
+
+  function calc() {
+    var P = +mP.value, C = +mC.value, L = +mL.value, H = +mH.value;
+    var ap = (P + H) / 4, ah = ap * 0.72, ac = ap * 0.95, ab = ap * 1.02;
+    var ps = P / 10 + 10.5 + H / 4, ae = P / 20 + 2, pe = ae * 1.15, ch = 4.5, lc = L * 0.42;
+    return { P: P, C: C, L: L, H: H, ap: ap, ah: ah, ac: ac, ab: ab, ps: ps, ae: ae, pe: pe, ch: ch, lc: lc };
+  }
+
+  function dPath(a, prof) {
+    return 'M 0 ' + prof.toFixed(2) +
+      ' C ' + (a.ae * 0.15).toFixed(2) + ' ' + (prof * 0.25).toFixed(2) +
+      ' ' + (a.ae * 0.6).toFixed(2) + ' 0 ' + a.ae.toFixed(2) + ' 0' +
+      ' L ' + (a.ae + a.ah).toFixed(2) + ' ' + a.ch.toFixed(2) +
+      ' C ' + (a.ae + a.ah + a.ap * 0.18).toFixed(2) + ' ' + (a.ch + a.ps * 0.22).toFixed(2) +
+      ' ' + (a.ap * 1.06).toFixed(2) + ' ' + (a.ps * 0.62).toFixed(2) + ' ' + a.ap.toFixed(2) + ' ' + a.ps.toFixed(2) +
+      ' L ' + a.ac.toFixed(2) + ' ' + a.lc.toFixed(2) +
+      ' L ' + a.ab.toFixed(2) + ' ' + a.L.toFixed(2) +
+      ' L 0 ' + a.L.toFixed(2) + ' Z';
+  }
+
+  function pintarPatron() {
+    var a = calc();
+    var svg = el('patronSvg'), gDel = el('piezaDel'), gTra = el('piezaTra');
+    var sep = a.ap + 22, xTra = 4 + a.ap + 22;
+    gTra.setAttribute('transform', 'translate(' + xTra.toFixed(2) + ',6)');
+    el('pathDel').setAttribute('d', dPath(a, a.pe));
+    el('pathTra').setAttribute('d', dPath(a, Math.max(2.2, a.pe * 0.34)));
+    var w = xTra + a.ap + 8, h = a.L + 16;
+    svg.setAttribute('viewBox', '0 0 ' + w.toFixed(0) + ' ' + h.toFixed(0));
+    var sw = Math.max(0.3, w / 190);
+    svg.querySelectorAll('g[stroke]').forEach(function (g) { if (g.getAttribute('fill') === 'none') g.setAttribute('stroke-width', sw); });
+    el('hiloDel').setAttribute('x1', (4 + a.ap / 2).toFixed(2));
+    el('hiloDel').setAttribute('x2', (4 + a.ap / 2).toFixed(2));
+    el('hiloDel').setAttribute('y2', (a.L - 4).toFixed(2));
+    el('hiloTra').setAttribute('x1', (xTra + a.ap / 2).toFixed(2));
+    el('hiloTra').setAttribute('x2', (xTra + a.ap / 2).toFixed(2));
+    el('hiloTra').setAttribute('y2', (a.L - 4).toFixed(2));
+    el('cinDel').setAttribute('x2', (4 + a.ap).toFixed(2));
+    el('cinDel').setAttribute('y1', (6 + a.lc).toFixed(2));
+    el('cinDel').setAttribute('y2', (6 + a.lc).toFixed(2));
+    el('cinTra').setAttribute('x1', xTra.toFixed(2));
+    el('cinTra').setAttribute('x2', (xTra + a.ap).toFixed(2));
+    el('cinTra').setAttribute('y1', (6 + a.lc).toFixed(2));
+    el('cinTra').setAttribute('y2', (6 + a.lc).toFixed(2));
+    el('txtDel').setAttribute('y', (a.L + 12).toFixed(0));
+    el('txtTra').setAttribute('x', xTra.toFixed(0));
+    el('txtTra').setAttribute('y', (a.L + 12).toFixed(0));
+
+    var sup = (4 * a.ap * a.L * 0.8) / 10000;
+    var hilo = ((2 * a.L + 2 * a.ps + 3 * a.ae + 40) * 2) / 100;
+
+    el('vPecho').textContent = a.P + ' cm';
+    el('vCintura').textContent = a.C + ' cm';
+    el('vLargo').textContent = a.L + ' cm';
+    el('vHolgura').textContent = a.H + ' cm';
+    el('mAp').textContent = num(a.ap, 1) + ' cm';
+    el('mPs').textContent = num(a.ps, 1) + ' cm';
+    el('mAe').textContent = num(a.ae, 1) + ' cm';
+    el('mCh').textContent = num(a.ch, 1) + ' cm';
+    el('mSup').textContent = num(sup, 2) + ' m²';
+    el('mHilo').textContent = num(hilo, 1) + ' m';
+    return { sup: sup, ancho: a.ap };
+  }
+
+  /* ---------- 2. ficha técnica ---------- */
+  function pintarFicha(sup) {
+    var pt = el('precioTejido'), cf = el('confeccion');
+    var precio = +pt.value, conf = +cf.value;
+    var consumo = sup / (1.5 * 0.86);
+    var merma = consumo * 0.14;
+    var costeT = (consumo + merma) * precio;
+    var total = costeT + conf;
+    var pvp = total * 2.6;
+    el('vTejido').textContent = num(precio, 2) + ' €/m';
+    el('vConfeccion').textContent = num(conf, 2) + ' €';
+    el('fConsumo').textContent = num(consumo, 2) + ' m';
+    el('fMerma').textContent = num(merma, 2) + ' m';
+    el('fCosteTejido').textContent = num(costeT, 2) + ' €';
+    el('fConfeccion').textContent = num(conf, 2) + ' €';
+    el('fCosteTotal').textContent = num(total, 2) + ' €';
+    el('fPvp').textContent = num(pvp, 2) + ' €';
+  }
+
+  function todo() { var r = pintarPatron(); pintarFicha(r.sup); }
+  [mP, mC, mL, mH, el('precioTejido'), el('confeccion')].forEach(function (c) {
+    if (c) { c.addEventListener('input', todo); }
+  });
+
+  /* ---------- 3. pasaporte digital ---------- */
+  var campos = Array.prototype.slice.call(document.querySelectorAll('.dpp-campo'));
+  var ETIQUETAS = {
+    composicion: 'composicion_materiales', origen: 'pais_fabricacion', huella: 'huella_carbono',
+    agua: 'consumo_agua', reciclabilidad: 'reciclabilidad', cuidado: 'instrucciones_cuidado',
+    durabilidad: 'durabilidad', sustancias: 'sustancias_preocupantes'
+  };
+  function pintarDpp() {
+    var hechos = campos.filter(function (c) { return c.checked; });
+    var pct = Math.round(hechos.length / campos.length * 100);
+    el('dppBar').style.width = pct + '%';
+    var pend = campos.length - hechos.length;
+    el('dppEstado').textContent = hechos.length + ' de ' + campos.length +
+      ' campos obligatorios cubiertos' + (pend ? ' · faltan ' + pend : ' · pasaporte válido');
+    var reg = { id_unico: 'ES-2026-CMS-0001', modelo: 'Camiseta base sin mangas', lote_minimo: 1, campos: {} };
+    campos.forEach(function (c) {
+      var k = ETIQUETAS[c.getAttribute('data-campo')];
+      reg.campos[k] = c.checked ? 'declarado' : null;
+    });
+    el('dppJson').textContent = JSON.stringify(reg, null, 2);
+  }
+  campos.forEach(function (c) { c.addEventListener('change', pintarDpp); });
+
+  /* ---------- 4. pestañas ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  function activar(i) {
+    tabs.forEach(function (t, j) {
+      t.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      t.setAttribute('tabindex', j === i ? '0' : '-1');
+      if (panels[j]) panels[j].hidden = j !== i;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { activar(i); });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+        tabs[n].focus(); activar(n);
+      }
+    });
+  });
+
+  todo();
+  pintarDpp();
+  activar(0);
+})();
+</script>
+<!--FIN:JS-A-->
+<script>
+(function () {
+  'use strict';
+  var cs = getComputedStyle(document.documentElement);
+  var token = function (n, fb) { var v = cs.getPropertyValue(n).trim(); return v || fb; };
+  var C_BRAND = token('--nz-brand', '#0057ff');
+  var C_SOFT = token('--nz-brand-soft', 'rgba(0,87,255,.12)');
+  var C_ACC = token('--nz-accent', '#ff6a00');
+  var C_TXT = token('--nz-text-mute', '#6b7280');
+
+  /* ---------- tela: verlet ---------- */
+  var cv = document.getElementById('cvTela');
+  if (cv && cv.getContext) {
+    var ctx = cv.getContext('2d');
+    var W = cv.width, H = cv.height;
+    var COLS = 22, ROWS = 15, GAP = 21;
+    var pts = [], links = [];
+    var rig = document.getElementById('rigidez');
+    var grav = document.getElementById('viento');
+
+    function reset() {
+      pts = []; links = [];
+      var x0 = (W - (COLS - 1) * GAP) / 2, y0 = 54;
+      for (var r = 0; r < ROWS; r++) {
+        for (var c = 0; c < COLS; c++) {
+          pts.push({
+            x: x0 + c * GAP, y: y0 + r * GAP * 0.72,
+            px: x0 + c * GAP, py: y0 + r * GAP * 0.72,
+            pin: r === 0 && (c % 5 === 0 || c === COLS - 1)
+          });
+        }
+      }
+      var id = function (r, c) { return r * COLS + c; };
+      for (var r2 = 0; r2 < ROWS; r2++) {
+        for (var c2 = 0; c2 < COLS; c2++) {
+          if (c2 < COLS - 1) links.push([id(r2, c2), id(r2, c2 + 1)]);
+          if (r2 < ROWS - 1) links.push([id(r2, c2), id(r2 + 1, c2)]);
+        }
+      }
+      links.forEach(function (l) {
+        var a = pts[l[0]], b = pts[l[1]];
+        l[2] = Math.hypot(b.x - a.x, b.y - a.y);
+      });
+    }
+
+    function paso(iter, g) {
+      var i, p, l, a, b, dx, dy, d, diff, k;
+      for (i = 0; i < pts.length; i++) {
+        p = pts[i];
+        if (p.pin) { p.px = p.x; p.py = p.y; continue; }
+        var vx = (p.x - p.px) * 0.985, vy = (p.y - p.py) * 0.985;
+        p.px = p.x; p.py = p.y;
+        p.x += vx; p.y += vy + g;
+      }
+      for (k = 0; k < iter; k++) {
+        for (i = 0; i < links.length; i++) {
+          l = links[i]; a = pts[l[0]]; b = pts[l[1]];
+          dx = b.x - a.x; dy = b.y - a.y;
+          d = Math.hypot(dx, dy) || 0.0001;
+          diff = (d - l[2]) / d * 0.5;
+          if (!a.pin) { a.x += dx * diff; a.y += dy * diff; }
+          if (!b.pin) { b.x -= dx * diff; b.y -= dy * diff; }
+        }
+      }
+    }
+
+    function dibujar() {
+      ctx.clearRect(0, 0, W, H);
+      ctx.beginPath();
+      for (var r = 0; r < ROWS; r++) {
+        var first = pts[r * COLS], last = pts[r * COLS + COLS - 1];
+        if (r === 0) ctx.moveTo(first.x, first.y);
+        else ctx.lineTo(first.x, first.y);
+        ctx.lineTo(last.x, last.y);
+      }
+      ctx.closePath();
+      ctx.fillStyle = C_SOFT;
+      ctx.fill();
+      ctx.fillStyle = 'transparent';
+      ctx.strokeStyle = C_BRAND;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      for (var i = 0; i < links.length; i++) {
+        var a = pts[links[i][0]], b = pts[links[i][1]];
+        ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+      }
+      ctx.globalAlpha = 0.28;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = C_ACC;
+      for (var j = 0; j < pts.length; j++) {
+        if (pts[j].pin) { ctx.beginPath(); ctx.arc(pts[j].x, pts[j].y, 2.6, 0, 6.284); ctx.fill(); }
+      }
+      ctx.fillStyle = C_TXT;
+      ctx.font = '12px ui-monospace, monospace';
+      ctx.fillText('pinzas fijas · arrastra la tela', 16, 24);
+    }
+
+    var dragging = null;
+    function pos(e) {
+      var r = cv.getBoundingClientRect();
+      var t = e.touches ? e.touches[0] : e;
+      return { x: (t.clientX - r.left) * (W / r.width), y: (t.clientY - r.top) * (H / r.height) };
+    }
+    function down(e) {
+      var q = pos(e), best = null, bd = 1e9;
+      for (var i = 0; i < pts.length; i++) {
+        var d = Math.hypot(pts[i].x - q.x, pts[i].y - q.y);
+        if (d < bd) { bd = d; best = i; }
+      }
+      if (bd < 60) { dragging = best; e.preventDefault(); }
+    }
+    function move(e) {
+      if (dragging === null) return;
+      var q = pos(e), p = pts[dragging];
+      p.x = q.x; p.y = q.y; p.px = q.x; p.py = q.y;
+      e.preventDefault();
+    }
+    function up() { dragging = null; }
+    cv.addEventListener('pointerdown', down);
+    cv.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    cv.addEventListener('touchstart', down, { passive: false });
+    cv.addEventListener('touchmove', move, { passive: false });
+    cv.addEventListener('touchend', up);
+
+    document.getElementById('btnSacudir').addEventListener('click', function () {
+      pts.forEach(function (p) { if (!p.pin) { p.px -= (Math.random() - 0.5) * 26; p.py -= Math.random() * 18; } });
+    });
+    document.getElementById('btnResetTela').addEventListener('click', function () { reset(); for (var i = 0; i < 90; i++) paso(6, 0.9); dibujar(); });
+
+    var nombres = ['muy baja', 'baja', 'media-baja', 'media', 'media-alta', 'alta', 'muy alta', 'alta', 'alta', 'máxima', 'máxima', 'máxima'];
+    function etiqueta() { document.getElementById('vRigidez').textContent = nombres[+rig.value - 1] || 'media'; }
+    rig.addEventListener('input', etiqueta);
+    grav.addEventListener('input', function () {
+      document.getElementById('vViento').textContent = (grav.value / 10).toFixed(1).replace('.', ',') + ' g';
+    });
+
+    reset();
+    for (var k = 0; k < 140; k++) paso(+(rig.value), +(grav.value) / 10);
+    dibujar();
+    etiqueta();
+    (function loop() {
+      for (var t = 0; t < 2; t++) paso(+rig.value, +grav.value / 10);
+      dibujar();
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---------- estampado tileable ---------- */
+  var ce = document.getElementById('cvEstampado');
+  if (ce && ce.getContext) {
+    var g2 = ce.getContext('2d');
+    var W2 = ce.width, H2 = ce.height;
+    var esc = document.getElementById('escalaMotivo');
+    var tin = document.getElementById('tinta');
+    var seam = document.getElementById('seamless');
+
+    function rng(seed) {
+      return function () {
+        seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+        var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function motivo(x, y, s, i) {
+      var tipo = i % 4;
+      g2.beginPath();
+      if (tipo === 0) {
+        g2.arc(x, y, s * 0.5, 0, 6.284);
+        g2.fillStyle = C_BRAND; g2.globalAlpha = 0.9; g2.fill(); g2.globalAlpha = 1;
+      } else if (tipo === 1) {
+        g2.moveTo(x, y - s * 0.55); g2.lineTo(x + s * 0.5, y); g2.lineTo(x, y + s * 0.55); g2.lineTo(x - s * 0.5, y);
+        g2.closePath();
+        g2.fillStyle = C_ACC; g2.globalAlpha = 0.85; g2.fill(); g2.globalAlpha = 1;
+      } else if (tipo === 2) {
+        g2.arc(x, y, s * 0.42, 0, 6.284);
+        g2.strokeStyle = C_BRAND; g2.lineWidth = Math.max(1.2, s * 0.07); g2.globalAlpha = 0.55; g2.stroke(); g2.globalAlpha = 1;
+      } else {
+        g2.moveTo(x - s * 0.42, y); g2.lineTo(x + s * 0.42, y);
+        g2.strokeStyle = C_TXT; g2.lineWidth = Math.max(1, s * 0.05); g2.globalAlpha = 0.5; g2.stroke(); g2.globalAlpha = 1;
+      }
+    }
+
+    function pintar() {
+      var t = Math.round(100 * (+esc.value / 100));
+      var n = +tin.value;
+      var tile = W2 / 3 * (t / 100);
+      g2.fillStyle = token('--nz-bg', '#ffffff');
+      g2.fillRect(0, 0, W2, H2);
+
+      var cols = Math.ceil(W2 / tile) + 1, rows = Math.ceil(H2 / tile) + 1;
+      var marca = seam.checked ? 0 : tile * 0.5;
+      for (var ry = 0; ry < rows; ry++) {
+        for (var rx = 0; rx < cols; rx++) {
+          var ox = rx * tile - marca, oy = ry * tile;
+          var r = rng(rx * 131 + ry * 17 + n * 7);
+          for (var i = 0; i < n; i++) {
+            var px = ox + r() * tile, py = oy + r() * tile;
+            var s = tile * (0.12 + r() * 0.12);
+            motivo(px, py, s, i);
+            if (seam.checked) {
+              if (px - ox < s) motivo(px + tile, py, s, i);
+              if (px - ox > tile - s) motivo(px - tile, py, s, i);
+              if (py - oy < s) motivo(px, py + tile, s, i);
+              if (py - oy > tile - s) motivo(px, py - tile, s, i);
+            }
+          }
+        }
+      }
+
+      g2.strokeStyle = seam.checked ? 'rgba(0,0,0,0)' : C_ACC;
+      g2.lineWidth = 2;
+      if (!seam.checked) {
+        for (var x = tile / 2; x < W2; x += tile) { g2.beginPath(); g2.moveTo(x, 0); g2.lineTo(x, H2); g2.stroke(); }
+      }
+      g2.fillStyle = C_TXT;
+      g2.font = '12px ui-monospace, monospace';
+      g2.fillText(seam.checked ? 'repite sin costura · 3 x 3' : 'costura visible: el borde no casa', 16, 22);
+    }
+    [esc, tin, seam].forEach(function (c) { c.addEventListener('input', pintar); c.addEventListener('change', pintar); });
+    esc.addEventListener('input', function () { document.getElementById('vEscala').textContent = esc.value + ' %'; });
+    tin.addEventListener('input', function () {
+      document.getElementById('vTinta').textContent = ['', '', 'muy baja', 'baja', 'media-baja', 'media', 'media-alta', 'alta', 'muy alta', 'máxima'][+tin.value] || 'media';
+    });
+    pintar();
+  }
+})();
+</script>
+<script type="module">
+/* ---------- Probador paramétrico v2: cuerpo, prendas y patrón ---------- */
+const $ = (id) => document.getElementById(id);
+const estado = $('estado3d');
+const M = { prenda: 'camiseta' };
+const CTRL = { altura: $('pAltura'), pecho: $('pPecho'), cintura: $('pCintura'), cadera: $('pCadera'), largo: $('pLargo') };
+const NOMBRE = { camiseta: 'Camiseta', vestido: 'Vestido', falda: 'Falda', pantalon: 'Pantalón', chaqueta: 'Chaqueta' };
+
+function medidas() {
+  M.altura = +CTRL.altura.value; M.pecho = +CTRL.pecho.value;
+  M.cintura = +CTRL.cintura.value; M.cadera = +CTRL.cadera.value; M.largo = +CTRL.largo.value;
+  $('pVAltura').textContent = M.altura + ' cm';
+  $('pVPecho').textContent = M.pecho + ' cm';
+  $('pVCintura').textContent = M.cintura + ' cm';
+  $('pVCadera').textContent = M.cadera + ' cm';
+  $('pVLargo').textContent = M.largo + ' %';
+  return M;
+}
+
+const R = (c) => c / (2 * Math.PI);          /* contorno -> radio de círculo equivalente */
+
+function cotas() {
+  const H = M.altura, rp = R(M.pecho), rc = R(M.cintura), rk = R(M.cadera);
+  return {
+    H, rp, rc, rk,
+    hombro: H * 0.815, pecho: H * 0.725, cintura: H * 0.625, cadera: H * 0.525,
+    rodilla: H * 0.285, tobillo: H * 0.06, cuello: H * 0.845, cabeza: H * 0.925
+  };
+}
+
+function largoPrenda() {
+  const c = cotas(), f = M.largo / 100;
+  const desde = { camiseta: c.hombro, vestido: c.hombro, falda: c.cintura, pantalon: c.cintura, chaqueta: c.hombro }[M.prenda];
+  const base = {
+    camiseta: c.hombro - c.cadera + 4,
+    vestido: c.hombro - c.H * 0.29,
+    falda: c.cintura - c.H * 0.31,
+    pantalon: c.cintura - c.tobillo,
+    chaqueta: c.hombro - c.cadera + 8
+  }[M.prenda];
+  return { desde, hasta: desde - base * f, base: base * f };
+}
+
+/* ---------- patrón 2D ---------- */
+function cuerpoBase(prof) {
+  const holg = 6;
+  const ap = (M.pecho + holg) / 4, ah = ap * 0.70, ac = ap * 0.97, ab = ap * 1.02;
+  const ps = M.pecho / 10 + 10.5 + holg / 4, ae = M.pecho / 20 + 2.2, ch = 4.5;
+  const L = largoPrenda().base;
+  const lc = L * 0.42;
+  return {
+    ap, ah, ac, ab, ps, ae, ch, L, lc,
+    d: 'M 0 ' + prof.toFixed(2) +
+      ' C ' + (ae * 0.18).toFixed(2) + ' ' + (prof * 0.3).toFixed(2) + ' ' + (ae * 0.62).toFixed(2) + ' 0 ' + ae.toFixed(2) + ' 0' +
+      ' L ' + (ae + ah).toFixed(2) + ' ' + ch.toFixed(2) + ' ' +
+      'C ' + (ae + ah + 1.4).toFixed(2) + ' ' + (ch + ps * 0.30).toFixed(2) + ' ' + (ap * 1.02).toFixed(2) + ' ' + (ps * 0.72).toFixed(2) + ' ' + ap.toFixed(2) + ' ' + ps.toFixed(2) + ' ' +
+      'L ' + ac.toFixed(2) + ' ' + lc.toFixed(2) + ' L ' + ab.toFixed(2) + ' ' + L.toFixed(2) + ' L 0 ' + L.toFixed(2) + ' Z'
+  };
+}
+
+function piezasPatron() {
+  const c = cotas(), lp = largoPrenda();
+  const piezas = [];
+  if (M.prenda === 'falda') {
+    const wc = (M.cintura / 4) + 1.5, wk = (M.cadera / 4) * 1.42, L = lp.base;
+    const d = 'M 0 0 L ' + wc.toFixed(2) + ' 0 L ' + wk.toFixed(2) + ' ' + L.toFixed(2) + ' L 0 ' + L.toFixed(2) + ' Z';
+    piezas.push({ n: 'Delantero', d, w: wk, h: L, m: 'cintura ' + wc.toFixed(1) + ' · bajo ' + wk.toFixed(1) });
+    piezas.push({ n: 'Trasero', d, w: wk, h: L, m: 'igual + pinza de 2 cm' });
+  } else if (M.prenda === 'pantalon') {
+    const wc = (M.cadera / 4) + 1.5, wr = (M.cadera / 4) * 0.60, tiro = M.cadera * 0.115, L = lp.base;
+    const d = 'M 0 0 L ' + wc.toFixed(2) + ' 0 L ' + wc.toFixed(2) + ' ' + tiro.toFixed(2) +
+      ' L ' + (wc * 0.74).toFixed(2) + ' ' + tiro.toFixed(2) +
+      ' L ' + wr.toFixed(2) + ' ' + L.toFixed(2) + ' L ' + (wr * 0.42).toFixed(2) + ' ' + L.toFixed(2) +
+      ' L ' + (wc * 0.30).toFixed(2) + ' ' + tiro.toFixed(2) + ' L 0 ' + tiro.toFixed(2) + ' Z';
+    piezas.push({ n: 'Pierna delantera', d, w: wc, h: L, m: 'tiro ' + tiro.toFixed(1) + ' · bajo ' + wr.toFixed(1) });
+    piezas.push({ n: 'Pierna trasera', d, w: wc, h: L, m: 'tiro 2 cm más bajo' });
+  } else {
+    const del = cuerpoBase(cuerpoEscote('del'));
+    piezas.push({ n: 'Delantero', d: del.d, w: del.ab, h: del.L, m: 'sisa ' + del.ps.toFixed(1) + ' · escote ' + del.ae.toFixed(1) });
+    const tra = cuerpoBase(cuerpoEscote('tra'));
+    piezas.push({ n: 'Trasero', d: tra.d, w: tra.ab, h: tra.L, m: 'escote 1/3 de profundo' });
+    const am = M.pecho / 3.4, lm = lp.base * 0.42, copa = am * 0.34;
+    const manga = 'M 0 0 C ' + (am * 0.28).toFixed(2) + ' ' + (-copa).toFixed(2) + ' ' + (am * 0.72).toFixed(2) + ' ' + (-copa).toFixed(2) + ' ' + am.toFixed(2) + ' 0' +
+      ' L ' + (am * 0.92).toFixed(2) + ' ' + lm.toFixed(2) + ' L ' + (am * 0.08).toFixed(2) + ' ' + lm.toFixed(2) + ' Z';
+    piezas.push({ n: 'Manga', d: manga, w: am, h: lm + copa, m: 'copa ' + copa.toFixed(1) + ' · largo ' + lm.toFixed(1) });
+  }
+  return piezas;
+}
+
+function cuerpoEscote(tipo) {
+  const ae = M.pecho / 20 + 2.2;
+  return tipo === 'tra' ? ae * 0.38 : ae * 1.15;
+}
+
+function pintarPatron() {
+  const piezas = piezasPatron(), g = $('piezasProbador'), svg = $('svgProbador');
+  $('svgVacio').setAttribute('opacity', '0');
+  g.innerHTML = '';
+  let x = 8;
+  const NS = 'http://www.w3.org/2000/svg';
+  piezas.forEach((pz) => {
+    const path = document.createElementNS(NS, 'path');
+    path.setAttribute('d', pz.d);
+    path.setAttribute('transform', 'translate(' + x.toFixed(1) + ',10)');
+    g.appendChild(path);
+    const t = document.createElementNS(NS, 'text');
+    t.setAttribute('x', x.toFixed(1)); t.setAttribute('y', '6'); t.setAttribute('font-size', '3.4');
+    t.setAttribute('fill', 'var(--nz-text-soft)'); t.textContent = pz.n;
+    g.appendChild(t);
+    x += pz.w + 12;
+  });
+  let box;
+  try { box = g.getBBox(); } catch (e) { box = { x: 0, y: 0, width: 120, height: 80 }; }
+  svg.setAttribute('viewBox', (box.x - 4).toFixed(0) + ' ' + (box.y - 4).toFixed(0) + ' ' + (box.width + 8).toFixed(0) + ' ' + (box.height + 10).toFixed(0));
+  $('listaPiezas').innerHTML = piezas.map((pz) =>
+    '<div class="cm-pieza"><div class="cm-pieza__t"><strong>' + pz.n + '</strong><span>' +
+    pz.w.toFixed(1) + ' × ' + pz.h.toFixed(1) + ' cm</span></div><span class="cm-mini">' + pz.m + '</span></div>').join('');
+  $('badgePrenda').textContent = NOMBRE[M.prenda].toLowerCase();
+}
+
+/* ---------- motor 3D (three.js por CDN) ---------- */
+let rebuild = () => {};
+let zoom = 1;
+try {
+  const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js');
+  const lienzo = $('cv3d'), cont = lienzo.parentElement;
+  const renderer = new THREE.WebGLRenderer({ canvas: lienzo, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const escena = new THREE.Scene();
+  const cam = new THREE.PerspectiveCamera(32, 1, 1, 4000);
+  escena.add(new THREE.HemisphereLight(0xffffff, 0x94a3b8, 2.2));
+  const sol = new THREE.DirectionalLight(0xffffff, 1.8); sol.position.set(110, 220, 180); escena.add(sol);
+  const relleno = new THREE.DirectionalLight(0xffffff, 0.8); relleno.position.set(-140, 90, -120); escena.add(relleno);
+
+  const COL = { cuerpo: 0xbfc7d4, marca: 0x0057ff, acento: 0xff6a00, pelo: 0x5f6b7a };
+  const matCuerpo = new THREE.MeshStandardMaterial({ color: COL.cuerpo, roughness: 0.95, metalness: 0.02 });
+  const matPrenda = new THREE.MeshStandardMaterial({ color: COL.marca, roughness: 0.88, metalness: 0.02, side: THREE.DoubleSide });
+  const matAcento = new THREE.MeshStandardMaterial({ color: COL.acento, roughness: 0.88, metalness: 0.02, side: THREE.DoubleSide });
+  const raiz = new THREE.Group(); escena.add(raiz);
+
+  function anillos(perfil, segs, arco, inicio, pliegue) {
+    const pos = [], idx = [], uv = [];
+    segs = segs || 32; arco = arco || Math.PI * 2; inicio = inicio === undefined ? -Math.PI / 2 : inicio;
+    for (let i = 0; i < perfil.length; i++) {
+      const p = perfil[i];
+      for (let j = 0; j <= segs; j++) {
+        const th = inicio + arco * (j / segs);
+        const w = pliegue ? 1 + 0.022 * Math.sin(th * 6 + p.y * 0.15) : 1;
+        pos.push((p.cx || 0) + Math.cos(th) * p.rx * w, p.y, Math.sin(th) * p.rz * w);
+        uv.push(j / segs, i / (perfil.length - 1));
+      }
+    }
+    for (let i = 0; i < perfil.length - 1; i++) {
+      for (let j = 0; j < segs; j++) {
+        const a = i * (segs + 1) + j, b = a + 1, c2 = a + segs + 1, d = c2 + 1;
+        idx.push(a, c2, b, b, c2, d);
+      }
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  }
+
+  function cuerpo() {
+    const c = cotas(), g = new THREE.Group();
+    const rHombro = c.rp * 1.46;
+    const torso = anillos([
+      { y: c.cuello + 2, rx: c.rp * 0.44, rz: c.rp * 0.42 },
+      { y: c.hombro, rx: rHombro, rz: rHombro * 0.60 },
+      { y: c.hombro - 3, rx: c.rp * 1.26, rz: c.rp * 0.60 },
+      { y: c.pecho, rx: c.rp * 1.03, rz: c.rp * 0.66 },
+      { y: (c.pecho + c.cintura) / 2, rx: c.rc * 1.03, rz: c.rc * 0.66 },
+      { y: c.cintura, rx: c.rc * 0.94, rz: c.rc * 0.64 },
+      { y: c.cadera, rx: c.rk * 1.02, rz: c.rk * 0.72 },
+      { y: c.cadera - 7, rx: c.rk * 0.94, rz: c.rk * 0.70 }
+    ], 34);
+    g.add(new THREE.Mesh(torso, matCuerpo));
+
+    const cabeza = new THREE.Mesh(new THREE.SphereGeometry(c.H * 0.056, 24, 18), matCuerpo);
+    cabeza.position.y = c.cabeza; cabeza.scale.set(0.9, 1.15, 0.96); g.add(cabeza);
+    const pelo = new THREE.Mesh(
+      new THREE.SphereGeometry(c.H * 0.0575, 22, 16, 0, Math.PI * 2, 0, Math.PI * 0.58),
+      new THREE.MeshStandardMaterial({ color: COL.pelo, roughness: 1 }));
+    pelo.position.set(0, c.cabeza + 0.8, -1.2); g.add(pelo);
+
+    const brazoR = c.rp * 0.31, brazoLargo = c.H * 0.35;
+    const brazoX = rHombro * 0.90, brazoY = c.hombro - brazoLargo / 2 + 1;
+    [-1, 1].forEach((s) => {
+      const br = new THREE.Mesh(new THREE.CylinderGeometry(brazoR * 0.72, brazoR, brazoLargo, 16), matCuerpo);
+      br.position.set(s * brazoX, brazoY, 0); br.rotation.z = s * 0.10; g.add(br);
+      const mano = new THREE.Mesh(new THREE.SphereGeometry(brazoR * 0.85, 12, 10), matCuerpo);
+      mano.position.set(s * (brazoX + brazoLargo * 0.05), c.hombro - brazoLargo + 1, 0); g.add(mano);
+    });
+
+    const piernaR = c.rk * 0.48, piernaLargo = c.cadera - c.tobillo;
+    [-1, 1].forEach((s) => {
+      const pl = new THREE.Mesh(new THREE.CylinderGeometry(piernaR * 0.66, piernaR, piernaLargo, 16), matCuerpo);
+      pl.position.set(s * c.rk * 0.46, c.tobillo + piernaLargo / 2, 0); g.add(pl);
+      const pie = new THREE.Mesh(new THREE.BoxGeometry(piernaR * 1.05, 3.2, piernaR * 2.4), matCuerpo);
+      pie.position.set(s * c.rk * 0.46, 1.6, piernaR * 0.6); g.add(pie);
+    });
+    return g;
+  }
+
+  function prenda() {
+    const c = cotas(), lp = largoPrenda(), g = new THREE.Group();
+    const holg = 4.5, y0 = lp.desde, y1 = lp.hasta;
+    const mat = (M.prenda === 'vestido' || M.prenda === 'falda') ? matAcento : matPrenda;
+    const rHombroP = c.rp * 1.44 + holg;
+    const rCuello = c.rp * 0.46;
+
+    if (M.prenda === 'falda') {
+      const perfil = [];
+      for (let i = 0; i <= 10; i++) {
+        const t = i / 10, y = y0 - (y0 - y1) * t;
+        const rx = (c.rc * 1.04 + holg) + ((c.rk * 1.34 + holg) - (c.rc * 1.04 + holg)) * Math.pow(t, 0.75);
+        perfil.push({ y, rx, rz: rx * 0.76 });
+      }
+      g.add(new THREE.Mesh(anillos(perfil, 40, Math.PI * 2, -Math.PI / 2, true), mat));
+      return g;
+    }
+
+    if (M.prenda === 'pantalon') {
+      const banda = [];
+      for (let i = 0; i <= 3; i++) {
+        const t = i / 3, y = c.cintura + 1 - (c.cintura + 1 - (c.cadera + 1)) * t;
+        const rx = (c.rc * 1.04 + holg) + ((c.rk * 1.04 + holg) - (c.rc * 1.04 + holg)) * t;
+        banda.push({ y, rx, rz: rx * 0.74 });
+      }
+      g.add(new THREE.Mesh(anillos(banda, 34, Math.PI * 2, -Math.PI / 2, true), mat));
+      [-1, 1].forEach((s) => {
+        const perfil = [], rpierna = c.rk * 0.40 + holg * 0.7, yT = c.tobillo + 2;
+        for (let i = 0; i <= 9; i++) {
+          const t = i / 9, y = c.cadera - (c.cadera - yT) * t;
+          const rx = rpierna * (1 - 0.24 * t);
+          perfil.push({ y, rx, rz: rx * 0.92, cx: s * (c.rk * 0.53 + holg * 0.35) });
+        }
+        g.add(new THREE.Mesh(anillos(perfil, 22, Math.PI * 2, -Math.PI / 2, true), mat));
+      });
+      return g;
+    }
+
+    const abierta = M.prenda === 'chaqueta';
+    const arco = abierta ? Math.PI * 1.58 : Math.PI * 2;
+    const inicio = -Math.PI / 2 - arco / 2;
+    const perfil = [];
+    const niveles = [
+      { t: 0.00, y: y0 + 1.5, rx: rCuello },
+      { t: 0.05, y: y0 - 1, rx: rHombroP },
+      { t: 0.20, y: c.pecho, rx: c.rp * 1.06 + holg },
+      { t: 0.40, y: (c.pecho + c.cintura) / 2, rx: c.rc * 1.06 + holg },
+      { t: 0.55, y: c.cintura, rx: c.rc * 1.02 + holg }
+    ];
+    niveles.forEach((n) => perfil.push({ y: n.y, rx: n.rx, rz: n.rx * 0.72 }));
+    for (let i = 1; i <= 7; i++) {
+      const t = i / 7, y = c.cintura - (c.cintura - y1) * t;
+      const base = c.rc * 1.02 + holg;
+      const fin = (M.prenda === 'vestido') ? c.rk * 1.42 + holg : c.rk * 1.02 + holg;
+      const rx = base + (fin - base) * Math.pow(t, 0.9);
+      perfil.push({ y, rx, rz: rx * 0.74 });
+    }
+    g.add(new THREE.Mesh(anillos(perfil, 38, arco, inicio, true), mat));
+
+    const brazoR = c.rp * 0.31 + 1.6, brazoLargo = c.H * (abierta ? 0.30 : 0.17);
+    const brazoX = c.rp * 1.44 * 0.90, brazoY = c.hombro - brazoLargo / 2 + 1;
+    [-1, 1].forEach((s) => {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(brazoR * 0.74, brazoR, brazoLargo, 18, 1, true), mat);
+      m.position.set(s * brazoX, brazoY, 0); m.rotation.z = s * 0.10; g.add(m);
+    });
+    return g;
+  }
+
+  function encuadrar() {
+    const alto = Math.max(cotas().H, 160);
+    cam.position.set(0, alto * 0.58, alto * 2.15 * zoom);
+    cam.lookAt(0, alto * 0.50, 0);
+    cam.updateProjectionMatrix();
+  }
+
+  rebuild = function () {
+    while (raiz.children.length) {
+      const h = raiz.children.pop();
+      h.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
+    }
+    if ($('verCuerpo').checked) raiz.add(cuerpo());
+    raiz.add(prenda());
+    encuadrar();
+  };
+
+  function ajustar() {
+    const w = cont.clientWidth, h = cont.clientHeight || 400;
+    renderer.setSize(w, h, false);
+    cam.aspect = w / h; cam.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', ajustar);
+
+  let rot = 0.34, arrastrando = false, px = 0;
+  lienzo.addEventListener('pointerdown', (e) => { arrastrando = true; px = e.clientX; e.preventDefault(); });
+  window.addEventListener('pointerup', () => { arrastrando = false; });
+  window.addEventListener('pointermove', (e) => {
+    if (!arrastrando) return;
+    rot += (e.clientX - px) * 0.009; px = e.clientX; raiz.rotation.y = rot;
+  });
+  lienzo.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    zoom = Math.min(1.8, Math.max(0.55, zoom + (e.deltaY > 0 ? 0.08 : -0.08)));
+    encuadrar();
+  }, { passive: false });
+
+  ajustar(); rebuild(); raiz.rotation.y = rot;
+  let primera = true;
+  (function bucle() {
+    renderer.render(escena, cam);
+    if (primera) { primera = false; estado.textContent = 'Motor 3D listo · ' + renderer.info.render.triangles + ' triángulos'; }
+    requestAnimationFrame(bucle);
+  })();
+} catch (err) {
+  estado.textContent = 'Motor 3D no disponible (sin red o WebGL). El patrón 2D sigue calculando.';
+  console.warn('3D:', err && err.message);
+}
+
+/* ---------- controles ---------- */
+function refrescar() { medidas(); pintarPatron(); rebuild(); }
+Object.values(CTRL).forEach((c) => c.addEventListener('input', refrescar));
+$('verCuerpo').addEventListener('change', rebuild);
+document.querySelectorAll('#segPrenda button').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#segPrenda button').forEach((o) => o.setAttribute('aria-selected', 'false'));
+    b.setAttribute('aria-selected', 'true');
+    M.prenda = b.getAttribute('data-prenda');
+    refrescar();
+  });
+});
+$('btnSvg').addEventListener('click', () => {
+  const svg = $('svgProbador').cloneNode(true);
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  const vb = (svg.getAttribute('viewBox') || '0 0 120 80').split(' ');
+  svg.setAttribute('width', '900');
+  svg.setAttribute('height', String(Math.round(900 * (+vb[3]) / (+vb[2]))));
+  const st = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+  st.textContent = 'path{fill:#eef3ff;stroke:#0057ff;stroke-width:.5}text{font-family:Inter,sans-serif;font-size:3.4px;fill:#5b6472}';
+  svg.insertBefore(st, svg.firstChild);
+  const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'patron-' + M.prenda + '.svg';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+});
+refrescar();
+
+/* enlace directo: index.html?prenda=vestido&pecho=110 */
+const q = new URLSearchParams(location.search);
+const pre = q.get('prenda');
+if (pre && NOMBRE[pre]) {
+  M.prenda = pre;
+  document.querySelectorAll('#segPrenda button').forEach((b) =>
+    b.setAttribute('aria-selected', b.getAttribute('data-prenda') === pre ? 'true' : 'false'));
+  ['pecho', 'cintura', 'cadera', 'altura', 'largo'].forEach((k) => {
+    const v = q.get(k); if (v && CTRL[k]) CTRL[k].value = v;
+  });
+  refrescar();
+}
+</script>
+<!--FIN:JS-C2-->
+
+<!--FIN:JS-C-->
+</body>
+</html>
