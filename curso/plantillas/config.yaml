@@ -1,0 +1,43 @@
+# Configuración de ejemplo — NO copies esto tal cual.
+# Hermes guarda la configuración real en ~/.hermes/config.yaml y las claves en ~/.hermes/.env.
+
+# --- Modelo y proveedor ---------------------------------------------------
+# NaN: API compatible con OpenAI. La clave NO va aquí: va en .env como OPENAI_API_KEY.
+model:
+  default: deepseek-v4-flash
+  provider: nan
+
+providers:
+  nan:
+    api: https://api.nan.builders/v1
+    key_env: OPENAI_API_KEY
+    default_model: deepseek-v4-flash
+    api_mode: chat_completions
+
+# --- Agente ---------------------------------------------------------------
+agent:
+  # Cuánto "piensa" antes de responder: none | minimal | low | medium | high
+  reasoning_effort: medium
+
+# --- Tareas programadas ---------------------------------------------------
+cron:
+  # Modelo de las rutinas: no toca la cuota del modelo bueno
+  model: deepseek-v4-flash
+
+memory:
+  memory_enabled: true
+
+terminal:
+  # local | docker | ssh
+  backend: local
+
+gateway:
+  platforms:
+    telegram:
+      enabled: true
+
+# La zona horaria va como variable de entorno, no aquí:
+#   hermes config set HERMES_TIMEZONE Europe/Madrid
+#
+# Las claves NUNCA se escriben en este fichero:
+#   OPENAI_API_KEY=sk-...   -> va a ~/.hermes/.env

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Almacén de tejidos · Curso Mastermind</title>
+  <meta name="description" content="Control de stock con mínimos, consumo por encargo y aviso automático antes de quedarte a cero. La primera rutina que trabaja sin que la pidas.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 08</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 08 de 14 · Con clientes y medidas ya en CSV</p>
+    <h1 class="nz-h1">Almacén de tejidos</h1>
+    <p class="nz-lead">Control de stock con mínimos, consumo por encargo y aviso automático antes de quedarte a cero. La primera rutina que trabaja sin que la pidas.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">10 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>tejidos.csv tiene referencia, metros, mínimo y proveedor</li>
+      <li>El consumo descuenta metros y deja rastro del pedido</li>
+      <li>El script devuelve código de error cuando hay stock bajo (para poder automatizarlo)</li>
+      <li>El agente explica el estado del almacén sin inventar cifras</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#que-se-controla-y-que-no">Qué se controla y qué no</a></li>
+      <li><a href="#los-comandos">Los comandos</a></li>
+      <li><a href="#paso-1-consumo-con-trazabilidad">Paso 1: consumo con trazabilidad</a></li>
+      <li><a href="#paso-2-el-aviso-automatico">Paso 2: el aviso automático</a></li>
+      <li><a href="#paso-3-preguntarle-al-almacen">Paso 3: preguntarle al almacén</a></li>
+      <li><a href="#paso-4-inventario-mensual-la-verdad-incomoda">Paso 4: inventario mensual (la verdad incómoda)</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="que-se-controla-y-que-no">Qué se controla y qué no</h2>
+<p>No necesitas un ERP. Necesitas responder tres preguntas todos los días:</p>
+<ol>
+<li>¿Qué tejido está por debajo del mínimo?</li>
+<li>¿Cuánto cuesta reponerlo y a quién se lo pido?</li>
+<li>¿Qué encargos dependen de un tejido que no llega?</li>
+</ol>
+<p>Con esas tres, un CSV y un script tienes el 90 % del control. El otro 10 % es contar físicamente de
+vez en cuando, porque ningún sistema sabe que un rollo estaba cortado a la mitad.</p>
+<p><strong><code class="nz-code nz-code--inline">negocio/tejidos.csv</code></strong></p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="csv"><code>ref,nombre,composicion,color,metros,metros_minimos,precio_m,proveedor,plazo_dias
+LANA-AZUL-01,Lana fría 120s,100% lana,Azul marino,6.4,8,42.50,Textiles Norte,12
+LANA-GRIS-02,Lana fría 120s,100% lana,Gris perla,15.0,8,42.50,Textiles Norte,12
+LINO-NAT-01,Lino belga,100% lino,Natural,3.1,5,28.00,Linera Sur,20
+SEDA-BUR-01,Seda salvaje,100% seda,Burdeos,9.8,4,76.00,Sedas del Ebro,25
+ALG-BLA-01,Algodón popelín,100% algodón,Blanco,22.0,10,9.80,Textiles Norte,7
+</code></pre>
+<p>Reglas:</p>
+<ul>
+<li><strong><code class="nz-code nz-code--inline">metros</code> es lo que hay físicamente</strong>, no lo que dice el proveedor. Se actualiza al consumir y en
+  el inventario mensual.</li>
+<li><strong><code class="nz-code nz-code--inline">metros_minimos</code> es el punto de pedido</strong>, no el cero. Se calcula con el consumo medio y el plazo
+  del proveedor: si tardan 12 días y gastas 0,5 m/día, el mínimo son 6 m más colchón.</li>
+<li><strong>La referencia no cambia nunca.</strong> Si cambia el proveedor, se añade columna, no se renombra.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="los-comandos">Los comandos</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/almacen.py lista
+python3 negocio/scripts/almacen.py bajo-minimo
+python3 negocio/scripts/almacen.py consumir LANA-AZUL-01 3.2 --pedido P-2026-014
+</code></pre>
+<p><code class="nz-code nz-code--inline">lista</code> enseña el almacén ordenado por urgencia. <code class="nz-code nz-code--inline">bajo-minimo</code> imprime solo lo que hay que pedir y
+<strong>sale con código 1</strong> si hay algo bajo: eso es lo que permite usarlo en un cron y que el sistema
+sepa que hay un aviso.</p>
+<p>Ejemplo de salida:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>REF             TEJIDO                 METROS   MÍNIMO   ESTADO
+LANA-AZUL-01    Lana fría 120s           6.4      8.0   PEDIR (faltan 1.6 m)
+LINO-NAT-01     Lino belga               3.1      5.0   PEDIR (faltan 1.9 m)
+SEDA-BUR-01     Seda salvaje             9.8      4.0   ok
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-consumo-con-trazabilidad">Paso 1: consumo con trazabilidad</h2>
+<p>Cuando se corta un traje, el tejido sale del almacén. Si no lo descuentas el mismo día, el stock es
+ficción.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/almacen.py consumir LANA-AZUL-01 3.46 --pedido P-2026-014
+</code></pre>
+<p>El script:</p>
+<ul>
+<li>comprueba que hay metros suficientes (si no, <strong>no descuenta</strong> y avisa);</li>
+<li>resta y redondea a dos decimales;</li>
+<li>apunta en <code class="nz-code nz-code--inline">negocio/movimientos.csv</code> la fecha, la referencia, los metros y el pedido.</li>
+</ul>
+<p>Ese movimiento es tu auditoría: si un mes no cuadra, se mira ahí.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-el-aviso-automatico">Paso 2: el aviso automático</h2>
+<p>Aquí empieza la autonomía. Primero a mano:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/almacen.py bajo-minimo; echo &quot;código: $?&quot;
+</code></pre>
+<p><code class="nz-code nz-code--inline">código: 1</code> significa «hay tejidos bajo mínimo». Ese detalle es lo que hace que un cron pueda avisar
+solo cuando toca, sin mandarte ruido todos los días.</p>
+<p>En el módulo 12 lo programas. Si quieres verlo ya, pídeselo al agente dentro del repositorio:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Crea una tarea programada para cada lunes a las 8:00 que ejecute
+`python3 negocio/scripts/almacen.py bajo-minimo` y me mande el resultado a Telegram.
+Si no hay nada bajo mínimo, que no me escriba.
+</code></pre>
+<p>El agente tiene una herramienta de cron; no hace falta que toques ficheros. En el 11 veremos cómo
+revisar que quedó bien y cómo evitar que te despierte a las 3 de la mañana.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-preguntarle-al-almacen">Paso 3: preguntarle al almacén</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Con los datos de negocio/tejidos.csv: ¿qué tejidos están bajo mínimo, cuánto cuesta reponerlos
+hasta el mínimo y cuál es el proveedor con más plazo? Enséñame la tabla y el cálculo.
+</code></pre>
+<p>El agente debe leer el CSV, calcular <code class="nz-code nz-code--inline">(mínimo − metros) × precio_m</code> por referencia y sumar. Si
+redondea a ojo o inventa un proveedor, corrígelo y refuerza el skill con la regla del cálculo.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-inventario-mensual-la-verdad-incomoda">Paso 4: inventario mensual (la verdad incómoda)</h2>
+<p>Una vez al mes, cuenta lo que hay de verdad y ajusta:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/almacen.py ajustar LANA-AZUL-01 6.0 --motivo &quot;inventario mensual&quot;
+</code></pre>
+<p>La diferencia entre el sistema y la realidad se llama merma no registrada, y casi siempre es:
+recortes que no se apuntaron, un rollo mal medido o un encargo sin pedido. Si el descuadre es
+grande, el problema no es el script: es que se está cortando sin registrar.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Carga tus tejidos reales (o inventa diez) con mínimo y plazo de proveedor.</li>
+<li>Consume un tejido para un pedido y comprueba el movimiento.</li>
+<li>Intenta consumir más metros de los que hay: el script debe negarse y explicar por qué.</li>
+<li>Pide al agente un informe de reposición con coste total y plazo máximo.</li>
+<li>Programa el aviso (o déjalo preparado para el módulo 12).</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">tejidos.csv</code> con referencia, metros, mínimo, precio y proveedor</li>
+<li class="curso-tarea">El consumo descuenta y apunta el movimiento con el pedido</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">bajo-minimo</code> devuelve código 1 cuando hay aviso</li>
+<li class="curso-tarea">El agente calcula la reposición con la fórmula, no a ojo</li>
+<li class="curso-tarea">Sé cuándo fue el último inventario físico</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Poner el mínimo en cero.</strong> Te enteras cuando ya no hay tela y el cliente espera.</li>
+<li><strong>Descontar «cuando me acuerde».</strong> El stock deja de ser real en dos semanas.</li>
+<li><strong>Mezclar unidades</strong>: metros, rollos y kilos en la misma columna. Una unidad por columna.</li>
+<li><strong>Un cron que avisa siempre</strong>, aunque no haya nada: el ruido hace que dejes de leerlo.</li>
+<li><strong>Editar el CSV a mano mientras el script escribe</strong>: usa el script o edita con el agente parado.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 09: los pedidos. El almacén dice qué tienes; los pedidos dicen qué has prometido y para
+cuándo. Ahí se gana o se pierde la reputación.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../07-clientes-y-medidas/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 07</span>
+      <span>Clientes y medidas</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../09-pedidos-y-encargos/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 09</span>
+      <span>Pedidos y encargos</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

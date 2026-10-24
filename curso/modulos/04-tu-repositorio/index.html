@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu repositorio en GitHub · Curso Mastermind</title>
+  <meta name="description" content="Creas el repositorio que guarda la identidad, los skills, los datos y la web. GitHub deja de ser «una nube» y pasa a ser la memoria del negocio.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 04</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 04 de 14 · Desde cero</p>
+    <h1 class="nz-h1">Tu repositorio en GitHub</h1>
+    <p class="nz-lead">Creas el repositorio que guarda la identidad, los skills, los datos y la web. GitHub deja de ser «una nube» y pasa a ser la memoria del negocio.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">11 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>El repositorio existe en GitHub y está clonado en local</li>
+      <li>.env y los datos reales están fuera de git</li>
+      <li>Hay al menos un commit propio, no solo el inicial</li>
+      <li>El agente puede leer y escribir dentro del repositorio</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#por-que-un-repositorio-y-no-una-carpeta-cualquiera">Por qué un repositorio y no una carpeta cualquiera</a></li>
+      <li><a href="#paso-1-crear-el-repositorio">Paso 1: crear el repositorio</a></li>
+      <li><a href="#paso-2-la-estructura">Paso 2: la estructura</a></li>
+      <li><a href="#paso-3-proteger-lo-que-no-se-publica">Paso 3: proteger lo que no se publica</a></li>
+      <li><a href="#paso-4-primer-commit">Paso 4: primer commit</a></li>
+      <li><a href="#paso-5-el-agente-trabaja-aqui">Paso 5: el agente trabaja aquí</a></li>
+      <li><a href="#paso-6-higiene-minima">Paso 6: higiene mínima</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="por-que-un-repositorio-y-no-una-carpeta-cualquiera">Por qué un repositorio y no una carpeta cualquiera</h2>
+<p>Porque un negocio no se lleva con «archivos sueltos en el escritorio». El repositorio te da cuatro
+cosas que necesitas el primer mes:</p>
+<ul>
+<li><strong>Historial</strong>: qué cambió, cuándo y por qué. Si el agente estropea un CSV, vuelves atrás.</li>
+<li><strong>Copia fuera del ordenador</strong>: si se rompe el portátil, clonas y sigues.</li>
+<li><strong>Trabajo entre máquinas</strong>: tu PC y el de la tienda ven lo mismo.</li>
+<li><strong>Revisión</strong>: un cambio se lee antes de aceptarlo (o se ve en el diff después).</li>
+</ul>
+<p>Y para el agente es aún más importante: <strong>es su directorio de trabajo</strong>. Ahí lee, escribe, ejecuta
+scripts y guarda notas. Fuera de ahí, no toca nada.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-crear-el-repositorio">Paso 1: crear el repositorio</h2>
+<p>En GitHub: <strong>New repository</strong> → nombre <code class="nz-code nz-code--inline">mi-agente</code> → <strong>Private</strong> (recomendado al principio) →
+<em>Add a README</em> → <strong>Create</strong>.</p>
+<p>Si prefieres terminal, con GitHub CLI:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>gh repo create mi-agente --private --clone
+</code></pre>
+<p>Sin <code class="nz-code nz-code--inline">gh</code>, clona el que acabas de crear:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cd ~
+git clone https://github.com/TU-USUARIO/mi-agente.git
+cd mi-agente
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-la-estructura">Paso 2: la estructura</h2>
+<p>Crea estas carpetas y ficheros vacíos. No hace falta que sepas qué va dentro todavía: cada módulo
+los rellena.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>mkdir -p identidad skills negocio/scripts negocio/produccion redes web notas plantillas
+touch identidad/SOUL.md identidad/USER.md identidad/AGENTS.md
+touch negocio/clientes.csv negocio/medidas.csv negocio/tejidos.csv negocio/pedidos.csv
+touch redes/calendario.csv
+</code></pre>
+<p>Queda así:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>mi-agente/
+├── identidad/        # quién es el agente y cómo trabajas tú
+├── skills/           # el oficio, un SKILL.md por especialidad
+├── negocio/          # datos del taller (ejemplos) y scripts
+│   └── produccion/   # datos reales: FUERA de git
+├── redes/            # calendario de contenido y borradores
+├── web/              # tu web publicada
+└── notas/            # lo que aprendes y lo que decides
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-proteger-lo-que-no-se-publica">Paso 3: proteger lo que no se publica</h2>
+<p>Copia el <code class="nz-code nz-code--inline">.gitignore</code> del repositorio del curso o escribe este:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="gitignore"><code># Datos reales de clientes y producción
+negocio/produccion/
+*.sqlite
+*.db
+
+# Secretos
+.env
+.env.*
+
+# Basura del sistema
+__pycache__/
+.DS_Store
+</code></pre>
+<p>Y crea un <code class="nz-code nz-code--inline">.env.example</code> <strong>sin valores</strong>, para documentar qué claves necesita el proyecto:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cat &gt; .env.example &lt;&lt;'EOF'
+# Copia este fichero a .env y rellena los valores. .env NUNCA se commitea.
+TELEGRAM_BOT_TOKEN=
+GITHUB_TOKEN=
+EOF
+</code></pre>
+<div class="nz-callout nz-callout--tip">
+<p><strong>La regla que no se rompe:</strong> si una clave aparece en un commit, se considera filtrada. Aunque la
+borres después, queda en el historial. Se revoca y se genera otra.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-primer-commit">Paso 4: primer commit</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>git add -A
+git commit -m &quot;estructura inicial del negocio&quot;
+git push
+</code></pre>
+<p>Comprueba en GitHub que <strong>no</strong> aparece <code class="nz-code nz-code--inline">.env</code> ni <code class="nz-code nz-code--inline">negocio/produccion/</code>. Si aparece, para y
+corrige: <code class="nz-code nz-code--inline">git rm --cached .env</code> antes de seguir.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-5-el-agente-trabaja-aqui">Paso 5: el agente trabaja aquí</h2>
+<p>Abre Hermes <strong>dentro de la carpeta del repositorio</strong>:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cd ~/mi-agente
+hermes
+</code></pre>
+<p>Y pídele algo pequeño y verificable:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Mira la estructura de este repositorio y explícame en cinco líneas para qué sirve cada carpeta.
+Después crea notas/2026-01-15-inicio.md con la fecha de hoy y una línea sobre mi negocio.
+</code></pre>
+<p>Comprueba tú el fichero:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>ls notas/
+cat notas/2026-01-15-inicio.md
+</code></pre>
+<p>Si existe y tiene lo que pediste, el agente está trabajando dentro de tu repositorio. Ese es el
+criterio del módulo.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-6-higiene-minima">Paso 6: higiene mínima</h2>
+<p>Tres costumbres que te van a salvar:</p>
+<ol>
+<li><strong>Un cambio, un commit.</strong> No mezcles «arreglo el CSV» con «cambio el SOUL».</li>
+<li><strong>Mensajes que expliquen el porqué</strong>: <code class="nz-code nz-code--inline">feat(negocio): añade columna proveedor a tejidos</code>.</li>
+<li><strong>Nada de <code class="nz-code nz-code--inline">git push --force</code></strong> hasta que sepas muy bien lo que hace. Ni siquiera entonces.</li>
+</ol>
+<p>Si trabajas con otra persona (o con otro agente), usa ramas:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>git checkout -b negocio/stock-minimo
+# cambios
+git add -A &amp;&amp; git commit -m &quot;feat(negocio): stock mínimo por tejido&quot;
+git push -u origin negocio/stock-minimo
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Crea el repositorio y la estructura.</li>
+<li>Añade un <code class="nz-code nz-code--inline">README.md</code> de tres líneas: qué negocio es, quién lo lleva y qué va a hacer el agente.</li>
+<li>Haz un commit y súbelo.</li>
+<li>Pide al agente que lea el README y proponga <strong>una</strong> mejora. Acéptala o recházala tú, y haz el
+   commit con el motivo.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">Repo creado y clonado; <code class="nz-code nz-code--inline">git status</code> limpio</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">.gitignore</code> con <code class="nz-code nz-code--inline">.env</code>, <code class="nz-code nz-code--inline">negocio/produccion/</code>, <code class="nz-code nz-code--inline">*.db</code></li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">.env.example</code> documenta las claves sin valores</li>
+<li class="curso-tarea">Un commit propio subido a GitHub</li>
+<li class="curso-tarea">El agente ha creado un fichero dentro del repo y lo he comprobado yo</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Commitear <code class="nz-code nz-code--inline">.env</code>.</strong> Pasa hasta a los que llevan años. Si ocurre: revoca la clave, bórrala del
+  historial con cuidado y cambia el <code class="nz-code nz-code--inline">.gitignore</code>.</li>
+<li><strong>Trabajar en <code class="nz-code nz-code--inline">~/Downloads</code> o en el escritorio.</strong> El agente no sabrá qué es «el proyecto» y
+  mezclará ficheros.</li>
+<li><strong>Repositorio público con datos de clientes.</strong> Empieza privado; si luego publicas la web, publica
+  solo la carpeta <code class="nz-code nz-code--inline">web/</code> con datos de ejemplo.</li>
+<li><strong>Subir CSVs de 200 MB.</strong> Git no es para eso. Los datos grandes van fuera (o a una base de
+  datos); en el repo solo lo que se versiona bien.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 05: le das identidad (<code class="nz-code nz-code--inline">SOUL.md</code>, <code class="nz-code nz-code--inline">USER.md</code>) y memoria (<code class="nz-code nz-code--inline">MEMORY.md</code>). El agente deja de ser
+genérico y empieza a trabajar como tú necesitas.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../03-nan-cuenta-y-api/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 03</span>
+      <span>NaN: cuenta, plan y clave de API</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../05-identidad-y-memoria/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 05</span>
+      <span>Identidad y memoria</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

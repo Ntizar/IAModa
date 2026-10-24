@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Identidad y memoria · Curso Mastermind</title>
+  <meta name="description" content="SOUL.md, USER.md y MEMORY.md. Le dices quién es, cómo habla, qué sabe de ti y qué tiene que recordar entre sesiones.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 05</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 05 de 14 · Desde cero</p>
+    <h1 class="nz-h1">Identidad y memoria</h1>
+    <p class="nz-lead">SOUL.md, USER.md y MEMORY.md. Le dices quién es, cómo habla, qué sabe de ti y qué tiene que recordar entre sesiones.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">35 min</span>
+      <span class="nz-badge nz-badge--brand">10 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>SOUL.md está copiado en ~/.hermes/ y se nota en la primera respuesta</li>
+      <li>MEMORY.md tiene 5-10 entradas densas, no un diario</li>
+      <li>El agente recuerda un dato en una sesión nueva</li>
+      <li>Sabes qué va en memoria y qué va en skill</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#tres-ficheros-tres-trabajos">Tres ficheros, tres trabajos</a></li>
+      <li><a href="#paso-1-escribe-tu-soul-md">Paso 1: escribe tu SOUL.md</a></li>
+      <li><a href="#paso-2-escribe-tu-user-md">Paso 2: escribe tu USER.md</a></li>
+      <li><a href="#paso-3-deja-que-la-memoria-se-llene-sola-pero-con-criterio">Paso 3: deja que la memoria se llene sola (pero con criterio)</a></li>
+      <li><a href="#paso-4-que-no-va-en-memoria">Paso 4: qué NO va en memoria</a></li>
+      <li><a href="#paso-5-agents-md-el-mapa-del-repositorio">Paso 5: AGENTS.md, el mapa del repositorio</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="tres-ficheros-tres-trabajos">Tres ficheros, tres trabajos</h2>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Fichero</th>
+<th>Dónde</th>
+<th>Para qué</th>
+<th>Límite</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Fichero"><code class="nz-code nz-code--inline">SOUL.md</code></td><td data-etiqueta="Dónde"><code class="nz-code nz-code--inline">~/.hermes/SOUL.md</code></td><td data-etiqueta="Para qué">Identidad: quién es, cómo trabaja, qué no hace</td><td data-etiqueta="Límite">Sin límite duro: sé breve</td></tr>
+<tr><td data-etiqueta="Fichero"><code class="nz-code nz-code--inline">USER.md</code></td><td data-etiqueta="Dónde"><code class="nz-code nz-code--inline">~/.hermes/memories/USER.md</code></td><td data-etiqueta="Para qué">Quién eres tú: gustos, contexto, manías</td><td data-etiqueta="Límite">1.375 caracteres</td></tr>
+<tr><td data-etiqueta="Fichero"><code class="nz-code nz-code--inline">MEMORY.md</code></td><td data-etiqueta="Dónde"><code class="nz-code nz-code--inline">~/.hermes/memories/MEMORY.md</code></td><td data-etiqueta="Para qué">Lo que el agente aprende del entorno y del negocio</td><td data-etiqueta="Límite">2.200 caracteres</td></tr>
+</tbody>
+</table></div>
+<p>Los dos últimos se cargan <strong>al empezar cada sesión</strong> y no cambian a mitad (snapshot congelado).
+Por eso, cuando guardas algo importante, se ve en la siguiente sesión, no en la actual.</p>
+<p>Y un cuarto, específico del proyecto: <code class="nz-code nz-code--inline">identidad/AGENTS.md</code> dentro del repositorio. Es el mapa que
+el agente lee cuando trabaja ahí: dónde está cada cosa y qué está prohibido.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-escribe-tu-soul-md">Paso 1: escribe tu SOUL.md</h2>
+<p>Copia la plantilla del curso y adáptala:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cp plantillas/SOUL-ejemplo.md identidad/SOUL.md
+</code></pre>
+<p>La plantilla tiene esta forma (recórtala, no la infles):</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="markdown"><code># Identidad
+
+Eres el asistente de taller de [NOMBRE DEL NEGOCIO], una sastrería en [CIUDAD].
+Trabajas para [TU NOMBRE]. Español de España, tuteo, directo, sin florituras.
+
+## Qué haces
+- Llevas clientes, medidas, tejidos y pedidos con los datos de `negocio/`.
+- Preparas informes y borradores; no publicas ni envías nada sin aprobación.
+- Cuando falta un dato, lo dices. No lo inventas nunca.
+
+## Cómo trabajas
+- Antes de opinar sobre stock o plazos, lee el CSV. Nunca de memoria.
+- Si un cálculo afecta a dinero o a una fecha de entrega, enseña el cálculo.
+- Un «hecho» va con prueba: ruta del fichero, commit o mensaje enviado.
+
+## Lo que no haces nunca
+- Inventar medidas, precios o disponibilidad.
+- Publicar en redes o mandar mensajes a clientes sin que yo lo apruebe.
+- Tocar ficheros fuera de este repositorio.
+</code></pre>
+<p>Guárdalo y cópialo a la instalación:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cp identidad/SOUL.md ~/.hermes/SOUL.md
+</code></pre>
+<p>En Windows, la ruta es <code class="nz-code nz-code--inline">%USERPROFILE%\.hermes\SOUL.md</code>.</p>
+<div class="nz-callout nz-callout--tip">
+<p>Si usas perfiles de Hermes, el fichero va en <code class="nz-code nz-code--inline">~/.hermes/profiles/TU-PERFIL/SOUL.md</code>. No mezcles
+el agente del curso con el que ya tengas en producción.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-escribe-tu-user-md">Paso 2: escribe tu USER.md</h2>
+<p>Es tu ficha, no la del negocio. Ejemplo real y compacto:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="markdown"><code>[yo] David, sastre en Madrid. 12 años de taller. Odio el relleno.
+[prefs] Respuestas cortas, con la cifra delante. Nada de emojis en informes.
+[horario] Taller de 9 a 19; reviso el móvil a las 8:30 y a las 18:00.
+[decisiones] Precios con IVA incluido. Señal del 30 % para encargos a medida.
+[datos] Los clientes reales están en negocio/produccion/, fuera de git.
+</code></pre>
+<p>El agente lo gestiona con la herramienta <code class="nz-code nz-code--inline">memory</code>, pero también puedes escribirlo a mano:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cp plantillas/USER.md ~/.hermes/memories/USER.md
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-deja-que-la-memoria-se-llene-sola-pero-con-criterio">Paso 3: deja que la memoria se llene sola (pero con criterio)</h2>
+<p>Pídele esto en una conversación dentro del repositorio:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Guarda en memoria, de forma compacta: (1) el negocio es una sastrería y los datos viven en negocio/;
+(2) no publico nada en redes sin aprobarlo; (3) los informes se entregan los lunes a las 8:00.
+</code></pre>
+<p>Comprueba el fichero:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cat ~/.hermes/memories/MEMORY.md
+</code></pre>
+<p>Abre una sesión <strong>nueva</strong> (<code class="nz-code nz-code--inline">/new</code> o salir y entrar) y pregúntale: «¿Qué sabes de mi negocio?».
+Debe citar las tres cosas.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-que-no-va-en-memoria">Paso 4: qué NO va en memoria</h2>
+<p>La memoria es cara (se inyecta en cada turno) y pequeña. No es un diario:</p>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>No va en memoria</th>
+<th>Va en</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="No va en memoria">El procedimiento de tomar medidas</td><td data-etiqueta="Va en">Un skill <code class="nz-code nz-code--inline">sastreria</code></td></tr>
+<tr><td data-etiqueta="No va en memoria">La lista de 80 clientes</td><td data-etiqueta="Va en"><code class="nz-code nz-code--inline">negocio/clientes.csv</code></td></tr>
+<tr><td data-etiqueta="No va en memoria">Lo que pasó el martes</td><td data-etiqueta="Va en"><code class="nz-code nz-code--inline">notas/2026-01-20-....md</code></td></tr>
+<tr><td data-etiqueta="No va en memoria">El horario de un proveedor concreto</td><td data-etiqueta="Va en">El CSV de proveedores, o una nota</td></tr>
+</tbody>
+</table></div>
+<p>Regla práctica: si la frase empieza por «cuando…» o «para hacer…», es un <strong>skill</strong>. Si empieza por
+«mi negocio es…» o «prefiero…», es <strong>memoria</strong>.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-5-agents-md-el-mapa-del-repositorio">Paso 5: AGENTS.md, el mapa del repositorio</h2>
+<p><code class="nz-code nz-code--inline">identidad/AGENTS.md</code> (o <code class="nz-code nz-code--inline">AGENTS.md</code> en la raíz) le dice al agente dónde está cada cosa cuando
+trabaja en el proyecto:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="markdown"><code># Mapa del repositorio
+
+- `negocio/` — datos del taller. `produccion/` es privado y no se toca sin permiso.
+- `skills/` — procedimientos. Cada carpeta es un skill con su SKILL.md.
+- `redes/` — calendario y borradores. Nada se publica sin aprobación.
+- `web/` — web pública. Se genera desde `negocio/tejidos.csv`.
+- `notas/` — decisiones y aprendizajes, una nota por tema y fecha.
+
+## Prohibido
+- Editar ficheros de `negocio/produccion/` sin decírmelo.
+- Inventar cifras: si falta un dato, se pregunta.
+</code></pre>
+<p>Ponlo en la raíz del repo si trabajas siempre ahí:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>cp identidad/AGENTS.md AGENTS.md
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Adapta <code class="nz-code nz-code--inline">SOUL.md</code> a tu negocio (máximo 40 líneas).</li>
+<li>Escribe tu <code class="nz-code nz-code--inline">USER.md</code> con cinco entradas.</li>
+<li>Pide al agente que guarde tres hechos en memoria y compruébalos en <code class="nz-code nz-code--inline">MEMORY.md</code>.</li>
+<li>Abre sesión nueva y verifica que los recuerda.</li>
+<li>Si algo no lo recuerda, mira el fichero antes de culpar al modelo: casi siempre no se guardó.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">~/.hermes/SOUL.md</code> es mío y se nota en el tono de las respuestas</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">USER.md</code> tiene 5 entradas y no pasa del límite</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">MEMORY.md</code> tiene entre 5 y 10 entradas densas</li>
+<li class="curso-tarea">Una sesión nueva recuerda lo guardado</li>
+<li class="curso-tarea">Tengo un <code class="nz-code nz-code--inline">AGENTS.md</code> que explica el repositorio y lo prohibido</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>SOUL.md de 300 líneas</strong> con la historia de tu vida: come contexto y no mejora nada.</li>
+<li><strong>Meter datos de clientes en memoria</strong>: se inyectan en cada turno y se filtran con facilidad.</li>
+<li><strong>Creer que «lo recuerda» sin comprobarlo</strong>. La memoria solo existe si se llamó a la herramienta
+  y el texto está en el fichero.</li>
+<li><strong>Editar <code class="nz-code nz-code--inline">MEMORY.md</code> a mano mientras otra sesión escribe</strong>: puede pisarse. Mejor pídeselo al
+  agente o hazlo con la sesión cerrada.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 06: skills. El oficio deja de estar en tu cabeza y pasa a estar en un fichero que el agente
+carga solo cuando toca.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../04-tu-repositorio/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 04</span>
+      <span>Tu repositorio en GitHub</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../06-skills-el-oficio/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 06</span>
+      <span>Skills: el oficio por escrito</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

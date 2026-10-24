@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos y encargos · Curso Mastermind</title>
+  <meta name="description" content="Del «me lo apunto» al estado verificable: fechas de prueba y entrega, señal, cambios de estado y una lista semanal que evita retrasos.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 09</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 09 de 14 · Con clientes y almacén funcionando</p>
+    <h1 class="nz-h1">Pedidos y encargos</h1>
+    <p class="nz-lead">Del «me lo apunto» al estado verificable: fechas de prueba y entrega, señal, cambios de estado y una lista semanal que evita retrasos.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">11 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>pedidos.csv tiene estados definidos y fechas de prueba y entrega</li>
+      <li>Un pedido no avanza a confección sin señal registrada</li>
+      <li>El script lista entregas próximas y pedidos parados</li>
+      <li>El agente puede responder «qué tengo esta semana» con datos reales</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#un-pedido-es-una-promesa-con-fecha">Un pedido es una promesa con fecha</a></li>
+      <li><a href="#los-estados-cerrados">Los estados, cerrados</a></li>
+      <li><a href="#los-comandos">Los comandos</a></li>
+      <li><a href="#paso-1-crear-un-pedido">Paso 1: crear un pedido</a></li>
+      <li><a href="#paso-2-planificar-la-semana">Paso 2: planificar la semana</a></li>
+      <li><a href="#paso-3-que-el-agente-lleve-la-agenda">Paso 3: que el agente lleve la agenda</a></li>
+      <li><a href="#paso-4-retrasos-sin-dramas">Paso 4: retrasos sin dramas</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="un-pedido-es-una-promesa-con-fecha">Un pedido es una promesa con fecha</h2>
+<p>Todo lo demás (tejido, botones, hilo) se puede arreglar. Una fecha incumplida, no. Por eso el pedido
+se guarda con lo mínimo que permite cumplir:</p>
+<p><strong><code class="nz-code nz-code--inline">negocio/pedidos.csv</code></strong></p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="csv"><code>id,cliente_id,prenda,tejido_ref,fecha_encargo,fecha_prueba,fecha_entrega,estado,importe,senal,notas
+P-2026-014,C-2026-002,Traje dos piezas,LANA-AZUL-01,2026-10-02,2026-10-20,2026-10-30,en_confeccion,890.00,267.00,Entallado en cintura
+P-2026-015,C-2026-001,Vestido largo,SEDA-BUR-01,2026-10-05,2026-10-22,2026-11-05,prueba,650.00,195.00,
+P-2026-016,C-2026-001,Camisa a medida,ALG-BLA-01,2026-10-06,2026-10-24,2026-11-02,presupuesto,120.00,0.00,Pendiente de confirmar
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="los-estados-cerrados">Los estados, cerrados</h2>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Estado</th>
+<th>Significado</th>
+<th>Quién puede pasar al siguiente</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">presupuesto</code></td><td data-etiqueta="Significado">Enviado, sin confirmar</td><td data-etiqueta="Quién puede pasar al siguiente">El cliente, pagando señal</td></tr>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">aceptado</code></td><td data-etiqueta="Significado">Confirmado con señal</td><td data-etiqueta="Quién puede pasar al siguiente">Tú, al planificar la confección</td></tr>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">en_confeccion</code></td><td data-etiqueta="Significado">En el taller</td><td data-etiqueta="Quién puede pasar al siguiente">Tú, al terminar</td></tr>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">prueba</code></td><td data-etiqueta="Significado">Cita de prueba hecha</td><td data-etiqueta="Quién puede pasar al siguiente">Tú, tras ajustes</td></tr>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">ajustes</code></td><td data-etiqueta="Significado">Vuelve al taller</td><td data-etiqueta="Quién puede pasar al siguiente">Tú, al terminar</td></tr>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">entregado</code></td><td data-etiqueta="Significado">En manos del cliente</td><td data-etiqueta="Quién puede pasar al siguiente">—</td></tr>
+<tr><td data-etiqueta="Estado"><code class="nz-code nz-code--inline">cancelado</code></td><td data-etiqueta="Significado">No sigue</td><td data-etiqueta="Quién puede pasar al siguiente">Tú, con motivo en notas</td></tr>
+</tbody>
+</table></div>
+<p>Sin estados cerrados pasa lo de siempre: cada uno llama «en proceso» a una cosa distinta y el
+informe miente. La regla del curso: <strong>si no está en la lista, no existe</strong>.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="los-comandos">Los comandos</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/pedidos.py lista
+python3 negocio/scripts/pedidos.py lista --estado prueba
+python3 negocio/scripts/pedidos.py entregas --dias 7
+python3 negocio/scripts/pedidos.py parados --dias 10
+python3 negocio/scripts/pedidos.py estado P-2026-014 en_confeccion
+</code></pre>
+<ul>
+<li><code class="nz-code nz-code--inline">lista</code>: todos, ordenados por fecha de entrega.</li>
+<li><code class="nz-code nz-code--inline">entregas --dias 7</code>: lo que vence esta semana. Es la vista que salva el negocio.</li>
+<li><code class="nz-code nz-code--inline">parados --dias 10</code>: pedidos cuya fase actual lleva más de 10 días vencida (prueba pasada y aún
+  sin terminar, encargo aceptado sin entrar en confección). Detecta lo que se quedó dormido.</li>
+<li><code class="nz-code nz-code--inline">estado</code>: cambia el estado y <strong>valida</strong> que la transición tenga sentido.</li>
+</ul>
+<p>El validador no te deja pasar de <code class="nz-code nz-code--inline">presupuesto</code> a <code class="nz-code nz-code--inline">en_confeccion</code> sin señal. Es incómodo una vez y
+te evita trabajar gratis diez veces.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-crear-un-pedido">Paso 1: crear un pedido</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/pedidos.py alta \
+  --cliente C-2026-002 --prenda &quot;Traje dos piezas&quot; --tejido LANA-AZUL-01 \
+  --prueba 2026-10-20 --entrega 2026-10-30 --importe 890
+</code></pre>
+<p>El script comprueba:</p>
+<ul>
+<li>que el cliente existe;</li>
+<li>que el tejido existe y hay metros suficientes (avisa, no bloquea: puede estar pedido);</li>
+<li>que la fecha de entrega es posterior a la de prueba;</li>
+<li>que la señal por defecto es el 30 % del importe.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-planificar-la-semana">Paso 2: planificar la semana</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/pedidos.py entregas --dias 7
+</code></pre>
+<p>Salida típica:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>ENTREGAS PRÓXIMAS (7 días)
+P-2026-014  Traje dos piezas   C-2026-002   2026-10-30   en_confeccion   señal 267.00
+P-2026-016  Camisa a medida   C-2026-001   2026-11-02   presupuesto     señal 0.00  ← sin señal
+</code></pre>
+<p>Ese «sin señal» es exactamente lo que quieres ver antes de cortar tela.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-que-el-agente-lleve-la-agenda">Paso 3: que el agente lleve la agenda</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Prepara mi lunes: usa pedidos.py para listar las entregas de los próximos 7 días y los pedidos
+parados más de 10 días. Para cada uno dime cliente, prenda, fecha y qué acción toca. No inventes
+teléfonos: están en clientes.csv.
+</code></pre>
+<p>El agente debe ejecutar los scripts y montar una tabla. Si se salta el script y «recuerda» pedidos,
+tienes un problema de skill: añade al <code class="nz-code nz-code--inline">SKILL.md</code> la regla «los pedidos se consultan con
+<code class="nz-code nz-code--inline">pedidos.py</code>, nunca de memoria».</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-retrasos-sin-dramas">Paso 4: retrasos sin dramas</h2>
+<p>Un retraso se gestiona antes de que ocurra:</p>
+<ol>
+<li><code class="nz-code nz-code--inline">entregas --dias 7</code> el lunes y el jueves.</li>
+<li>Si un pedido no va a llegar, se avisa <strong>ese día</strong>, no el día de la entrega.</li>
+<li>Se propone fecha nueva y, si procede, una compensación (un ajuste gratis, prioridad en el
+   siguiente).</li>
+<li>Se apunta en <code class="nz-code nz-code--inline">notas/</code> el motivo: así el informe trimestral dice la verdad.</li>
+</ol>
+<p>Pídele al agente que redacte el mensaje, pero <strong>no que lo envíe</strong>. En el módulo 13 verás por qué
+esto es una regla y no una manía.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Crea tres pedidos con estados distintos.</li>
+<li>Intenta saltarte la señal: el script debe impedirlo.</li>
+<li>Ejecuta <code class="nz-code nz-code--inline">entregas --dias 7</code> y <code class="nz-code nz-code--inline">parados --dias 10</code> y compara con tu agenda real.</li>
+<li>Pide al agente el plan del lunes y corrígelo si se inventa algo.</li>
+<li>Escribe en <code class="nz-code nz-code--inline">notas/</code> una regla tuya de negocio que no esté en el skill (por ejemplo, «los viernes
+   no se entregan trajes»).</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">pedidos.csv</code> con los siete estados y fechas completas</li>
+<li class="curso-tarea">La señal se registra y bloquea el paso a confección</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">entregas --dias 7</code> me dice la verdad de esta semana</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">parados</code> detecta lo dormido</li>
+<li class="curso-tarea">El agente prepara el plan usando los scripts, no de memoria</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Estados libres</strong> («en curso», «casi», «pendiente de…»): el informe deja de ser fiable.</li>
+<li><strong>Fechas en formato distinto</strong> (<code class="nz-code nz-code--inline">30/10/26</code>, <code class="nz-code nz-code--inline">30-10-2026</code>): usa siempre <code class="nz-code nz-code--inline">AAAA-MM-DD</code>.</li>
+<li><strong>Importe sin IVA y con IVA mezclados</strong>: decide una convención y escríbela en el skill.</li>
+<li><strong>Contar la señal como ingreso disponible</strong>: está cobrada, pero es un compromiso. Anótalo aparte.</li>
+<li><strong>Pedirle al agente que «avise a todos los clientes»</strong>: eso es una acción externa masiva. Se
+  prepara, se revisa y se envía por lotes aprobados.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 10: redes sociales. El mismo rigor, pero con contenido: calendario, borradores y aprobación
+antes de publicar.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../08-almacen-de-tejidos/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 08</span>
+      <span>Almacén de tejidos</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../10-redes-sociales/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 10</span>
+      <span>Redes sociales con criterio</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

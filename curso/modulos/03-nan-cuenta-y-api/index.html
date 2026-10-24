@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NaN: cuenta, plan y clave de API · Curso Mastermind</title>
+  <meta name="description" content="Compras el acceso a NaN, generas la clave y la dejas donde Hermes la lee. Paso a paso, con el plano de qué se instala, dónde queda y qué no se toca nunca.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 03</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 03 de 14 · Con Hermes instalado</p>
+    <h1 class="nz-h1">NaN: cuenta, plan y clave de API</h1>
+    <p class="nz-lead">Compras el acceso a NaN, generas la clave y la dejas donde Hermes la lee. Paso a paso, con el plano de qué se instala, dónde queda y qué no se toca nunca.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">30 min</span>
+      <span class="nz-badge nz-badge--brand">14 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>Tengo cuenta en NaN y un plan con inferencia (no el plan de solo comunidad)</li>
+      <li>La clave sk- existe, está en .env y NO está en git</li>
+      <li>El agente responde con un modelo de NaN</li>
+      <li>Sé leer el gasto y los límites de mi plan</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#el-plano-que-se-instala-y-donde-queda">El plano: qué se instala y dónde queda</a></li>
+      <li><a href="#por-que-nan-y-no-pagar-por-token">Por qué NaN y no pagar por token</a></li>
+      <li><a href="#paso-1-crear-la-cuenta">Paso 1: crear la cuenta</a></li>
+      <li><a href="#paso-2-generar-la-clave">Paso 2: generar la clave</a></li>
+      <li><a href="#paso-3-guardarla-donde-toca">Paso 3: guardarla donde toca</a></li>
+      <li><a href="#paso-4-decirle-a-hermes-que-use-nan">Paso 4: decirle a Hermes que use NaN</a></li>
+      <li><a href="#paso-5-comprobar-que-responde">Paso 5: comprobar que responde</a></li>
+      <li><a href="#los-modelos-que-puedes-pedir">Los modelos que puedes pedir</a></li>
+      <li><a href="#paso-6-elegir-modelo-con-criterio-y-sin-sustos">Paso 6: elegir modelo con criterio (y sin sustos)</a></li>
+      <li><a href="#paso-7-si-no-quieres-nan">Paso 7: si no quieres NaN</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="el-plano-que-se-instala-y-donde-queda">El plano: qué se instala y dónde queda</h2>
+<p>Antes de comprar nada, ten claro el mapa. Son tres piezas y cada una vive en un sitio:</p>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Pieza</th>
+<th>Qué es</th>
+<th>Dónde vive</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Pieza"><strong>Hermes</strong></td><td data-etiqueta="Qué es">El programa que ejecuta el agente</td><td data-etiqueta="Dónde vive"><code class="nz-code nz-code--inline">~/.hermes/hermes-agent/</code> (instalado en el módulo 02)</td></tr>
+<tr><td data-etiqueta="Pieza"><strong>Tu configuración</strong></td><td data-etiqueta="Qué es">Modelo, proveedor, preferencias</td><td data-etiqueta="Dónde vive"><code class="nz-code nz-code--inline">~/.hermes/config.yaml</code></td></tr>
+<tr><td data-etiqueta="Pieza"><strong>Tu clave</strong></td><td data-etiqueta="Qué es">El secreto que paga el uso del modelo</td><td data-etiqueta="Dónde vive"><code class="nz-code nz-code--inline">~/.hermes/.env</code></td></tr>
+<tr><td data-etiqueta="Pieza"><strong>NaN</strong></td><td data-etiqueta="Qué es">Quien sirve el modelo</td><td data-etiqueta="Dónde vive"><code class="nz-code nz-code--inline">https://api.nan.builders/v1</code></td></tr>
+</tbody>
+</table></div>
+<p>Regla que no se rompe: <strong>el secreto va en <code class="nz-code nz-code--inline">.env</code>, nunca en <code class="nz-code nz-code--inline">config.yaml</code>, nunca en el repositorio</strong>.
+<code class="nz-code nz-code--inline">config.yaml</code> dice <em>dónde</em> buscar la clave; <code class="nz-code nz-code--inline">.env</code> la contiene.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="por-que-nan-y-no-pagar-por-token">Por qué NaN y no pagar por token</h2>
+<p>Los proveedores clásicos te cobran cada token: la factura sube cuando el agente trabaja más. NaN es
+una comunidad de GPUs compartidas: pagas una cuota fija y tienes modelos abiertos servidos en la UE,
+sin factura por token. La API es <strong>compatible con OpenAI</strong>, así que cualquier herramienta que acepte
+<code class="nz-code nz-code--inline">base_url</code> + <code class="nz-code nz-code--inline">api_key</code> funciona cambiando dos valores.</p>
+<p>Para un agente que va a leer tus CSV, escribir informes y atender crons todos los días, una cuota
+fija es mucho más fácil de presupuestar que un contador que no ves.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-crear-la-cuenta">Paso 1: crear la cuenta</h2>
+<ol>
+<li>Entra en <a rel="noopener" href="https://cloud.nan.builders/signup">https://cloud.nan.builders/signup</a>.</li>
+<li>Regístrate con tu correo y verifica.</li>
+<li>Elige plan. Los que importan para este curso:</li>
+</ol>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Plan</th>
+<th>Precio</th>
+<th>Qué incluye</th>
+<th>¿Sirve para el curso?</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Plan"><strong>nan_community</strong></td><td data-etiqueta="Precio">14,99 €/mes</td><td data-etiqueta="Qué incluye">Discord, eventos, canales privados</td><td data-etiqueta="¿Sirve para el curso?"><strong>No</strong>: no incluye API key ni llamadas a modelos</td></tr>
+<tr><td data-etiqueta="Plan"><strong>nan_member</strong></td><td data-etiqueta="Precio">70 €/mes</td><td data-etiqueta="Qué incluye">Inferencia + API key + 1 workspace Micro gratis</td><td data-etiqueta="¿Sirve para el curso?"><strong>Sí</strong>: es el plan normal para empezar</td></tr>
+<tr><td data-etiqueta="Plan"><strong>GLM 5.3 premium</strong></td><td data-etiqueta="Precio">200 €/mes</td><td data-etiqueta="Qué incluye">Lo de nan_member + GLM 5.3 (753B, razonamiento) y 3.000M tokens por periodo</td><td data-etiqueta="¿Sirve para el curso?">Sí, si vas a trabajar con el modelo grande a diario</td></tr>
+</tbody>
+</table></div>
+<p>IVA incluido, sin permanencia, se cancela cuando quieras. El acceso se activa unos minutos después
+del pago.</p>
+<div class="nz-callout nz-callout--tip">
+<p><strong>No compres el plan de 14,99 € pensando que incluye API.</strong> Es solo comunidad. Sin plan de
+inferencia no hay clave y el agente no puede responder.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-generar-la-clave">Paso 2: generar la clave</h2>
+<ol>
+<li>Entra en <a rel="noopener" href="https://cloud.nan.builders/">https://cloud.nan.builders/</a> con tu cuenta.</li>
+<li><strong>Settings → API Keys</strong>.</li>
+<li>Crea una clave nueva. Se llama <code class="nz-code nz-code--inline">sk-...</code>.</li>
+<li>Cópiala <strong>en ese momento</strong>: no se vuelve a mostrar entera.</li>
+</ol>
+<p>Si se te pierde, no pasa nada: se revoca y se crea otra. Lo que no se hace es compartirla.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-guardarla-donde-toca">Paso 3: guardarla donde toca</h2>
+<p>En la carpeta de tu instalación:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code># Linux / macOS
+nano ~/.hermes/.env
+</code></pre>
+<p>Añade esta línea (sustituye por tu clave real):</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>OPENAI_API_KEY=sk-tu-clave-de-nan
+</code></pre>
+<p>En Windows, el fichero es <code class="nz-code nz-code--inline">%USERPROFILE%\.hermes\.env</code> y se abre con el Bloc de notas.</p>
+<p>Comprueba que el fichero está protegido y <strong>no</strong> dentro de ningún repositorio:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>ls -l ~/.hermes/.env
+grep -c &quot;sk-&quot; ~/.hermes/config.yaml   # debe dar 0: la clave no va en config.yaml
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-decirle-a-hermes-que-use-nan">Paso 4: decirle a Hermes que use NaN</h2>
+<p>La vía guiada:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes model
+</code></pre>
+<p>Elige <strong>endpoint personalizado / OpenAI-compatible</strong> y rellena:</p>
+<ul>
+<li><strong>Base URL</strong>: <code class="nz-code nz-code--inline">https://api.nan.builders/v1</code></li>
+<li><strong>API key</strong>: la variable <code class="nz-code nz-code--inline">OPENAI_API_KEY</code> (no pegues la clave otra vez)</li>
+<li><strong>Modelo</strong>: <code class="nz-code nz-code--inline">deepseek-v4-flash</code></li>
+</ul>
+<p>Si prefieres editar el fichero, <code class="nz-code nz-code--inline">~/.hermes/config.yaml</code> queda así:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="yaml"><code>model:
+  default: deepseek-v4-flash
+  provider: nan
+providers:
+  nan:
+    api: https://api.nan.builders/v1
+    key_env: OPENAI_API_KEY
+    default_model: deepseek-v4-flash
+    api_mode: chat_completions
+</code></pre>
+<p><code class="nz-code nz-code--inline">key_env</code> significa «la clave está en la variable de entorno <code class="nz-code nz-code--inline">OPENAI_API_KEY</code>», que es la que
+acabas de escribir en <code class="nz-code nz-code--inline">.env</code>. Así el YAML se puede compartir y la clave no.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-5-comprobar-que-responde">Paso 5: comprobar que responde</h2>
+<p>Primero la API sola, sin Hermes de por medio:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>curl -s https://api.nan.builders/v1/chat/completions \
+  -H &quot;Authorization: Bearer $OPENAI_API_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;model&quot;:&quot;deepseek-v4-flash&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Di solo: ok&quot;}],&quot;max_tokens&quot;:10}'
+</code></pre>
+<p>Si devuelve un JSON con <code class="nz-code nz-code--inline">"ok"</code>, la clave y el modelo funcionan. Si devuelve <code class="nz-code nz-code--inline">401</code>, la clave está mal
+o es de otro plan. Si devuelve <code class="nz-code nz-code--inline">404</code>, el nombre del modelo está mal escrito.</p>
+<p>Ahora el agente:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes doctor
+hermes chat -q &quot;Responde solo con el modelo que estás usando y di ok&quot;
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="los-modelos-que-puedes-pedir">Los modelos que puedes pedir</h2>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Para qué</th>
+<th>Cuota mensual por miembro</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Modelo"><code class="nz-code nz-code--inline">deepseek-v4-flash</code></td><td data-etiqueta="Para qué"><strong>Empieza aquí</strong>: razona, ve imágenes, tool calling, 1M de contexto</td><td data-etiqueta="Cuota mensual por miembro">3.000M tokens</td></tr>
+<tr><td data-etiqueta="Modelo"><code class="nz-code nz-code--inline">glm5.3-flash</code></td><td data-etiqueta="Para qué">Multimodal, bueno en código y tareas largas</td><td data-etiqueta="Cuota mensual por miembro">2.000M tokens</td></tr>
+<tr><td data-etiqueta="Modelo"><code class="nz-code nz-code--inline">qwen3.8-flash</code></td><td data-etiqueta="Para qué">Rápido y con visión</td><td data-etiqueta="Cuota mensual por miembro">500M tokens</td></tr>
+<tr><td data-etiqueta="Modelo"><code class="nz-code nz-code--inline">mimo-v2.6-flash</code></td><td data-etiqueta="Para qué">Texto, imagen y audio</td><td data-etiqueta="Cuota mensual por miembro">1.000M tokens</td></tr>
+<tr><td data-etiqueta="Modelo"><code class="nz-code nz-code--inline">gemma4</code></td><td data-etiqueta="Para qué">Ligero, contexto de 262K</td><td data-etiqueta="Cuota mensual por miembro">—</td></tr>
+<tr><td data-etiqueta="Modelo"><code class="nz-code nz-code--inline">glm5.3</code></td><td data-etiqueta="Para qué">El grande (753B), solo con plan premium</td><td data-etiqueta="Cuota mensual por miembro">3.000M por periodo</td></tr>
+</tbody>
+</table></div>
+<p>Límites de la clave: <strong>60 peticiones por minuto</strong> y <strong>7 peticiones simultáneas</strong> en el plan base (10
+en premium). Para un taller con un agente y unos cuantos crons, sobra.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-6-elegir-modelo-con-criterio-y-sin-sustos">Paso 6: elegir modelo con criterio (y sin sustos)</h2>
+<ul>
+<li><strong>Día a día y crons</strong>: <code class="nz-code nz-code--inline">deepseek-v4-flash</code>. Barato de cuota y suficiente para leer CSV y redactar.</li>
+<li><strong>Tareas de razonamiento largo</strong> (un informe con cálculos, un plan): el mismo, subiendo
+  <code class="nz-code nz-code--inline">reasoning_effort</code> a <code class="nz-code nz-code--inline">medium</code> o <code class="nz-code nz-code--inline">high</code>.</li>
+<li><strong>Código y contexto enorme</strong>: <code class="nz-code nz-code--inline">glm5.3-flash</code>.</li>
+<li><strong>Cuando algo falla por «falta de cabeza»</strong>: prueba <code class="nz-code nz-code--inline">glm5.3</code> si tienes premium, pero no lo dejes
+  fijo para todo.</li>
+</ul>
+<p>Y una manía que ahorra disgustos: <strong>fija un modelo distinto para los crons</strong> (lo verás en el módulo
+12). Así una rutina no te consume la cuota del modelo bueno.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-7-si-no-quieres-nan">Paso 7: si no quieres NaN</h2>
+<p>El curso funciona igual con cualquier proveedor compatible con OpenAI:</p>
+<ul>
+<li><strong>OpenRouter</strong>: una clave para muchos modelos; pagas por token.</li>
+<li><strong>OpenAI / Anthropic / Google</strong>: claves propias, factura por uso.</li>
+<li><strong>Un modelo local</strong> (Ollama, LM Studio): <code class="nz-code nz-code--inline">http://localhost:11434/v1</code>, sin clave, pero necesitas
+  hardware y el agente razona menos.</li>
+</ul>
+<p>Cambia <code class="nz-code nz-code--inline">api</code>, <code class="nz-code nz-code--inline">key_env</code> y <code class="nz-code nz-code--inline">default_model</code> y sigues en el módulo 04 sin tocar nada más.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Crea la cuenta y elige plan (si ya tienes clave, salta al paso 3).</li>
+<li>Genera la clave y guárdala en <code class="nz-code nz-code--inline">.env</code>.</li>
+<li>Configura el proveedor y verifica con <code class="nz-code nz-code--inline">curl</code>.</li>
+<li>Pregúntale al agente: «¿Qué modelo eres y cuánto contexto tienes?». Contrasta con la tabla.</li>
+<li>Anota en <code class="nz-code nz-code--inline">notas/</code> la fecha de alta y el plan contratado (sin la clave, obviamente).</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">Cuenta de NaN con plan de inferencia (no el de comunidad)</li>
+<li class="curso-tarea">Clave <code class="nz-code nz-code--inline">sk-</code> generada y guardada en <code class="nz-code nz-code--inline">~/.hermes/.env</code></li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">config.yaml</code> apunta a <code class="nz-code nz-code--inline">https://api.nan.builders/v1</code> y usa <code class="nz-code nz-code--inline">key_env</code></li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">curl</code> devuelve una respuesta del modelo</li>
+<li class="curso-tarea">El agente responde en una conversación normal</li>
+<li class="curso-tarea">Sé qué modelo uso, qué cuota tengo y cuántas peticiones por minuto</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Comprar el plan de 14,99 €</strong> y esperar clave: no la hay. Es comunidad, no inferencia.</li>
+<li><strong>Pegar la clave en <code class="nz-code nz-code--inline">config.yaml</code></strong> o en un <code class="nz-code nz-code--inline">SOUL.md</code>: se comparte sin querer. Va en <code class="nz-code nz-code--inline">.env</code>.</li>
+<li><strong>Pegar la clave en el chat</strong> para que «el agente la configure»: queda en el historial. Se escribe
+  en el fichero, no se dicta.</li>
+<li><strong>Confundir <code class="nz-code nz-code--inline">OPENAI_API_KEY</code> con una clave de OpenAI</strong>: es solo el nombre de la variable; el valor
+  es de NaN.</li>
+<li><strong>Modelo mal escrito</strong> (<code class="nz-code nz-code--inline">deepseek-v4</code> a secas): devuelve 404. Copia el id exacto de la tabla.</li>
+<li><strong>Compartir el <code class="nz-code nz-code--inline">.env</code> por WhatsApp</strong> «para que lo pruebe un compañero». Se genera otra clave.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 04: creas el repositorio que será la memoria de tu negocio y aprendes a trabajar con el
+agente dentro de él. Ahí empieza lo bueno.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../02-instala-hermes/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 02</span>
+      <span>Instala Hermes y habla con él</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../04-tu-repositorio/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 04</span>
+      <span>Tu repositorio en GitHub</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

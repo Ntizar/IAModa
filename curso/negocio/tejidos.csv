@@ -1,0 +1,6 @@
+ref,nombre,composicion,color,metros,metros_minimos,precio_m,proveedor,plazo_dias
+LANA-AZUL-01,Lana fría 120s,100% lana,Azul marino,6.4,8,42.50,Textiles Norte,12
+LANA-GRIS-02,Lana fría 120s,100% lana,Gris perla,15.0,8,42.50,Textiles Norte,12
+LINO-NAT-01,Lino belga,100% lino,Natural,3.1,5,28.00,Linera Sur,20
+SEDA-BUR-01,Seda salvaje,100% seda,Burdeos,9.8,4,76.00,Sedas del Ebro,25
+ALG-BLA-01,Algodón popelín,100% algodón,Blanco,22.0,10,9.80,Textiles Norte,7

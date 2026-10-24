@@ -68,3 +68,12 @@ las mismas medidas.
 - Las pestañas son mejora progresiva: sin JavaScript se ven los cinco paneles apilados.
 
 Hecho con ❤️ por David Antizar
+
+## Curso de agentes
+
+Dentro de este repositorio vive el **Curso Mastermind**: 14 módulos para montar un agente de IA
+(Hermes + NaN + GitHub) y ponerlo a llevar clientes, almacén, pedidos, redes y web, con una
+sastrería como caso real.
+
+- Curso: https://ntizar.github.io/IAModa/curso/
+- Fuente: `curso/contenido/*.md` · se regenera con `python3 curso/scripts/build.py`

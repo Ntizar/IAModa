@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qué es un agente (y qué no) · Curso Mastermind</title>
+  <meta name="description" content="La diferencia entre un chat que responde y un agente que ejecuta, recuerda y aprende. Con el ciclo completo de una tarea real de taller.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 01</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 01 de 14 · Desde cero</p>
+    <h1 class="nz-h1">Qué es un agente (y qué no)</h1>
+    <p class="nz-lead">La diferencia entre un chat que responde y un agente que ejecuta, recuerda y aprende. Con el ciclo completo de una tarea real de taller.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">25 min</span>
+      <span class="nz-badge nz-badge--brand">9 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>Distingues chat, copiloto y agente con un ejemplo propio</li>
+      <li>Sabes qué tres cosas necesita un agente para trabajar de verdad</li>
+      <li>Has escrito el ciclo de una tarea de tu negocio en cinco líneas</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#la-diferencia-que-importa">La diferencia que importa</a></li>
+      <li><a href="#el-ciclo-de-una-tarea">El ciclo de una tarea</a></li>
+      <li><a href="#las-tres-piezas-que-vas-a-montar">Las tres piezas que vas a montar</a></li>
+      <li><a href="#que-significa-aprender-aqui">Qué significa «aprender» aquí</a></li>
+      <li><a href="#donde-esta-el-peligro">Dónde está el peligro</a></li>
+      <li><a href="#ejercicio-el-ciclo-de-tu-tarea">Ejercicio: el ciclo de tu tarea</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="la-diferencia-que-importa">La diferencia que importa</h2>
+<p>Un <strong>chat</strong> responde. Un <strong>agente</strong> hace. La diferencia no es el modelo: es que el agente tiene
+herramientas (leer tus ficheros, ejecutar un script, buscar en la web, mandar un mensaje), memoria
+(lo que aprendió ayer) y permiso para actuar sin que se lo pidas paso a paso.</p>
+<p>Ejemplo con la sastrería:</p>
+<ul>
+<li>Chat: «¿Cuántos metros de lana azul me quedan?». Te responde con una generalidad inútil, porque
+  no ve tu almacén.</li>
+<li>Agente: abre <code class="nz-code nz-code--inline">negocio/tejidos.csv</code>, filtra la referencia, calcula los metros, detecta que estás
+  por debajo del mínimo y te manda un aviso a Telegram con el proveedor y el plazo.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="el-ciclo-de-una-tarea">El ciclo de una tarea</h2>
+<p>Todo agente, por complicado que sea, hace lo mismo:</p>
+<ol>
+<li><strong>Percibe</strong>: recibe tu mensaje, un fichero, un cron o un evento.</li>
+<li><strong>Decide</strong>: elige qué herramienta usar y en qué orden (leer, calcular, escribir, avisar).</li>
+<li><strong>Actúa</strong>: ejecuta y mira el resultado. Si falla, corrige y reintenta.</li>
+<li><strong>Recuerda</strong>: guarda lo aprendido (una preferencia tuya, un dato del entorno, un procedimiento).</li>
+</ol>
+<p>Si te falta cualquiera de las cuatro, tienes un juguete:</p>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Falta</th>
+<th>Qué pasa</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Falta">Herramientas</td><td data-etiqueta="Qué pasa">Opina, pero no toca tus datos: alucina cifras</td></tr>
+<tr><td data-etiqueta="Falta">Memoria</td><td data-etiqueta="Qué pasa">Cada día empieza de cero y te pregunta lo mismo</td></tr>
+<tr><td data-etiqueta="Falta">Permiso de actuar</td><td data-etiqueta="Qué pasa">Te da instrucciones para que las ejecutes tú: sigue siendo tú el que trabaja</td></tr>
+<tr><td data-etiqueta="Falta">Criterio (saber cuándo parar)</td><td data-etiqueta="Qué pasa">Hace cosas irreversibles sin avisar</td></tr>
+</tbody>
+</table></div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="las-tres-piezas-que-vas-a-montar">Las tres piezas que vas a montar</h2>
+<p>En este curso montas las tres, en este orden:</p>
+<ul>
+<li><strong>Identidad</strong> (<code class="nz-code nz-code--inline">SOUL.md</code>, <code class="nz-code nz-code--inline">USER.md</code>): quién es, cómo habla, qué hace y qué no hace nunca.</li>
+<li><strong>Conocimiento</strong> (<code class="nz-code nz-code--inline">skills/</code>): tu oficio por escrito, cargado solo cuando la tarea lo pide.</li>
+<li><strong>Datos y herramientas</strong> (<code class="nz-code nz-code--inline">negocio/</code>, scripts): donde el agente mira antes de opinar.</li>
+</ul>
+<div class="nz-callout nz-callout--tip">
+<p>El error número uno de quien empieza es escribir un <code class="nz-code nz-code--inline">SOUL.md</code> de 400 líneas y no darle ni un dato.
+El agente se vuelve teatral: habla como un sastre y no sabe cuántos metros de lana tienes.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="que-significa-aprender-aqui">Qué significa «aprender» aquí</h2>
+<p>El agente no reentrena el modelo. Aprende de tres formas, todas verificables:</p>
+<ol>
+<li><strong>Memoria</strong>: frases cortas y densas que se cargan en cada sesión («David trabaja en Madrid,
+   factura con IVA 21 %, prefiere respuestas cortas»).</li>
+<li><strong>Skills</strong>: procedimientos con pasos, comandos y avisos, que se cargan cuando la tarea encaja.</li>
+<li><strong>Notas</strong>: el registro de lo que pasó, buscable, para no volver a preguntar.</li>
+</ol>
+<p>Nada de eso es magia: son ficheros de texto en tu repositorio. Puedes leerlos, corregirlos y
+versionarlos. Esa es la diferencia entre un agente propio y un servicio cerrado que cambia solo.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="donde-esta-el-peligro">Dónde está el peligro</h2>
+<p>Un agente con herramientas puede <strong>hacer daño real</strong>: borrar un CSV, mandar un correo equivocado,
+publicar en tu cuenta, gastar saldo de API. Por eso el curso insiste en tres cosas desde el minuto
+uno:</p>
+<ul>
+<li><strong>Permisos mínimos</strong>: el agente solo toca las carpetas del negocio, no todo el disco.</li>
+<li><strong>Aprobación humana</strong> para lo que publica, gasta o borra.</li>
+<li><strong>Recibos</strong>: si dice «hecho», tiene que poder enseñar el fichero, el commit o el mensaje enviado.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio-el-ciclo-de-tu-tarea">Ejercicio: el ciclo de tu tarea</h2>
+<p>Elige una tarea que repitas cada semana y escríbela como ciclo. Ejemplo hecho:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Tarea: avisar de tejidos bajo mínimo
+1. Percibe: cada lunes a las 8:00, sin que nadie escriba.
+2. Decide: leer tejidos.csv, comparar metros con metros_minimos, ordenar por urgencia.
+3. Actúa: escribe informe en notas/ y manda resumen a Telegram.
+4. Recuerda: si el proveedor tarda más de 15 días, anotarlo para la próxima.
+</code></pre>
+<p>Hazlo con la tuya. Si no puedes rellenar los cuatro pasos, la tarea aún no está bien definida (y
+ningún agente la va a arreglar).</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">Puedo explicar la diferencia entre chat y agente con un caso de mi negocio</li>
+<li class="curso-tarea">He escrito mi ciclo de cuatro pasos</li>
+<li class="curso-tarea">Sé qué pasa si falta memoria (y por qué me obligaría a repetirme)</li>
+<li class="curso-tarea">Tengo identificado algo que el agente NO debe hacer sin preguntarme</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Confundir «agente» con «GPT con nombre».</strong> Si no tiene herramientas ni memoria, es un chat con
+  sombrero.</li>
+<li><strong>Darle acceso a todo el ordenador</strong> porque «así es más útil». Es la forma más rápida de perder
+  un archivo importante.</li>
+<li><strong>Pedirle creatividad antes que precisión.</strong> Para llevar un negocio, primero que acierte con los
+  números; el estilo se añade después.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 02: instalas Hermes en tu ordenador y tienes tu primera conversación real. Sin tocar nada
+del negocio todavía.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../00-como-funciona-el-curso/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 00</span>
+      <span>Cómo funciona este curso</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../02-instala-hermes/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 02</span>
+      <span>Instala Hermes y habla con él</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

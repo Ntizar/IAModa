@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Redes sociales con criterio · Curso Mastermind</title>
+  <meta name="description" content="Calendario, pilares de contenido y borradores que tú apruebas. Publicar sin parecer un robot y sin regalar tu trabajo a un algoritmo.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 10</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 10 de 14 · Con el negocio en datos</p>
+    <h1 class="nz-h1">Redes sociales con criterio</h1>
+    <p class="nz-lead">Calendario, pilares de contenido y borradores que tú apruebas. Publicar sin parecer un robot y sin regalar tu trabajo a un algoritmo.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">11 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>calendario.csv tiene fecha, red, pilar, formato, estado y texto</li>
+      <li>El agente propone contenido usando datos reales del taller, no genéricos</li>
+      <li>Nada se publica sin estado aprobado</li>
+      <li>Tengo tres pilares de contenido y un ritmo sostenible</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#la-regla-que-evita-el-ridiculo">La regla que evita el ridículo</a></li>
+      <li><a href="#tres-pilares-elige-los-tuyos">Tres pilares (elige los tuyos)</a></li>
+      <li><a href="#el-calendario">El calendario</a></li>
+      <li><a href="#paso-1-el-script-de-la-semana">Paso 1: el script de la semana</a></li>
+      <li><a href="#paso-2-que-proponga-no-que-invente">Paso 2: que proponga, no que invente</a></li>
+      <li><a href="#paso-3-aprobar-y-publicar">Paso 3: aprobar y publicar</a></li>
+      <li><a href="#paso-4-medir-sin-enganarte">Paso 4: medir sin engañarte</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="la-regla-que-evita-el-ridiculo">La regla que evita el ridículo</h2>
+<p>Un sastre no necesita «virality». Necesita que la gente de su ciudad sepa que hace trajes a medida,
+que entrega a tiempo y que tiene criterio. Eso se consigue con <strong>pocas publicaciones buenas</strong> y
+constancia, no con cien posts genéricos generados por IA.</p>
+<p>Y hay una línea roja: <strong>la IA redacta, tú apruebas</strong>. Publicar sin revisar es la forma más rápida de
+que tu cuenta diga una barbaridad sobre un cliente o un precio.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="tres-pilares-elige-los-tuyos">Tres pilares (elige los tuyos)</h2>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Pilar</th>
+<th>Qué cuenta</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Pilar"><strong>Oficio</strong></td><td data-etiqueta="Qué cuenta">Cómo se hace algo, sin desvelar lo que te diferencia</td><td data-etiqueta="Ejemplo">«Por qué la entretela importa más que la tela»</td></tr>
+<tr><td data-etiqueta="Pilar"><strong>Prueba</strong></td><td data-etiqueta="Qué cuenta">Trabajo terminado, con permiso del cliente</td><td data-etiqueta="Ejemplo">Detalle de un ojal, forro, ajuste</td></tr>
+<tr><td data-etiqueta="Pilar"><strong>Casa</strong></td><td data-etiqueta="Qué cuenta">Quién eres, horarios, cómo se pide cita</td><td data-etiqueta="Ejemplo">«Los viernes cierro a las 14:00»</td></tr>
+</tbody>
+</table></div>
+<p>Reparto sano: 40 % oficio, 40 % prueba, 20 % casa. Si todo es «mira qué bonito», no te diferencias.
+Si todo es educativo, no vendes.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="el-calendario">El calendario</h2>
+<p><strong><code class="nz-code nz-code--inline">redes/calendario.csv</code></strong></p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="csv"><code>fecha,red,pilar,formato,estado,texto,notas
+2026-10-26,instagram,oficio,reel,&quot;Por qué planchamos antes de coser el bajo&quot;,borrador,
+2026-10-28,instagram,prueba,post,&quot;Detalle del forro de un traje de novio&quot;,aprobado,Cliente autorizó por escrito
+2026-10-30,telegram,casa,texto,&quot;Cerrado viernes 30 por inventario&quot;,borrador,
+</code></pre>
+<p>Estados: <code class="nz-code nz-code--inline">idea</code> → <code class="nz-code nz-code--inline">borrador</code> → <code class="nz-code nz-code--inline">aprobado</code> → <code class="nz-code nz-code--inline">publicado</code> → <code class="nz-code nz-code--inline">descartado</code>. Nada salta de <code class="nz-code nz-code--inline">borrador</code> a
+<code class="nz-code nz-code--inline">publicado</code>.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-el-script-de-la-semana">Paso 1: el script de la semana</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 redes/scripts/calendario.py semana
+python3 redes/scripts/calendario.py pendientes
+python3 redes/scripts/calendario.py estado 2026-10-28 aprobado
+</code></pre>
+<p><code class="nz-code nz-code--inline">semana</code> enseña lo que toca publicar en los próximos siete días, con huecos. <code class="nz-code nz-code--inline">pendientes</code> lista lo
+que está en borrador esperando tu aprobación.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-que-proponga-no-que-invente">Paso 2: que proponga, no que invente</h2>
+<p>Dentro del repositorio:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Con el skill de redes: mira los pedidos entregados de las últimas dos semanas y los tejidos nuevos
+en almacén. Propón cinco ideas de contenido para los próximos diez días: tres de oficio y dos de
+prueba. Para cada una: pilar, formato, gancho en una línea y qué foto haría falta.
+No escribas el texto final todavía.
+</code></pre>
+<p>Lo que buscas: ideas <strong>ancladas a tu realidad</strong> (un tejido que acaba de llegar, un encargo que salió
+bien), no «5 razones para amar la sastrería».</p>
+<p>Después pides el texto de las que te gusten:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Desarrolla las ideas 1 y 4 en texto para Instagram: máximo 700 caracteres, sin emojis, sin
+signos de exclamación, con una llamada a la acción a pedir cita por teléfono. Añádelas al
+calendario como borrador, no como aprobado.
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-aprobar-y-publicar">Paso 3: aprobar y publicar</h2>
+<p>Tú revisas y cambias el estado:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 redes/scripts/calendario.py estado 2026-10-28 aprobado
+</code></pre>
+<p>Publicar puede ser:</p>
+<ul>
+<li><strong>Manual</strong> (lo más sensato al principio): abres la app, copias, publicas. Dos minutos.</li>
+<li><strong>Programado con la herramienta oficial</strong> de la red (Meta Business Suite, etc.).</li>
+<li><strong>Con API</strong>, solo si tienes cuenta profesional y claves. Requiere código y permisos; el agente
+  puede hacerlo, pero entonces el estado <code class="nz-code nz-code--inline">aprobado</code> es obligatorio y la clave vive en <code class="nz-code nz-code--inline">.env</code>.</li>
+</ul>
+<div class="nz-callout nz-callout--tip">
+<p>El curso no te empuja a automatizar la publicación. Te empuja a no publicar sin leer. La
+diferencia entre un community manager y un generador de spam es exactamente esa.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-medir-sin-enganarte">Paso 4: medir sin engañarte</h2>
+<p>Cada semana, anota tres números por red: alcance, guardados y mensajes recibidos. No likes: no
+pagan el alquiler.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Con los datos que te pego de la semana, dime qué dos publicaciones trajeron más mensajes y qué
+tienen en común. No me des una lista de diez consejos genéricos: tres conclusiones con la cifra.
+</code></pre>
+<p>Y una regla de negocio: <strong>si un contenido funciona, se repite con otro ángulo</strong>. Si no funciona,
+se descarta sin drama.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Define tus tres pilares y escríbelos en <code class="nz-code nz-code--inline">skills/redes/SKILL.md</code>.</li>
+<li>Rellena dos semanas de calendario, con huecos incluidos.</li>
+<li>Pide al agente cinco ideas ancladas a tus datos y elige dos.</li>
+<li>Redacta, corrige y aprueba una. Publícala a mano.</li>
+<li>Anota el resultado en la columna <code class="nz-code nz-code--inline">notas</code> al día siguiente.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">Calendario con estados y fechas ISO (<code class="nz-code nz-code--inline">AAAA-MM-DD</code>)</li>
+<li class="curso-tarea">Tres pilares definidos y un ritmo que puedo sostener</li>
+<li class="curso-tarea">El agente propone desde datos reales del taller</li>
+<li class="curso-tarea">Nada pasa a publicado sin mi aprobación</li>
+<li class="curso-tarea">Tengo permiso escrito para las fotos de clientes</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Pedirle «30 posts para un mes»</strong>. Saldrán 30 variaciones del mismo post malo.</li>
+<li><strong>Publicar fotos de clientes sin permiso</strong>. Un traje de novia reconocible es un dato personal.</li>
+<li><strong>Prometer plazos en redes que luego no cumples</strong>. El calendario no conoce tu carga de trabajo;
+  tú sí.</li>
+<li><strong>Automatizar publicación sin revisar</strong>. Un error de precio publicado cuesta dinero real.</li>
+<li><strong>Medir likes</strong>. Mide mensajes y citas.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 11: tu web propia. Catálogo de tejidos que se actualiza solo desde tu CSV y una página que
+puedes enseñar sin vergüenza.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../09-pedidos-y-encargos/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 09</span>
+      <span>Pedidos y encargos</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../11-tu-web-propia/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 11</span>
+      <span>Tu web propia</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

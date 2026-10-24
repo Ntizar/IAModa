@@ -1,0 +1,42 @@
+[
+  {
+    "ref": "LANA-AZUL-01",
+    "nombre": "Lana fría 120s",
+    "composicion": "100% lana",
+    "color": "Azul marino",
+    "metros": 6.4,
+    "disponible": true
+  },
+  {
+    "ref": "LANA-GRIS-02",
+    "nombre": "Lana fría 120s",
+    "composicion": "100% lana",
+    "color": "Gris perla",
+    "metros": 15.0,
+    "disponible": true
+  },
+  {
+    "ref": "LINO-NAT-01",
+    "nombre": "Lino belga",
+    "composicion": "100% lino",
+    "color": "Natural",
+    "metros": 3.1,
+    "disponible": true
+  },
+  {
+    "ref": "SEDA-BUR-01",
+    "nombre": "Seda salvaje",
+    "composicion": "100% seda",
+    "color": "Burdeos",
+    "metros": 9.8,
+    "disponible": true
+  },
+  {
+    "ref": "ALG-BLA-01",
+    "nombre": "Algodón popelín",
+    "composicion": "100% algodón",
+    "color": "Blanco",
+    "metros": 22.0,
+    "disponible": true
+  }
+]

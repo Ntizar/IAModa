@@ -1,0 +1,9 @@
+# Datos del alumno y del taller: nunca al repositorio
+negocio/produccion/
+*.sqlite
+*.db
+.env
+.env.*
+!.env.example
+__pycache__/
+.DS_Store

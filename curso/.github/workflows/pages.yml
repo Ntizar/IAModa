@@ -1,0 +1,40 @@
+name: Desplegar el curso en GitHub Pages
+
+on:
+  push:
+    branches: ["master", "main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  desplegar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Comprobar que el sitio generado está al día
+        run: |
+          python3 -m pip install --quiet markdown==3.10.2
+          python3 scripts/build.py
+          if [ -n "$(git status --porcelain index.html modulos)" ]; then
+            echo "::error::El sitio generado no coincide con contenido/. Ejecuta scripts/build.py y commitea."
+            git --no-pager diff --stat
+            exit 1
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      - uses: actions/deploy-pages@v4
+        id: deployment

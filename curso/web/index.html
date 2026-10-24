@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sastrería [TU NOMBRE] — trajes a medida en [CIUDAD]</title>
+  <meta name="description" content="Sastrería artesanal en [CIUDAD]: trajes, vestidos y camisas a medida. Catálogo de tejidos disponible y cita por teléfono.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <style>
+    /* Ajustes propios, solo con tokens del sistema. Nada de colores a mano. */
+    .mio-cabecera { border-block-end: 1px solid var(--nz-border-soft); }
+    .mio-hero { padding-block: var(--nz-space-12) var(--nz-space-10); display: grid; gap: var(--nz-space-5); }
+    .mio-seccion { padding-block: var(--nz-space-10); border-block-start: 1px solid var(--nz-border-soft); }
+    .mio-pie { padding-block: var(--nz-space-8); border-block-start: 1px solid var(--nz-border-soft); color: var(--nz-text-soft); font-size: var(--nz-text-sm); }
+    .mio-tejido { display: grid; gap: var(--nz-space-2); align-content: start; }
+    .mio-acciones { display: flex; flex-wrap: wrap; gap: var(--nz-space-3); }
+  </style>
+</head>
+<body class="nz">
+  <a class="nz-visually-hidden" href="#contenido">Saltar al contenido</a>
+
+  <header class="mio-cabecera">
+    <div class="nz-container nz-navbar">
+      <a class="nz-navbar__brand" href="#inicio">Sastrería [TU NOMBRE]</a>
+      <nav class="nz-navbar__links" aria-label="Principal">
+        <a class="nz-navbar__link" href="#tejidos">Tejidos</a>
+        <a class="nz-navbar__link" href="#como-trabajamos">Cómo trabajamos</a>
+        <a class="nz-navbar__link" href="tel:+34600000000">600 00 00 00</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="nz-container mio-hero" id="inicio">
+      <p class="nz-eyebrow">Sastrería artesanal · [CIUDAD]</p>
+      <h1 class="nz-display">Trajes que se ajustan<br>a quien los lleva</h1>
+      <p class="nz-lead">Cortamos y cosemos a medida, con prueba intermedia y arreglos incluidos.
+      Elige tejido, pide cita y hablamos sin prisa.</p>
+      <div class="mio-acciones">
+        <a class="nz-btn nz-btn--primary nz-btn--lg" href="tel:+34600000000">Pedir cita</a>
+        <a class="nz-btn nz-btn--outline" href="https://wa.me/34600000000" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+      <p class="nz-text--muted">Taller abierto de lunes a viernes, 9:00 a 19:00. Cita previa.</p>
+    </section>
+
+    <section class="nz-container mio-seccion" id="tejidos" aria-labelledby="titulo-tejidos">
+      <h2 class="nz-h2" id="titulo-tejidos">Tejidos disponibles ahora</h2>
+      <p>Actualizado desde el almacén del taller. Si un tejido aparece «bajo pedido», se pide al
+      proveedor y tarda entre una y tres semanas según la casa.</p>
+
+      <div class="nz-grid-auto nz-grid-auto--spacious" data-tejidos>
+        <p class="nz-text--muted">Escríbenos y te decimos la disponibilidad actualizada al minuto.</p>
+      </div>
+
+      <noscript>
+        <div class="nz-callout nz-callout--note">
+          <p>Con JavaScript desactivado no se puede cargar el catálogo actualizado. Llámanos y te
+          contamos qué hay disponible hoy.</p>
+        </div>
+      </noscript>
+    </section>
+
+    <section class="nz-container mio-seccion" id="como-trabajamos" aria-labelledby="titulo-proceso">
+      <h2 class="nz-h2" id="titulo-proceso">Cómo trabajamos</h2>
+      <ol class="nz-stepper">
+        <li class="nz-stepper__step is-done"><span class="nz-stepper__num">1</span>Cita y toma de medidas</li>
+        <li class="nz-stepper__step is-done"><span class="nz-stepper__num">2</span>Elección de tejido y corte</li>
+        <li class="nz-stepper__step is-active"><span class="nz-stepper__num">3</span>Prueba y ajustes</li>
+        <li class="nz-stepper__step"><span class="nz-stepper__num">4</span>Entrega</li>
+      </ol>
+      <div class="nz-grid-auto">
+        <article class="nz-article">
+          <h3 class="nz-h3">Traje a medida</h3>
+          <p>Dos piezas, forro a elegir y entallado en cintura. Tres semanas desde la primera prueba.</p>
+        </article>
+        <article class="nz-article">
+          <h3 class="nz-h3">Vestido de ceremonia</h3>
+          <p>Corte propio, no copia de catálogo. Se ajusta en dos pruebas, sin carreras de última hora.</p>
+        </article>
+        <article class="nz-article">
+          <h3 class="nz-h3">Camisa a medida</h3>
+          <p>Cuello, puño y largo de manga a tu medida. Diez días, dos pruebas incluidas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="nz-container mio-seccion" id="contacto" aria-labelledby="titulo-contacto">
+      <h2 class="nz-h2" id="titulo-contacto">Pedir cita</h2>
+      <p>Llámanos o escríbenos por WhatsApp con estas tres cosas: qué prenda necesitas, para cuándo
+      y qué presupuesto tienes en mente. Te contestamos el mismo día laborable.</p>
+      <div class="mio-acciones">
+        <a class="nz-btn nz-btn--primary" href="tel:+34600000000">600 00 00 00</a>
+        <a class="nz-btn nz-btn--accent" href="https://wa.me/34600000000" rel="noopener">WhatsApp</a>
+        <a class="nz-btn nz-btn--ghost" href="mailto:hola@example.com?subject=Cita%20en%20la%20sastrer%C3%ADa">Correo</a>
+      </div>
+      <div class="nz-callout nz-callout--note">
+        <p><strong>Dirección:</strong> Calle Ejemplo 1, [CIUDAD] · <strong>Horario:</strong> L-V 9:00-19:00.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mio-pie">
+    <div class="nz-container">
+      <p>Sastrería [TU NOMBRE] · [CIUDAD] · Hecho con ❤️ por David Antizar</p>
+    </div>
+  </footer>
+
+  <script>
+    // Catálogo desde datos reales. Si falla, se queda el texto estático: nunca una sección vacía.
+    fetch("datos-tejidos.json")
+      .then(function (r) { return r.ok ? r.json() : []; })
+      .then(function (tejidos) {
+        var rejilla = document.querySelector("[data-tejidos]");
+        if (!rejilla || !tejidos.length) return;
+        rejilla.innerHTML = tejidos.map(function (t) {
+          var clase = t.disponible ? "nz-badge--success" : "nz-badge--warning";
+          var texto = t.disponible ? "Disponible" : "Bajo pedido";
+          return '<article class="nz-article mio-tejido">' +
+            '<p class="nz-eyebrow">' + t.composicion + '</p>' +
+            '<h3 class="nz-h3">' + t.nombre + '</h3>' +
+            '<p>' + t.color + ' · ' + t.metros.toFixed(1) + ' m</p>' +
+            '<p><span class="nz-badge ' + clase + '">' + texto + '</span></p>' +
+            '</article>';
+        }).join("");
+      })
+      .catch(function () { /* se queda el texto estático */ });
+  </script>
+</body>
+</html>

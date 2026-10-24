@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autonomía: rutinas y copias · Curso Mastermind</title>
+  <meta name="description" content="Conviertes el agente en un empleado que trabaja aunque no estés: informes, avisos, digest y copias de seguridad, con coste controlado.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 12</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 12 de 14 · Con el negocio funcionando</p>
+    <h1 class="nz-h1">Autonomía: rutinas y copias</h1>
+    <p class="nz-lead">Conviertes el agente en un empleado que trabaja aunque no estés: informes, avisos, digest y copias de seguridad, con coste controlado.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">11 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>Hay al menos una tarea programada que se ha ejecutado de verdad</li>
+      <li>El resultado llega al canal correcto y no genera ruido cuando no hay nada</li>
+      <li>Sé lanzar la tarea a mano para probarla</li>
+      <li>Tengo copia del repositorio y de la instalación de Hermes</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#que-merece-la-pena-automatizar">Qué merece la pena automatizar</a></li>
+      <li><a href="#paso-1-el-informe-del-lunes">Paso 1: el informe del lunes</a></li>
+      <li><a href="#paso-2-el-aviso-que-no-molesta">Paso 2: el aviso que no molesta</a></li>
+      <li><a href="#paso-3-comprobar-que-existe-y-que-corre">Paso 3: comprobar que existe y que corre</a></li>
+      <li><a href="#paso-4-coste-bajo-control">Paso 4: coste bajo control</a></li>
+      <li><a href="#paso-5-copias-que-se-pueden-restaurar">Paso 5: copias que se pueden restaurar</a></li>
+      <li><a href="#paso-6-que-no-se-muera-en-silencio">Paso 6: que no se muera en silencio</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="que-merece-la-pena-automatizar">Qué merece la pena automatizar</h2>
+<p>Solo tres cosas, al principio:</p>
+<ol>
+<li><strong>Lo que haces siempre a la misma hora</strong> (informe del lunes, cierre de caja).</li>
+<li><strong>Lo que si se olvida cuesta dinero</strong> (stock bajo, entrega próxima sin señal).</li>
+<li><strong>Lo que quieres leer con el café</strong> (resumen del día anterior).</li>
+</ol>
+<p>Todo lo demás puede esperar a que se lo pidas. Automatizar de más es la forma más rápida de tener
+un agente que manda 14 mensajes al día y que dejes de leer.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-el-informe-del-lunes">Paso 1: el informe del lunes</h2>
+<p>Primero, que funcione a mano:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/informe.py
+</code></pre>
+<p>Debe imprimir: pedidos de la semana, entregas próximas, tejidos bajo mínimo y total a cobrar. Si
+esto no funciona, el cron tampoco: <strong>un cron no arregla un script roto, lo esconde</strong>.</p>
+<p>Ahora pídeselo al agente:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Crea una tarea programada para todos los lunes a las 8:00 (hora de Madrid) que ejecute
+`python3 negocio/scripts/informe.py` desde este repositorio y me envíe el resultado por Telegram.
+Si el script falla, avísame con el error completo.
+</code></pre>
+<p>Lo que hace Hermes por dentro:</p>
+<ul>
+<li>guarda la tarea en <code class="nz-code nz-code--inline">~/.hermes/cron/</code>;</li>
+<li>la ejecuta en una sesión limpia (sin tu contexto del momento);</li>
+<li>te entrega el resultado donde le digas: el chat de origen, Telegram, o un fichero local.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-el-aviso-que-no-molesta">Paso 2: el aviso que no molesta</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Crea otra tarea, martes y jueves a las 8:30, que ejecute `almacen.py bajo-minimo`.
+Si no hay tejidos bajo mínimo, no me escribas nada. Si hay, mándame la lista con el proveedor.
+</code></pre>
+<p>La parte importante es <strong>«si no hay nada, no me escribas»</strong>. Un aviso que llega siempre se convierte
+en ruido y a la tercera semana lo ignoras. Ese silencio hay que programarlo a propósito.</p>
+<p>Si tu script ya devuelve código 1 cuando hay aviso, puedes usar el <strong>modo sin agente</strong>: ejecuta el
+script y entrega su salida tal cual, sin gastar modelo. Ideal para comprobaciones baratas.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-comprobar-que-existe-y-que-corre">Paso 3: comprobar que existe y que corre</h2>
+<p>Lista las tareas:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes cron list
+</code></pre>
+<p>Fuerza una ejecución ahora, sin esperar al lunes:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Ejecuta ahora la tarea del informe semanal y enséñame la salida.
+</code></pre>
+<p>O pídeselo al propio agente en lenguaje natural: «lanza la tarea de stock ahora». Si la salida
+llega, la tubería funciona. Si no llega, revisa en este orden:</p>
+<ol>
+<li>¿El script funciona a mano, desde la carpeta correcta?</li>
+<li>¿La tarea apunta al directorio del repositorio?</li>
+<li>¿El destino de entrega es el chat correcto?</li>
+<li>¿El modelo de la tarea tiene saldo y proveedor?</li>
+<li><code class="nz-code nz-code--inline">~/.hermes/logs/</code> para el error real.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-coste-bajo-control">Paso 4: coste bajo control</h2>
+<p>Las tareas programadas gastan tokens aunque tú no estés mirando. Tres palancas:</p>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Palanca</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Palanca">Modelo barato para rutinas</td><td data-etiqueta="Cómo">Fija un modelo distinto para cron (<code class="nz-code nz-code--inline">cron.model</code>) o por tarea</td></tr>
+<tr><td data-etiqueta="Palanca">Modo sin agente</td><td data-etiqueta="Cómo">Si solo hay que ejecutar un script y enviar su salida, no hace falta modelo</td></tr>
+<tr><td data-etiqueta="Palanca">Menos frecuencia</td><td data-etiqueta="Cómo">Diario no siempre es mejor que semanal. Empieza semanal</td></tr>
+</tbody>
+</table></div>
+<p>Revisa el gasto una vez al mes. Si una rutina cuesta más que el valor que aporta, se simplifica o
+se borra. No hay nada más caro que una automatización que nadie lee.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-5-copias-que-se-pueden-restaurar">Paso 5: copias que se pueden restaurar</h2>
+<p>Dos capas:</p>
+<p><strong>1. El repositorio</strong> (ya lo tienes): código, datos de ejemplo, skills, identidad.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>git add -A &amp;&amp; git commit -m &quot;estado del negocio&quot; &amp;&amp; git push
+</code></pre>
+<p><strong>2. La instalación de Hermes</strong> (memoria, sesiones, configuración):</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes backup
+</code></pre>
+<p>Guarda el fichero resultante <strong>fuera del ordenador</strong> (un disco externo o una nube privada). Una
+copia en el mismo disco que se rompe no es una copia.</p>
+<p>Y una vez al trimestre, la prueba que casi nadie hace: <strong>restaura en una carpeta temporal</strong> y
+comprueba que el agente arranca y recuerda. Una copia que nunca se ha restaurado es una hipótesis.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-6-que-no-se-muera-en-silencio">Paso 6: que no se muera en silencio</h2>
+<p>El fallo clásico: el cron lleva tres semanas sin ejecutarse y te enteras cuando falta el informe.
+Antídoto: una rutina de salud semanal.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Crea una tarea los viernes a las 18:00 que compruebe:
+1) que el último informe se generó en los últimos 7 días,
+2) que el repositorio no tiene cambios sin commit,
+y me mande una línea con OK o con el problema.
+</code></pre>
+<p>Si esa rutina deja de llegar, ya sabes que algo se ha roto: es tu canario.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Ejecuta <code class="nz-code nz-code--inline">informe.py</code> a mano y corrige lo que falle.</li>
+<li>Crea la tarea del lunes y lánzala ahora para probarla.</li>
+<li>Crea la del stock con la regla «si no hay nada, silencio».</li>
+<li>Haz <code class="nz-code nz-code--inline">hermes backup</code> y guarda el fichero fuera del ordenador.</li>
+<li>Apunta en <code class="nz-code nz-code--inline">notas/</code> la fecha y el resultado de la primera ejecución real.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">Una tarea programada se ha ejecutado y he visto su salida</li>
+<li class="curso-tarea">La tarea de stock calla cuando no hay nada que decir</li>
+<li class="curso-tarea">Sé lanzar una tarea a mano para probarla</li>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">hermes cron list</code> muestra lo que creo que tengo</li>
+<li class="curso-tarea">Copia del repo en GitHub y copia de Hermes fuera del ordenador</li>
+<li class="curso-tarea">He restaurado una copia al menos una vez (o sé exactamente cómo hacerlo)</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Programar un script que solo funciona en tu carpeta</strong>: el cron corre en otra ruta. Usa rutas
+  absolutas o <code class="nz-code nz-code--inline">cd</code> explícito.</li>
+<li><strong>Zona horaria</strong>: un cron a las 8:00 UTC te despierta a las 10:00 en Madrid. Configura
+  <code class="nz-code nz-code--inline">HERMES_TIMEZONE</code>.</li>
+<li><strong>Tareas duplicadas</strong> porque pediste la misma dos veces: <code class="nz-code nz-code--inline">hermes cron list</code> antes de crear.</li>
+<li><strong>Ruido diario</strong>: si no aporta, semanal.</li>
+<li><strong>No probar la restauración</strong>: el día que la necesites no quieres aprender.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 13: límites, seguridad, coste y proyecto final. Lo que separa un juguete divertido de un
+sistema que puedes dejar funcionando con clientes reales.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../11-tu-web-propia/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 11</span>
+      <span>Tu web propia</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../13-limites-y-proyecto-final/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 13</span>
+      <span>Límites, seguridad y proyecto final</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

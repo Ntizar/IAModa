@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clientes y medidas · Curso Mastermind</title>
+  <meta name="description" content="Pasas la libreta al CSV, creas la ficha de cliente con historial de medidas y le das al agente las consultas que evitan duplicados y errores.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 07</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 07 de 14 · Con el agente ya instalado</p>
+    <h1 class="nz-h1">Clientes y medidas</h1>
+    <p class="nz-lead">Pasas la libreta al CSV, creas la ficha de cliente con historial de medidas y le das al agente las consultas que evitan duplicados y errores.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">11 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>clientes.csv y medidas.csv existen con cabeceras correctas</li>
+      <li>El script de clientes busca, crea y añade medidas sin romper el CSV</li>
+      <li>El agente resuelve «ficha de X» citando datos reales, no inventados</li>
+      <li>Los datos reales viven en negocio/produccion/ y no están en git</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#del-papel-al-dato">Del papel al dato</a></li>
+      <li><a href="#si-vienes-de-excel">Si vienes de Excel</a></li>
+      <li><a href="#los-scripts-del-curso">Los scripts del curso</a></li>
+      <li><a href="#paso-1-crear-el-primero">Paso 1: crear el primero</a></li>
+      <li><a href="#paso-2-medir-sin-liarla">Paso 2: medir sin liarla</a></li>
+      <li><a href="#paso-3-que-el-agente-lo-use">Paso 3: que el agente lo use</a></li>
+      <li><a href="#paso-4-privacidad-sin-dramatismo-pero-sin-excusas">Paso 4: privacidad, sin dramatismo pero sin excusas</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="del-papel-al-dato">Del papel al dato</h2>
+<p>Una sastrería vive de dos cosas: la confianza y las medidas. Las dos se pierden igual de fácil: en
+una libreta que nadie encuentra y en una ficha duplicada con la talla vieja.</p>
+<p>Empezamos con lo mínimo que se puede mantener:</p>
+<p><strong><code class="nz-code nz-code--inline">negocio/clientes.csv</code></strong></p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="csv"><code>id,nombre,telefono,email,alta,notas
+C-2026-001,Ana López,600111222,ana@example.com,2026-01-12,Prefiere cita por la tarde
+C-2026-002,Marta Ruiz,600000000,marta@example.com,2026-02-03,Cliente de su madre
+</code></pre>
+<p><strong><code class="nz-code nz-code--inline">negocio/medidas.csv</code></strong></p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="csv"><code>cliente_id,fecha,pecho,cintura,cadera,cuello,hombro,manga,notas
+C-2026-001,2026-01-12,96,78,100,36,12,60,Toma sobre camisa fina
+C-2026-001,2026-03-04,97,79,101,36,12,60,Subida de invierno
+C-2026-002,2026-02-03,88,70,94,33,11,58,
+</code></pre>
+<p>Reglas de oro:</p>
+<ul>
+<li><strong>Una fila por toma de medidas</strong>, con fecha. La gente cambia de talla, y una prenda hecha con
+  medidas de hace dos años es una devolución.</li>
+<li><strong>Centímetros, sin excepciones.</strong> Nada de «38 de cintura» sin decir de qué.</li>
+<li><strong>ID estable</strong> (<code class="nz-code nz-code--inline">C-AÑO-NÚMERO</code>). El nombre se puede repetir; el ID no.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="si-vienes-de-excel">Si vienes de Excel</h2>
+<ol>
+<li>Abre el Excel y revisa que la primera fila sean cabeceras limpias (sin acentos raros, sin celdas
+   combinadas).</li>
+<li><strong>Archivo → Guardar como → CSV UTF-8</strong>.</li>
+<li>Ábrelo con un editor de texto y comprueba que las columnas están separadas por comas.</li>
+<li>Cambia el nombre a <code class="nz-code nz-code--inline">clientes.csv</code> y muévelo a <code class="nz-code nz-code--inline">negocio/</code>.</li>
+<li>Copia el original a <code class="nz-code nz-code--inline">negocio/produccion/</code> (fuera de git) como respaldo.</li>
+</ol>
+<div class="nz-callout nz-callout--tip">
+<p>El CSV no es «cutre»: es el formato que cualquier herramienta lee, que se ve en el diff de git y
+que no te encierra en una suscripción.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="los-scripts-del-curso">Los scripts del curso</h2>
+<p>Copia la carpeta <code class="nz-code nz-code--inline">negocio/scripts/</code> del repositorio del curso. Cuatro herramientas, solo biblioteca
+estándar de Python (nada que instalar):</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/clientes.py buscar ruiz
+python3 negocio/scripts/clientes.py ficha C-2026-002
+python3 negocio/scripts/clientes.py alta --nombre &quot;Marta Ruiz&quot; --telefono 600000000
+python3 negocio/scripts/clientes.py medidas C-2026-002 --pecho 96 --cintura 78 --cadera 100 --cuello 36 --hombro 12 --manga 60
+</code></pre>
+<p>Salida esperada al buscar:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>C-2026-002  Marta Ruiz  600000000  alta 2026-02-03
+  1 toma de medidas · última: 2026-02-03 (pecho 88, cintura 70)
+</code></pre>
+<p>Lo importante no es el script: es que <strong>el agente lo ejecuta en vez de inventar</strong>. En el skill de
+sastrería ya le dijiste que los datos están en <code class="nz-code nz-code--inline">negocio/</code>. Ahora le das la herramienta.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-crear-el-primero">Paso 1: crear el primero</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/clientes.py alta --nombre &quot;Marta Ruiz&quot; --telefono 600000000 --email marta@example.com
+</code></pre>
+<p>El script:</p>
+<ul>
+<li>normaliza el teléfono (quita espacios y guiones);</li>
+<li>comprueba duplicados por teléfono;</li>
+<li>asigna el siguiente ID del año;</li>
+<li>escribe con <code class="nz-code nz-code--inline">utf-8</code> y comillas correctas.</li>
+</ul>
+<p>Si el teléfono ya existe, no crea nada y te enseña la ficha existente. Esa es la primera regla del
+negocio metida en código: <strong>no duplicar</strong>.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-medir-sin-liarla">Paso 2: medir sin liarla</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/clientes.py medidas C-2026-002 \
+  --pecho 96 --cintura 78 --cadera 100 --cuello 36 --hombro 12 --manga 60 \
+  --notas &quot;Toma sobre camisa fina&quot;
+</code></pre>
+<p>El script añade una fila nueva, no sobrescribe la anterior. La fecha la pone él.</p>
+<p>Comprueba el historial:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>python3 negocio/scripts/clientes.py ficha C-2026-002
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-que-el-agente-lo-use">Paso 3: que el agente lo use</h2>
+<p>En una sesión dentro del repositorio:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="text"><code>Usa el skill de sastrería. Busca a la clienta Marta Ruiz, dime su última toma de medidas y
+calcula cuánto tejido necesita un traje de dos piezas si el patrón pide 3,2 m y añadimos un 8 %
+de merma. Enséñame el cálculo.
+</code></pre>
+<p>Lo que tiene que pasar:</p>
+<ol>
+<li>Ejecuta <code class="nz-code nz-code--inline">buscar</code> y <code class="nz-code nz-code--inline">ficha</code> (con datos reales).</li>
+<li>Hace 3,2 × 1,08 = <strong>3,46 m</strong> y lo enseña.</li>
+<li>No se inventa ninguna medida que falte: si falta el largo de pierna, lo dice.</li>
+</ol>
+<p>Si en vez de eso recita medidas de ejemplo, no ha cargado el skill o no ha mirado los datos. Pídele
+que enseñe el comando que ha ejecutado.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-privacidad-sin-dramatismo-pero-sin-excusas">Paso 4: privacidad, sin dramatismo pero sin excusas</h2>
+<ul>
+<li><strong>Datos reales en <code class="nz-code nz-code--inline">negocio/produccion/</code></strong>, fuera de git (ya está en el <code class="nz-code nz-code--inline">.gitignore</code>).</li>
+<li>En el repositorio, ejemplos inventados. El curso no necesita datos personales para enseñarte.</li>
+<li>Si usas un modelo en la nube, los datos que le pegas viajan. Pega lo mínimo: «la clienta C-2026-002»
+  en vez de nombre, teléfono y dirección.</li>
+<li>Si un cliente pide borrar sus datos, tienes que poder hacerlo: con CSV es <code class="nz-code nz-code--inline">grep</code> y borrar la fila.
+  Con una base de datos, un <code class="nz-code nz-code--inline">DELETE</code>. Con una libreta, no.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Crea tres clientes de prueba y dos tomas de medidas para uno de ellos.</li>
+<li>Pide al agente la ficha del que tiene dos tomas y que <strong>diga qué cambió</strong> entre la primera y la
+   segunda.</li>
+<li>Pídele que calcule el tejido para una prenda concreta con merma. Revisa la cuenta a mano.</li>
+<li>Rompe algo a propósito (un teléfono con letras) y mira cómo responde el script. Un script que no
+   valida te rompe el CSV en la tercera semana.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">Los dos CSV tienen cabeceras y datos coherentes</li>
+<li class="curso-tarea">El script busca, crea y añade medidas sin duplicar</li>
+<li class="curso-tarea">El agente usa el script y cita datos reales</li>
+<li class="curso-tarea">Sé qué columnas son obligatorias y cuáles opcionales</li>
+<li class="curso-tarea">Los datos reales están fuera de git</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Guardar el CSV desde Excel con punto y coma</strong> (depende del idioma): el script espera comas.
+  Usa «CSV UTF-8» y comprueba la primera línea.</li>
+<li><strong>Sobrescribir la fila de medidas</strong>: se pierde el historial. Siempre fila nueva con fecha.</li>
+<li><strong>IDs inventados a mano</strong> (<code class="nz-code nz-code--inline">C-1</code>, <code class="nz-code nz-code--inline">C-2</code>, <code class="nz-code nz-code--inline">C-2026-1</code>): el script y el agente se lían. Un formato.</li>
+<li><strong>Pedirle al agente que «recuerde» la lista de clientes</strong>: no es memoria, son datos. Van al CSV.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 08: el almacén. Tejidos, metros, mínimos y alertas que llegan solas antes de quedarte sin
+lana en medio de un encargo.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../06-skills-el-oficio/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 06</span>
+      <span>Skills: el oficio por escrito</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../08-almacen-de-tejidos/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 08</span>
+      <span>Almacén de tejidos</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

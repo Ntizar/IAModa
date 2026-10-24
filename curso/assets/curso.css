@@ -1,0 +1,273 @@
+/* Curso Mastermind — capa propia sobre Aurora.
+   Solo clases con prefijo `curso-`. Ni un color a mano: todo token --nz-*. */
+
+.curso-skip {
+  position: absolute;
+  left: var(--nz-space-3);
+  top: calc(var(--nz-space-3) * -8);
+  z-index: 50;
+  padding: var(--nz-space-2) var(--nz-space-4);
+  background: var(--nz-surface);
+  border: var(--nz-border-w-strong) solid var(--nz-border-strong);
+  border-radius: var(--nz-radius-md);
+}
+
+.curso-skip:focus { top: var(--nz-space-3); }
+
+.curso-main { padding-block: var(--nz-space-8) var(--nz-space-16); }
+
+/* ---------- Portada ---------- */
+
+.curso-hero {
+  display: grid;
+  gap: var(--nz-space-6);
+  padding-block: var(--nz-space-12) var(--nz-space-10);
+}
+
+.curso-hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nz-space-3);
+  align-items: center;
+}
+
+.curso-hero__datos {
+  display: grid;
+  gap: var(--nz-space-4);
+}
+
+.curso-cinta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nz-space-2);
+  align-items: center;
+}
+
+.curso-modulo {
+  display: grid;
+  align-content: start;
+  gap: var(--nz-space-2);
+  block-size: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.curso-modulo__num {
+  font-size: var(--nz-text-sm);
+  font-weight: var(--nz-peso-fuerte);
+  letter-spacing: var(--nz-tracking-caps);
+  color: var(--nz-accent-text);
+}
+
+.curso-modulo__pie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nz-space-2);
+  align-items: center;
+  margin-block-start: var(--nz-space-2);
+}
+
+/* ---------- Cabecera de módulo ---------- */
+
+.curso-cabecera {
+  display: grid;
+  gap: var(--nz-space-4);
+  padding-block: var(--nz-space-6) var(--nz-space-8);
+  border-block-end: 1px solid var(--nz-border-soft);
+}
+
+.curso-cabecera__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nz-space-2);
+  align-items: center;
+}
+
+.curso-criterios {
+  padding: var(--nz-space-5);
+  background: var(--nz-bg-soft);
+  border: 1px solid var(--nz-border-soft);
+  border-radius: var(--nz-radius-lg);
+}
+
+.curso-criterios ol { margin: 0; padding-inline-start: var(--nz-space-6); }
+.curso-criterios li + li { margin-block-start: var(--nz-space-2); }
+
+/* ---------- Tramos ---------- */
+
+.curso-tramo {
+  padding-block: var(--nz-space-8);
+  border-block-end: 1px solid var(--nz-border-soft);
+  scroll-margin-top: var(--nz-space-20);
+}
+
+.curso-tramo:last-of-type { border-block-end: 0; }
+
+.curso-tramo > h2 { margin-block: 0 var(--nz-space-4); }
+.curso-tramo > h2 + p { margin-block-start: 0; }
+
+.curso-indice {
+  display: grid;
+  gap: var(--nz-space-2);
+  padding: var(--nz-space-5);
+  border: 1px solid var(--nz-border-soft);
+  border-radius: var(--nz-radius-lg);
+  background: var(--nz-surface);
+}
+
+.curso-indice ol { margin: 0; padding-inline-start: var(--nz-space-6); }
+.curso-indice a { color: var(--nz-brand); }
+
+/* ---------- Código ---------- */
+
+.curso-codigo {
+  position: relative;
+  margin-block: var(--nz-space-4);
+  overflow-x: auto;
+}
+
+.curso-codigo code { display: block; }
+
+.curso-copiar {
+  position: absolute;
+  inset-block-start: var(--nz-space-2);
+  inset-inline-end: var(--nz-space-2);
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding-inline: var(--nz-space-3);
+  background: var(--nz-surface);
+  color: var(--nz-text-soft);
+  border: 1px solid var(--nz-border);
+  border-radius: var(--nz-radius-full);
+  font: inherit;
+  font-size: var(--nz-text-xs);
+  cursor: pointer;
+}
+
+.curso-copiar:hover { color: var(--nz-text); border-color: var(--nz-border-strong); }
+
+.curso-copiar.is-hecho {
+  color: var(--nz-accent-text);
+  border-color: var(--nz-accent);
+}
+
+/* ---------- Checklist ---------- */
+
+.curso-tarea {
+  list-style: none;
+  position: relative;
+  padding-inline-start: var(--nz-space-7);
+}
+
+.curso-tarea::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.3em;
+  inline-size: 1rem;
+  block-size: 1rem;
+  border: 2px solid var(--nz-border-strong);
+  border-radius: var(--nz-radius-xs);
+}
+
+.curso-tarea.is-hecha::before {
+  background: var(--nz-brand);
+  border-color: var(--nz-brand);
+}
+
+/* ---------- Navegación entre módulos ---------- */
+
+.curso-navpie {
+  display: grid;
+  gap: var(--nz-space-3);
+  padding-block: var(--nz-space-8);
+}
+
+.curso-navpie__enlace {
+  display: grid;
+  gap: var(--nz-space-1);
+  padding: var(--nz-space-4);
+  border: 1px solid var(--nz-border-soft);
+  border-radius: var(--nz-radius-lg);
+  text-decoration: none;
+  color: inherit;
+  background: var(--nz-surface);
+}
+
+.curso-navpie__enlace:hover { border-color: var(--nz-border-strong); }
+.curso-navpie__rotulo {
+  font-size: var(--nz-text-xs);
+  letter-spacing: var(--nz-tracking-caps);
+  color: var(--nz-text-mute);
+}
+.curso-navpie__enlace--siguiente { text-align: end; }
+
+.curso-pie {
+  padding-block: var(--nz-space-8);
+  border-block-start: 1px solid var(--nz-border-soft);
+  color: var(--nz-text-soft);
+  font-size: var(--nz-text-sm);
+}
+
+/* ---------- Modo presentación ---------- */
+
+.curso-hud {
+  display: none;
+  position: fixed;
+  inset-block-end: var(--nz-space-3);
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  align-items: center;
+  gap: var(--nz-space-2);
+  padding: var(--nz-space-2);
+  background: var(--nz-surface);
+  border: 1px solid var(--nz-border-strong);
+  border-radius: var(--nz-radius-full);
+  box-shadow: var(--nz-shadow-lg);
+}
+
+.curso-hud__cuenta {
+  min-inline-size: 5rem;
+  text-align: center;
+  font-size: var(--nz-text-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--nz-text-soft);
+}
+
+body.curso-presentando .curso-hud { display: flex; }
+body.curso-presentando .curso-barra,
+body.curso-presentando .curso-cabecera,
+body.curso-presentando .curso-pie,
+body.curso-presentando .curso-aviso-lectura { display: none; }
+
+body.curso-presentando .curso-main { padding-block: 0; }
+
+body.curso-presentando .curso-tramo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-block-size: 100svh;
+  padding-block: var(--nz-space-12);
+  border-block-end: 0;
+  scroll-snap-align: start;
+}
+
+html.curso-presentando {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+body.curso-presentando .curso-tramo > * { max-inline-size: 62rem; }
+body.curso-presentando .curso-tramo p,
+body.curso-presentando .curso-tramo li { font-size: var(--nz-text-lg); }
+
+@media (min-width: 960px) {
+  .curso-navpie { grid-template-columns: 1fr 1fr; }
+  .curso-hero__datos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media print {
+  .curso-barra, .curso-hud, .curso-copiar, .curso-navpie, .curso-skip { display: none; }
+  .curso-tramo { break-inside: avoid; }
+}

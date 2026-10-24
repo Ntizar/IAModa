@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu web propia · Curso Mastermind</title>
+  <meta name="description" content="Catálogo real generado desde tus datos, formulario de encargo sin backend y publicación gratis en GitHub Pages. Con Aurora, sin plantillas de pago.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 11</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 11 de 14 · Con datos de almacén</p>
+    <h1 class="nz-h1">Tu web propia</h1>
+    <p class="nz-lead">Catálogo real generado desde tus datos, formulario de encargo sin backend y publicación gratis en GitHub Pages. Con Aurora, sin plantillas de pago.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">45 min</span>
+      <span class="nz-badge nz-badge--brand">10 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>La web está publicada y responde 200 en su URL</li>
+      <li>El catálogo sale de tejidos.csv, no de HTML escrito a mano</li>
+      <li>Se ve bien a 320 px y a 1440 px, sin scroll horizontal</li>
+      <li>Hay una forma de contacto que funciona (y la he probado yo)</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#que-web-necesita-un-sastre">Qué web necesita un sastre</a></li>
+      <li><a href="#paso-1-el-diseno-sin-inventar-css">Paso 1: el diseño, sin inventar CSS</a></li>
+      <li><a href="#paso-2-el-catalogo-sale-de-tus-datos">Paso 2: el catálogo sale de tus datos</a></li>
+      <li><a href="#paso-3-contacto-que-funcione">Paso 3: contacto que funcione</a></li>
+      <li><a href="#paso-4-publicar-gratis-en-github-pages">Paso 4: publicar gratis en GitHub Pages</a></li>
+      <li><a href="#paso-5-comprobar-que-no-esta-rota">Paso 5: comprobar que no está rota</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="que-web-necesita-un-sastre">Qué web necesita un sastre</h2>
+<p>No un escaparate de 12 secciones. Cuatro cosas, en una página:</p>
+<ol>
+<li><strong>Quién eres</strong> y dónde estás (con horario y teléfono visibles).</li>
+<li><strong>Qué haces</strong>: tres ejemplos con foto y una línea de contexto.</li>
+<li><strong>Qué telas tienes</strong> ahora mismo (tu ventaja real frente a una franquicia).</li>
+<li><strong>Cómo se pide cita</strong>: teléfono, WhatsApp o formulario. Sin fricción.</li>
+</ol>
+<p>Todo lo demás es decoración. Y la decoración se hace después.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-el-diseno-sin-inventar-css">Paso 1: el diseño, sin inventar CSS</h2>
+<p>Usamos <strong>Aurora</strong>, el design system de David Antizar: CSS puro, sin build y sin dependencias. Se
+enlaza por CDN con un tag fijado (nunca <code class="nz-code nz-code--inline">@master</code>):</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="html"><code>&lt;html lang=&quot;es&quot; data-nz-theme=&quot;light&quot;&gt;
+&lt;head&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p10-commerce.css&quot;&gt;
+&lt;/head&gt;
+&lt;body class=&quot;nz&quot;&gt;
+</code></pre>
+<p>La regla del sistema: las clases propias van con prefijo (<code class="nz-code nz-code--inline">mio-</code>), no se inventan clases <code class="nz-code nz-code--inline">nz-*</code>, y
+los colores salen de tokens (<code class="nz-code nz-code--inline">var(--nz-brand)</code>), no de <code class="nz-code nz-code--inline">#1a4488</code>. Si necesitas algo que no existe,
+se añade a Aurora, no se parchea en tu web.</p>
+<div class="nz-callout nz-callout--tip">
+<p>Esta misma web del curso está hecha así: mira el código fuente y verás los packs y el pie de
+atribución.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-el-catalogo-sale-de-tus-datos">Paso 2: el catálogo sale de tus datos</h2>
+<p>Escribe <code class="nz-code nz-code--inline">web/scripts/generar.py</code> (o copia el del curso). Hace una cosa: lee
+<code class="nz-code nz-code--inline">negocio/tejidos.csv</code> y escribe <code class="nz-code nz-code--inline">web/datos-tejidos.json</code>.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="python"><code>import csv, json
+from pathlib import Path
+
+raiz = Path(__file__).resolve().parents[2]
+filas = []
+with (raiz / &quot;negocio&quot; / &quot;tejidos.csv&quot;).open(encoding=&quot;utf-8&quot;) as f:
+    for fila in csv.DictReader(f):
+        filas.append({
+            &quot;ref&quot;: fila[&quot;ref&quot;],
+            &quot;nombre&quot;: fila[&quot;nombre&quot;],
+            &quot;composicion&quot;: fila[&quot;composicion&quot;],
+            &quot;color&quot;: fila[&quot;color&quot;],
+            &quot;metros&quot;: float(fila[&quot;metros&quot;]),
+            &quot;precio_m&quot;: float(fila[&quot;precio_m&quot;]),
+            &quot;disponible&quot;: float(fila[&quot;metros&quot;]) &gt;= 3,
+        })
+
+(raiz / &quot;web&quot; / &quot;datos-tejidos.json&quot;).write_text(
+    json.dumps(filas, ensure_ascii=False, indent=2), encoding=&quot;utf-8&quot;
+)
+print(f&quot;{len(filas)} tejidos publicados&quot;)
+</code></pre>
+<p>Y en la web, <code class="nz-code nz-code--inline">fetch("datos-tejidos.json")</code> pinta las tarjetas. Ventajas:</p>
+<ul>
+<li>actualizas el CSV y vuelves a ejecutar el script: la web cambia sin tocar HTML;</li>
+<li>no publicas coste ni mínimo (solo lo que quieres enseñar);</li>
+<li>si el JSON falla, la página sigue teniendo el texto base (nunca dejes la web en blanco por un
+  <code class="nz-code nz-code--inline">fetch</code>).</li>
+</ul>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="javascript"><code>fetch(&quot;datos-tejidos.json&quot;)
+  .then(r =&gt; r.ok ? r.json() : [])
+  .then(tejidos =&gt; {
+    const rejilla = document.querySelector(&quot;[data-tejidos]&quot;);
+    if (!rejilla) return;
+    rejilla.innerHTML = tejidos.map(t =&gt; `
+      &lt;article class=&quot;nz-article&quot;&gt;
+        &lt;p class=&quot;nz-eyebrow&quot;&gt;${t.composicion}&lt;/p&gt;
+        &lt;h3 class=&quot;nz-h3&quot;&gt;${t.nombre}&lt;/h3&gt;
+        &lt;p&gt;${t.color} · ${t.metros.toFixed(1)} m disponibles&lt;/p&gt;
+        &lt;p class=&quot;nz-badge ${t.disponible ? &quot;nz-badge--success&quot; : &quot;nz-badge--warning&quot;}&quot;&gt;
+          ${t.disponible ? &quot;Disponible&quot; : &quot;Bajo pedido&quot;}
+        &lt;/p&gt;
+      &lt;/article&gt;`).join(&quot;&quot;);
+  })
+  .catch(() =&gt; { /* la sección se queda con el texto estático */ });
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-contacto-que-funcione">Paso 3: contacto que funcione</h2>
+<p>Sin backend, tres opciones honestas:</p>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Opción</th>
+<th>Ventaja</th>
+<th>Límite</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Opción"><code class="nz-code nz-code--inline">tel:</code> y <code class="nz-code nz-code--inline">https://wa.me/34...</code></td><td data-etiqueta="Ventaja">Cero infraestructura, cero coste</td><td data-etiqueta="Límite">Requiere que contestes</td></tr>
+<tr><td data-etiqueta="Opción"><code class="nz-code nz-code--inline">mailto:</code> con asunto prerelleno</td><td data-etiqueta="Ventaja">Sirve para encargos largos</td><td data-etiqueta="Límite">Algunos móviles lo abren mal</td></tr>
+<tr><td data-etiqueta="Opción">Formulario con servicio externo (Formspree y similares)</td><td data-etiqueta="Ventaja">Recoges estructura</td><td data-etiqueta="Límite">Dependes de un tercero y de su plan gratis</td></tr>
+</tbody>
+</table></div>
+<p>Para empezar: <strong>teléfono y WhatsApp visibles en la cabecera y al final</strong>. Un formulario que no
+llega a ningún sitio es peor que no tenerlo.</p>
+<p>Si pones formulario, pruébalo tú: envía uno real y comprueba que llega. No lo dejes «para luego».</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-publicar-gratis-en-github-pages">Paso 4: publicar gratis en GitHub Pages</h2>
+<ol>
+<li>Crea <code class="nz-code nz-code--inline">.github/workflows/pages.yml</code> en tu repositorio:</li>
+</ol>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="yaml"><code>name: Publicar la web
+on:
+  push:
+    branches: [&quot;main&quot;, &quot;master&quot;]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: &quot;web&quot;
+      - uses: actions/deploy-pages@v4
+</code></pre>
+<ol start="2">
+<li>En GitHub: <strong>Settings → Pages → Source: GitHub Actions</strong>.</li>
+<li>Commit y push. Espera un minuto.</li>
+<li>Comprueba:</li>
+</ol>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>curl -s -o /dev/null -w &quot;%{http_code}\n&quot; https://TU-USUARIO.github.io/mi-agente/
+</code></pre>
+<p>Tiene que devolver <code class="nz-code nz-code--inline">200</code>. Si devuelve <code class="nz-code nz-code--inline">404</code>, revisa que el workflow haya corrido y que <code class="nz-code nz-code--inline">web/</code>
+tenga un <code class="nz-code nz-code--inline">index.html</code> en minúsculas.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-5-comprobar-que-no-esta-rota">Paso 5: comprobar que no está rota</h2>
+<p>Tres pruebas que se hacen en dos minutos:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code># 1. ¿Se sirve el HTML?
+curl -s https://TU-USUARIO.github.io/mi-agente/ | grep -o &quot;&lt;title&gt;.*&lt;/title&gt;&quot;
+
+# 2. ¿Se sirve el CSS de Aurora?
+curl -s -o /dev/null -w &quot;%{http_code}\n&quot; https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css
+
+# 3. ¿Se sirven los datos?
+curl -s https://TU-USUARIO.github.io/mi-agente/datos-tejidos.json | head -20
+</code></pre>
+<p>Y en el móvil: abre la web, gira el móvil, pide cita desde el enlace. Si algo de eso falla, no está
+terminada.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<ol>
+<li>Copia la plantilla de <code class="nz-code nz-code--inline">web/</code> del curso y cambia textos, teléfono y colores de marca.</li>
+<li>Ejecuta el generador con tus tejidos y comprueba el JSON.</li>
+<li>Publica y verifica el 200.</li>
+<li>Pide a alguien que abra la web en su móvil y te diga qué no entiende. Corrige eso, no el color
+   del botón.</li>
+</ol>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea">URL viva y <code class="nz-code nz-code--inline">curl</code> devuelve 200</li>
+<li class="curso-tarea">Catálogo generado desde <code class="nz-code nz-code--inline">tejidos.csv</code></li>
+<li class="curso-tarea">Teléfono/WhatsApp visibles y probados</li>
+<li class="curso-tarea">Sin scroll horizontal a 320 px</li>
+<li class="curso-tarea">El pie dice «Hecho con ❤️ por David Antizar» si usas Aurora</li>
+<li class="curso-tarea">Sé actualizar la web en dos comandos (<code class="nz-code nz-code--inline">generar.py</code> + <code class="nz-code nz-code--inline">git push</code>)</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong>Enlazar <code class="nz-code nz-code--inline">@master</code> en el CSS</strong>: cualquier cambio del sistema te rompe la web. Tag fijado.</li>
+<li><strong>Escribir las tarjetas a mano</strong> y llamarlo «catálogo»: en dos semanas está desactualizado.</li>
+<li><strong>Publicar precios de coste o mínimos de stock</strong>: eso es información interna.</li>
+<li><strong><code class="nz-code nz-code--inline">index.html</code> en mayúsculas</strong>: GitHub Pages devuelve 404 en la raíz y te volverás loco.</li>
+<li><strong>Formulario sin probar</strong>: el cliente escribe, le das al botón y no pasa nada.</li>
+<li><strong>Copiar CSS de otro sitio</strong>: rompe la coherencia y la accesibilidad. Usa el sistema.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 12: autonomía. El agente deja de esperar a que le hables: informes, avisos y copias de
+seguridad que ocurren solos.</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../10-redes-sociales/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 10</span>
+      <span>Redes sociales con criterio</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../12-autonomia-rutinas/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 12</span>
+      <span>Autonomía: rutinas y copias</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>

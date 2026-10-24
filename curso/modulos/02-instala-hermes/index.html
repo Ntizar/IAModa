@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es" data-nz-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instala Hermes y habla con él · Curso Mastermind</title>
+  <meta name="description" content="Instalación en Windows, macOS y Linux, elección de modelo, primer chat y diagnóstico. La base de todo lo que viene después.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p1-layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p2-navigation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p3-typography.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p4-actions.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p6-feedback.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p8-data.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.1.0/packs/p12-system.css">
+  <link rel="stylesheet" href="../../assets/curso.css">
+
+</head>
+<body class="nz">
+<a class="curso-skip" href="#contenido">Saltar al contenido</a>
+<header class="nz-navbar nz-navbar--bordered curso-barra">
+  <div class="nz-container nz-navbar__brand">
+    <a class="nz-navbar__link" href="../../index.html"><strong>Curso Mastermind</strong></a>
+    <a class="nz-navbar__link" href="../../../index.html">IAModa</a>
+  </div>
+  <nav class="nz-container nz-navbar__links" aria-label="Navegación principal">
+    <a class="nz-navbar__link" href="../../index.html#programa">Programa</a>
+    <a class="nz-navbar__link" href="../../index.html#requisitos">Requisitos</a>
+    <a class="nz-navbar__link" href="../../modulos/01-que-es-un-agente/index.html">Empezar</a>
+    <a class="nz-navbar__link" href="https://github.com/Ntizar/IAModa" rel="noopener">GitHub</a>
+  </nav>
+</header>
+<main class="curso-main nz-container" id="contenido">
+  <nav class="nz-breadcrumb" aria-label="Migas de pan">
+    <a href="../../index.html">Curso</a>
+    <span class="nz-breadcrumb__sep">/</span>
+    <span aria-current="page">Módulo 02</span>
+  </nav>
+
+  <header class="curso-cabecera">
+    <p class="nz-eyebrow">Módulo 02 de 14 · Desde cero</p>
+    <h1 class="nz-h1">Instala Hermes y habla con él</h1>
+    <p class="nz-lead">Instalación en Windows, macOS y Linux, elección de modelo, primer chat y diagnóstico. La base de todo lo que viene después.</p>
+    <div class="curso-cabecera__meta">
+      <span class="nz-badge nz-badge--neutral">40 min</span>
+      <span class="nz-badge nz-badge--brand">11 tramos</span>
+      <button class="nz-btn nz-btn--accent nz-btn--sm" type="button" data-curso-presentar aria-pressed="false">Presentar</button>
+    </div>
+    <p class="curso-aviso-lectura nz-text--muted">Con <kbd class="nz-atajo-teclado">←</kbd> y <kbd class="nz-atajo-teclado">→</kbd> pasas de tramo; <kbd class="nz-atajo-teclado">Esc</kbd> vuelve a la lectura.</p>
+  </header>
+
+  <div class="curso-criterios">
+    <p class="nz-eyebrow">Criterios de aceptación</p>
+    <p>Al terminar este módulo, esto tiene que estar en verde:</p>
+    <ol>
+      <li>hermes doctor no muestra errores graves</li>
+      <li>El agente responde en una conversación normal, no solo en modo prueba</li>
+      <li>El agente ha leído un fichero tuyo y ha citado su contenido</li>
+      <li>Sabes dónde viven la configuración, las claves y las sesiones</li>
+    </ol>
+  </div>
+
+  <nav class="curso-indice" aria-label="Índice del módulo">
+    <p class="nz-eyebrow">En este módulo</p>
+    <ol>
+      <li><a href="#que-vas-a-instalar">Qué vas a instalar</a></li>
+      <li><a href="#paso-1-instalar">Paso 1: instalar</a></li>
+      <li><a href="#paso-2-comprobar-que-esta">Paso 2: comprobar que está</a></li>
+      <li><a href="#paso-3-elegir-modelo">Paso 3: elegir modelo</a></li>
+      <li><a href="#paso-4-primera-conversacion">Paso 4: primera conversación</a></li>
+      <li><a href="#paso-5-saber-donde-vive-todo">Paso 5: saber dónde vive todo</a></li>
+      <li><a href="#paso-6-telegram-opcional-pero-muy-recomendable">Paso 6: Telegram (opcional, pero muy recomendable)</a></li>
+      <li><a href="#ejercicio">Ejercicio</a></li>
+      <li><a href="#checklist-lo-tengo">Checklist: ¿lo tengo?</a></li>
+      <li><a href="#errores-tipicos">Errores típicos</a></li>
+      <li><a href="#siguiente">Siguiente</a></li>
+    </ol>
+  </nav>
+
+<section class="curso-tramo nz-prose">
+<h2 id="que-vas-a-instalar">Qué vas a instalar</h2>
+<p><strong>Hermes Agent</strong> es el motor: el programa que habla con el modelo, ejecuta herramientas en tu
+ordenador, guarda memoria, carga skills y atiende Telegram, cron y consola. Es software libre de
+Nous Research y se instala con un comando.</p>
+<p>El modelo (la «inteligencia») se elige aparte. Puede ser Nous Portal, OpenRouter, Anthropic, OpenAI
+o un endpoint propio. El curso no asume ninguno en concreto: donde diga «tu proveedor», pones el
+tuyo.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-1-instalar">Paso 1: instalar</h2>
+<p><strong>Linux, macOS o WSL2</strong> — abre una terminal y pega:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+</code></pre>
+<p><strong>Windows nativo</strong> — abre PowerShell y pega:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="powershell"><code>iex (irm https://hermes-agent.nousresearch.com/install.ps1)
+</code></pre>
+<p><strong>Windows o macOS con interfaz</strong> — descarga el instalador de escritorio desde
+<a rel="noopener" href="https://hermes-agent.nousresearch.com/">https://hermes-agent.nousresearch.com/</a> y ejecútalo. Instala la app y deja el comando <code class="nz-code nz-code--inline">hermes</code>
+disponible.</p>
+<p>El instalador se encarga de Python, Node, ripgrep, ffmpeg y del entorno virtual. No tienes que
+instalar nada de eso a mano.</p>
+<p>Después, recarga la shell:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>source ~/.bashrc    # en macOS con zsh: source ~/.zshrc
+</code></pre>
+<p>En PowerShell, cierra y vuelve a abrir la ventana.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-2-comprobar-que-esta">Paso 2: comprobar que está</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes doctor
+</code></pre>
+<p>Deberías ver un resumen del entorno y, como mucho, avisos de herramientas que no usas. Un error
+rojo de proveedor o de configuración sí hay que resolverlo antes de seguir.</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes --version
+</code></pre>
+<p>Si el comando no existe, el instalador no añadió <code class="nz-code nz-code--inline">~/.local/bin</code> al PATH. Añádelo:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>echo 'export PATH=&quot;$HOME/.local/bin:$PATH&quot;' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-3-elegir-modelo">Paso 3: elegir modelo</h2>
+<p>En este curso el modelo se sirve desde <strong>NaN</strong> (cuota fija, API compatible con OpenAI). La cuenta,
+el plan y la clave se explican paso a paso en el <strong>módulo 03</strong>; aquí solo dejamos Hermes listo para
+recibirla.</p>
+<p>La vía más rápida, si ya tienes una suscripción de Nous Portal:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes setup --portal
+</code></pre>
+<p>Te abre el navegador para el login OAuth, configura Nous como proveedor y activa las herramientas
+del gateway (búsqueda web, imágenes, voz, navegador).</p>
+<p>Si prefieres tu propia clave o un endpoint compatible con OpenAI:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes model
+</code></pre>
+<p>Te guía por proveedor, modelo y clave. La clave se guarda en <code class="nz-code nz-code--inline">~/.hermes/.env</code>, nunca en el
+repositorio.</p>
+<div class="nz-callout nz-callout--tip">
+<p><strong>Consejo de coste:</strong> empieza con un modelo bueno para razonar y barato para el día a día. En el
+módulo 12 verás cómo fijar un modelo distinto solo para las tareas programadas.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-4-primera-conversacion">Paso 4: primera conversación</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes
+</code></pre>
+<p>Escribe estas tres cosas, en este orden:</p>
+<ol>
+<li><code class="nz-code nz-code--inline">Hola. ¿Qué herramientas tienes disponibles?</code></li>
+<li><code class="nz-code nz-code--inline">Crea un fichero llamado prueba.md en mi carpeta actual con tres líneas sobre mí.</code></li>
+<li><code class="nz-code nz-code--inline">Lee prueba.md y dime qué pone.</code></li>
+</ol>
+<p>Si la tercera respuesta cita el contenido real, el agente está ejecutando de verdad: no está
+inventando. Ese es el primer criterio del módulo.</p>
+<p>Sal con <code class="nz-code nz-code--inline">/exit</code> (o <code class="nz-code nz-code--inline">Ctrl+C</code> dos veces).</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-5-saber-donde-vive-todo">Paso 5: saber dónde vive todo</h2>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes config get model
+ls ~/.hermes
+</code></pre>
+<div class="nz-table-wrap nz-table-wrap--apilable"><table class="nz-table nz-table--apilable">
+<thead>
+<tr>
+<th>Ruta</th>
+<th>Qué es</th>
+</tr>
+</thead>
+<tbody>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/config.yaml</code></td><td data-etiqueta="Qué es">Configuración: modelo, terminal, compresión, herramientas</td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/.env</code></td><td data-etiqueta="Qué es">Claves y secretos. <strong>Fuera de git, siempre</strong></td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/SOUL.md</code></td><td data-etiqueta="Qué es">Identidad del agente</td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/memories/</code></td><td data-etiqueta="Qué es"><code class="nz-code nz-code--inline">MEMORY.md</code> y <code class="nz-code nz-code--inline">USER.md</code>: la memoria persistente</td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/skills/</code></td><td data-etiqueta="Qué es">Los skills (procedimientos)</td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/cron/</code></td><td data-etiqueta="Qué es">Tareas programadas</td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/sessions/</code></td><td data-etiqueta="Qué es">Historial de sesiones</td></tr>
+<tr><td data-etiqueta="Ruta"><code class="nz-code nz-code--inline">~/.hermes/logs/</code></td><td data-etiqueta="Qué es">Errores y actividad (secretos redactados)</td></tr>
+</tbody>
+</table></div>
+<p>Dos comandos que usarás mucho:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes config get model          # ¿qué modelo estoy usando?
+hermes config set model tu-proveedor/tu-modelo
+</code></pre>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="paso-6-telegram-opcional-pero-muy-recomendable">Paso 6: Telegram (opcional, pero muy recomendable)</h2>
+<p>Con el gateway, tu agente te atiende desde el móvil. Es la diferencia entre «una cosa del
+ordenador» y «un empleado al que le escribes».</p>
+<ol>
+<li>En Telegram, habla con <strong>@BotFather</strong> y manda <code class="nz-code nz-code--inline">/newbot</code>.</li>
+<li>Elige nombre y usuario (debe terminar en <code class="nz-code nz-code--inline">bot</code>).</li>
+<li>Copia el token que te da.</li>
+<li>Configura:</li>
+</ol>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes gateway setup
+</code></pre>
+<p>El asistente te pide el token y tu ID de usuario. Guarda <code class="nz-code nz-code--inline">TELEGRAM_BOT_TOKEN</code> y
+<code class="nz-code nz-code--inline">TELEGRAM_ALLOWED_USERS</code> en el <code class="nz-code nz-code--inline">.env</code> del perfil. Arranca el gateway:</p>
+<pre class="nz-code nz-code--block curso-codigo" data-lenguaje="bash"><code>hermes gateway start
+hermes gateway status
+</code></pre>
+<p>Escríbele al bot. Si no responde, revisa que el gateway esté en marcha y que tu ID esté en la lista
+de permitidos.</p>
+<div class="nz-callout nz-callout--tip">
+<p><strong>Seguridad:</strong> sin <code class="nz-code nz-code--inline">TELEGRAM_ALLOWED_USERS</code>, cualquiera que encuentre tu bot puede hablar con tu
+agente. Es lo primero que se configura, no lo último.</p>
+</div>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="ejercicio">Ejercicio</h2>
+<p>Crea <code class="nz-code nz-code--inline">prueba.md</code> con tres datos reales de tu negocio (sin nombres de clientes) y pídele al agente
+que lo lea, lo resuma en una línea y lo guarde en memoria como contexto de tu negocio. Cierra la
+sesión y abre otra: debe seguir sabiéndolo.</p>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="checklist-lo-tengo">Checklist: ¿lo tengo?</h2>
+<ul>
+<li class="curso-tarea"><code class="nz-code nz-code--inline">hermes --version</code> responde y <code class="nz-code nz-code--inline">hermes doctor</code> no tiene errores graves</li>
+<li class="curso-tarea">He elegido modelo y sé cuál está activo (<code class="nz-code nz-code--inline">hermes config get model</code>)</li>
+<li class="curso-tarea">El agente ha leído <code class="nz-code nz-code--inline">prueba.md</code> y ha citado su contenido</li>
+<li class="curso-tarea">Sé dónde están <code class="nz-code nz-code--inline">config.yaml</code>, <code class="nz-code nz-code--inline">.env</code> y las sesiones</li>
+<li class="curso-tarea">(Opcional) El bot de Telegram me responde solo a mí</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="errores-tipicos">Errores típicos</h2>
+<ul>
+<li><strong><code class="nz-code nz-code--inline">hermes: command not found</code></strong>: PATH sin <code class="nz-code nz-code--inline">~/.local/bin</code>. Recarga la shell o añade la línea del
+  paso 2.</li>
+<li><strong><code class="nz-code nz-code--inline">API key not set</code></strong>: no hay proveedor configurado. <code class="nz-code nz-code--inline">hermes model</code> otra vez.</li>
+<li><strong>Instalar como root y luego usar otro usuario</strong>: el instalador deja los datos en
+  <code class="nz-code nz-code--inline">/root/.hermes</code>. Instala como tu usuario normal.</li>
+<li><strong>El bot contesta a cualquiera</strong>: falta <code class="nz-code nz-code--inline">TELEGRAM_ALLOWED_USERS</code>.</li>
+<li><strong>Mezclar el Hermes del curso con el de producción</strong>: usa perfiles (<code class="nz-code nz-code--inline">hermes profile</code>). Si eres
+  principiante, no toques el que ya funciona: este curso crea el suyo.</li>
+</ul>
+
+</section>
+<section class="curso-tramo nz-prose">
+<h2 id="siguiente">Siguiente</h2>
+<p>Módulo 03: compras el acceso a NaN, generas tu clave y la dejas donde Hermes la encuentra. Es el
+paso que separa «tener el programa» de «tener un agente que responde».</p>
+</section>
+
+  <nav class="curso-navpie" aria-label="Navegación entre módulos">
+    <a class="curso-navpie__enlace" href="../01-que-es-un-agente/index.html">
+      <span class="curso-navpie__rotulo">Anterior · 01</span>
+      <span>Qué es un agente (y qué no)</span>
+    </a>
+    <a class="curso-navpie__enlace curso-navpie__enlace--siguiente" href="../03-nan-cuenta-y-api/index.html">
+      <span class="curso-navpie__rotulo">Siguiente · 03</span>
+      <span>NaN: cuenta, plan y clave de API</span>
+    </a>
+  </nav>
+</main>
+<footer class="curso-pie">
+  <div class="nz-container">
+    <p><strong>Curso Mastermind</strong> · tu agente de IA para llevar el negocio.</p>
+    <p>Hecho con ❤️ por David Antizar · contenido abierto para aprender, copiar y adaptar.</p>
+  </div>
+</footer>
+<div class="curso-hud" role="group" aria-label="Controles de la presentación">
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-anterior aria-label="Tramo anterior">←</button>
+  <span class="curso-hud__cuenta">0 / 0</span>
+  <button class="nz-btn nz-btn--ghost nz-btn--icon" type="button" data-curso-siguiente aria-label="Tramo siguiente">→</button>
+  <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" data-curso-salir="1">Salir</button>
+</div>
+<script src="../../assets/curso.js" defer></script>
+</body>
+</html>
