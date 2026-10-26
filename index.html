@@ -5,8 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>De la idea a la prenda · IA aplicada al ciclo del producto de moda</title>
 <meta name="description" content="Plan de estudios y taller de herramientas: IA aplicada al patronaje, la simulación, el tejido, la campaña, la ficha técnica y el pasaporte digital europeo.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/packs/all.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/packs/all.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
 <style>
 /* ---------- capa del consumidor: .cm- ---------- */
 .cm-sec { padding-block: var(--nz-space-16); border-top: var(--nz-border-w) solid var(--nz-border-soft); }
@@ -135,7 +141,7 @@
 <!--FIN:B1-->
 <div class="cm-sticky-nav">
 <nav class="nz-navbar nz-navbar--bordered" aria-label="Secciones del documento">
-  <span class="nz-navbar__brand"><svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-053"/></svg>Idea&nbsp;→&nbsp;prenda</span>
+  <span class="nz-navbar__brand"><svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/iconos/sprite.svg#nz-i-053"/></svg>Idea&nbsp;→&nbsp;prenda</span>
   <span class="nz-navbar__links">
     <a class="nz-navbar__link" href="#tesis">Tesis</a>
     <a class="nz-navbar__link" href="#cadena">Cadena</a>
@@ -375,7 +381,7 @@
   <div class="cm-panel cm-demo" id="demo-patron">
     <div class="cm-panel__cap">
       <div class="cm-demo__tag">
-        <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-053"/></svg>
+        <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/iconos/sprite.svg#nz-i-053"/></svg>
         <div><p class="cm-mini" style="margin:0">Demo 01 · patronaje</p><h3 class="nz-h3" style="margin:0">La prenda como función</h3></div>
       </div>
       <span class="nz-badge nz-badge--brand">se recalcula en vivo</span>
@@ -449,7 +455,7 @@
     <div class="cm-panel cm-demo" id="demo-tela">
       <div class="cm-panel__cap">
         <div class="cm-demo__tag">
-          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-277"/></svg>
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/iconos/sprite.svg#nz-i-277"/></svg>
           <div><p class="cm-mini" style="margin:0">Demo 02 · simulación</p><h3 class="nz-h3" style="margin:0">La tela cae, no se dibuja</h3></div>
         </div>
         <span class="nz-badge nz-badge--neutral">física de muelles</span>
@@ -477,7 +483,7 @@
     <div class="cm-panel cm-demo" id="demo-estampado">
       <div class="cm-panel__cap">
         <div class="cm-demo__tag">
-          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-273"/></svg>
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/iconos/sprite.svg#nz-i-273"/></svg>
           <div><p class="cm-mini" style="margin:0">Demo 03 · tejido</p><h3 class="nz-h3" style="margin:0">El rapport que repite sin costura</h3></div>
         </div>
         <span class="nz-badge nz-badge--neutral">3 × 3 repeticiones</span>
@@ -505,7 +511,7 @@
     <div class="cm-panel cm-demo" id="demo-ficha">
       <div class="cm-panel__cap">
         <div class="cm-demo__tag">
-          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-059"/></svg>
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/iconos/sprite.svg#nz-i-059"/></svg>
           <div><p class="cm-mini" style="margin:0">Demo 04 · negocio</p><h3 class="nz-h3" style="margin:0">La ficha técnica que se calcula sola</h3></div>
         </div>
         <span class="nz-badge nz-badge--accent">dato en acento</span>
@@ -542,7 +548,7 @@
     <div class="cm-panel cm-demo" id="demo-dpp">
       <div class="cm-panel__cap">
         <div class="cm-demo__tag">
-          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.0.0/iconos/sprite.svg#nz-i-240"/></svg>
+          <svg class="nz-icon" aria-hidden="true"><use href="https://cdn.jsdelivr.net/gh/Ntizar/Aurora@v10.5.0/iconos/sprite.svg#nz-i-240"/></svg>
           <div><p class="cm-mini" style="margin:0">Demo 05 · normativa</p><h3 class="nz-h3" style="margin:0">Pasaporte digital: 8 campos, cero excusas</h3></div>
         </div>
         <span class="nz-badge nz-badge--warning">ESPR 2024/1781</span>
@@ -658,6 +664,35 @@
           <div id="listaPiezas" class="cm-pieza"></div>
           <p class="cm-mini" style="margin-top:var(--nz-space-3)">En clase esto se exporta a SVG a escala 1:1, se imprime en A4 por teselas, se pega y se corta. La simulación te dice si vale la pena; la tela te dice la verdad.</p>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="cm-panel cm-panel--mute" style="grid-column:1/-1;margin-top:var(--nz-space-4)">
+    <div class="cm-panel__cap">
+      <h3 class="nz-h3" style="margin:0">Rig &amp; pasarela — la prenda cobra vida</h3>
+      <span class="nz-badge nz-badge--accent">Mesh2Motion · CC0</span>
+    </div>
+    <div class="cm-grid2">
+      <div class="cm-stage cm-stage--tight" style="display:grid;gap:var(--nz-space-2)">
+        <div class="cm-lienzo3d">
+          <canvas id="cvRig" aria-label="Vestido paramétrico con rig automático reproduciendo una animación"></canvas>
+          <span class="cm-estado3d" id="estadoRig">El modelo animado se carga al llegar aquí (necesita red).</span>
+        </div>
+        <div class="nz-cluster" id="clipsRig" role="group" aria-label="Animaciones"></div>
+      </div>
+      <div>
+        <p>El mismo vestido paramétrico del probador, exportado a <strong class="nz-text--peso-fuerte">GLB</strong>, con esqueleto automático y movimientos libres: se monta sin instalar nada, todo en el navegador.</p>
+        <ol class="cm-flow">
+          <li><span class="cm-flow__n">1</span><p><strong class="nz-text--peso-fuerte">Genera la malla.</strong> El probador exporta cuerpo y vestido a un solo GLB: 10.782 vértices, 1,68 m de alto.</p></li>
+          <li><span class="cm-flow__n">2</span><p><strong class="nz-text--peso-fuerte">Auto-rig.</strong> Mesh2Motion coloca un esqueleto humano de 66 huesos y pesa cada vértice por distancia al hueso.</p></li>
+          <li><span class="cm-flow__n">3</span><p><strong class="nz-text--peso-fuerte">Anima.</strong> Cuatro clips de dominio público (idle, caminar, saludo, baile) viajan dentro del mismo GLB.</p></li>
+          <li><span class="cm-flow__n">4</span><p><strong class="nz-text--peso-fuerte">Exporta.</strong> Un GLB vale para three.js, un motor de juego o la pasarela de una web.</p></li>
+        </ol>
+        <div class="cm-legend" style="margin-top:var(--nz-space-3)">
+          <a class="nz-btn nz-btn--ghost nz-btn--sm" href="assets/vestido-animado.glb" download>Descargar el GLB (1,1 MB)</a>
+          <a class="nz-btn nz-btn--ghost nz-btn--sm" href="https://mesh2motion.org/" target="_blank" rel="noopener">Herramienta usada</a>
+        </div>
+        <p class="cm-mini" style="margin-top:var(--nz-space-3)">Honesto: el rig es automático, sin peso fino — los pies patinan al caminar y el vestido es geometría rígida, no tela simulada. Para pliegues con física hace falta un simulador (Blender, Marvelous); para enseñar el <strong class="nz-text--peso-medio">pipeline</strong> —malla, rig, clip— esto es exactamente el primer paso.</p>
       </div>
     </div>
   </div>
@@ -1840,5 +1875,81 @@ if (pre && NOMBRE[pre]) {
 <!--FIN:JS-C2-->
 
 <!--FIN:JS-C-->
+<script type="module">
+/* ---------- Rig & pasarela: vestido exportado + auto-rig Mesh2Motion, animado on-demand ---------- */
+(async () => {
+  const estado = document.getElementById('estadoRig');
+  const lienzo = document.getElementById('cvRig');
+  const caja = document.getElementById('clipsRig');
+  if (!lienzo || !estado) return;
+  let arrancado = false;
+  const arrancar = async () => {
+    if (arrancado) return; arrancado = true;
+    estado.textContent = 'Cargando modelo…';
+    try {
+      const THREE = await import('three');
+      const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+      const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+      const resp = await fetch('assets/vestido-animado.glb');
+      if (!resp.ok) throw new Error('glb ' + resp.status);
+      const glb = await resp.arrayBuffer();
+      const renderer = new THREE.WebGLRenderer({ canvas: lienzo, antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+      const escena = new THREE.Scene();
+      escena.add(new THREE.HemisphereLight(0xffffff, 0x94a3b8, 2.2));
+      const sol = new THREE.DirectionalLight(0xffffff, 1.8); sol.position.set(110, 220, 180); escena.add(sol);
+      const relleno = new THREE.DirectionalLight(0xffffff, 0.8); relleno.position.set(-140, 90, -120); escena.add(relleno);
+      const cam = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
+      cam.position.set(0.0, 0.95, 2.6);
+      const ctrl = new OrbitControls(cam, lienzo);
+      ctrl.target.set(0, 0.88, 0); ctrl.enableDamping = true; ctrl.minDistance = 1; ctrl.maxDistance = 7;
+      const r = await new Promise((res, rej) => new GLTFLoader().parse(glb, '', res, rej));
+      r.scene.traverse((o) => { if (o.isMesh) o.frustumCulled = false; });
+      escena.add(r.scene);
+      const mixer = new THREE.AnimationMixer(r.scene);
+      let skinned = null; r.scene.traverse((o) => { if (o.isSkinnedMesh && !skinned) skinned = o; });
+      const N_HUESOS = skinned ? skinned.skeleton.bones.length : 0;
+      const N_VERTS = skinned ? skinned.geometry.getAttribute('position').count : 0;
+      const NOMBRES = { Idle_A: 'Idle', Walk: 'Caminar', Greeting: 'Saludo', Dance_Simple: 'Baile' };
+      let accion = null;
+      const poner = (n) => {
+        const clip = r.animations.find((a) => a.name === n); if (!clip) return;
+        mixer.stopAllAction();
+        accion = mixer.clipAction(clip).reset().play();
+        caja.querySelectorAll('button').forEach((b) => {
+          const on = b.dataset.clip === n;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.className = 'nz-btn nz-btn--sm ' + (on ? 'nz-btn--primary' : 'nz-btn--soft');
+        });
+        estado.textContent = clip.name + ' · ' + clip.duration.toFixed(2) + ' s · rig de ' + N_HUESOS + ' huesos · ' + N_VERTS.toLocaleString('es-ES') + ' vértices';
+      };
+      Object.entries(NOMBRES).forEach(([n, et]) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.dataset.clip = n; b.textContent = et;
+        b.setAttribute('aria-pressed', 'false');
+        b.className = 'nz-btn nz-btn--sm nz-btn--soft';
+        b.onclick = () => poner(n);
+        caja.appendChild(b);
+      });
+      const ajustar = () => {
+        const w = lienzo.clientWidth, h = lienzo.clientHeight || 380;
+        renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
+      };
+      new ResizeObserver(ajustar).observe(lienzo.parentElement || lienzo); ajustar();
+      const reloj = new THREE.Clock();
+      renderer.setAnimationLoop(() => { mixer.update(reloj.getDelta()); ctrl.update(); renderer.render(escena, cam); });
+      poner('Idle_A');
+    } catch (e) {
+      estado.textContent = 'Sin red: el visor 3D no carga; el patrón 2D y la descarga del GLB siguen funcionando.';
+    }
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      if (es.some((x) => x.isIntersecting)) { io.disconnect(); arrancar(); }
+    }, { rootMargin: '300px' });
+    io.observe(lienzo);
+  } else { arrancar(); }
+})();
+</script>
 </body>
 </html>

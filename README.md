@@ -16,7 +16,7 @@ que se autoajustan.
 start index.html
 ```
 
-Necesita red la primera vez: el CSS viene del CDN de Aurora pineado a `v10.0.0`
+Necesita red la primera vez: el CSS viene del CDN de Aurora pineado a `v10.5.0`
 (`tokens.css` + `packs/all.css`) y la fuente Inter viaja en ese CSS.
 
 ## Verificar antes de entregar
@@ -58,6 +58,9 @@ las mismas medidas.
 - Sin red el módulo cae al modo patrón 2D y lo dice en el estado del visor.
 - Aviso honesto: **no es un motor de tela**; es geometría paramétrica. Los pliegues son
   una modulación senoidal del radio, no física.
+- **Rig & pasarela**: el propio probador exporta el vestido a `assets/vestido-animado.glb`
+  (flujo completo en el skill `pipeline-3d-mesh2motion`), auto-rig humano de 66 huesos y
+  4 animaciones CC0 de Mesh2Motion, animadas on-demand con three.js al llegar al scroll.
 
 ## Notas de implementación
 
