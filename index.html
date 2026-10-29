@@ -616,6 +616,16 @@
           <button type="button" aria-selected="false" data-prenda="pantalon">Pantalón</button>
           <button type="button" aria-selected="false" data-prenda="chaqueta">Chaqueta</button>
         </div>
+        <div class="nz-segmented nz-segmented--sm cm-seg-prendas" id="segEscote" role="group" aria-label="Forma del escote (prendas de torso)" style="flex-wrap:wrap;margin-top:var(--nz-space-2)">
+          <button type="button" aria-selected="true" data-escote="redondo">Redondo</button>
+          <button type="button" aria-selected="false" data-escote="v">V</button>
+          <button type="button" aria-selected="false" data-escote="corazon">Corazón</button>
+          <button type="button" aria-selected="false" data-escote="barco">Barco</button>
+        </div>
+        <div class="nz-segmented nz-segmented--sm cm-seg-prendas" id="segFalda" role="group" aria-label="Forma de la falda" style="flex-wrap:wrap;margin-top:var(--nz-space-2);display:none">
+          <button type="button" aria-selected="true" data-falda="recta">Recta</button>
+          <button type="button" aria-selected="false" data-falda="evase">Evasé</button>
+        </div>
       </div>
 
       <div class="cm-split2">
@@ -1517,7 +1527,7 @@
 /* ---------- Probador paramétrico v2: cuerpo, prendas y patrón ---------- */
 const $ = (id) => document.getElementById(id);
 const estado = $('estado3d');
-const M = { prenda: 'camiseta' };
+const M = { prenda: 'camiseta', escote: 'redondo', falda: 'recta' };
 const CTRL = { altura: $('pAltura'), pecho: $('pPecho'), cintura: $('pCintura'), cadera: $('pCadera'), largo: $('pLargo') };
 const NOMBRE = { camiseta: 'Camiseta', vestido: 'Vestido', falda: 'Falda', pantalon: 'Pantalón', chaqueta: 'Chaqueta' };
 
@@ -1562,6 +1572,7 @@ function largoPrenda() {
    dibujo y las tres exportaciones (SVG 1:1, PDF A4, DXF) salen de aquí. */
 const N2 = (v) => +v.toFixed(2);
 const asci = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[·—]/g, '-');
+const FORMA_ESCOTE = { redondo: 'redondo', v: 'en V', corazon: 'corazón', barco: 'barco' };
 
 function dSegs(pz) {
   let d = 'M ' + pz.p0[0] + ' ' + pz.p0[1];
@@ -1633,28 +1644,44 @@ function ptoBordes(pz, si, u) {
   return { p, t: [t[0] / m, t[1] / m] };
 }
 
-function cuerpoBase(prof, pinza) {
+function curvaEscote(forma, ae, prof) {
+  // escoteCorazon: dos bezier simetricas trazan la hendidura; a talla 92 el
+  // cleft sube a prof*0.72 y los picos laterales caen a prof*1.16 (silueta de corazon)
+  if (forma === 'v') return { y0: prof * 1.06, segs: [{ t: 'L', p: [N2(ae), 0] }] };
+  if (forma === 'corazon') return {
+    y0: prof * 0.72,
+    segs: [
+      { t: 'C', c1: [N2(ae * 0.10), N2(prof * 0.55)], c2: [N2(ae * 0.30), N2(prof * 1.16)], p: [N2(ae * 0.46), N2(prof * 1.16)] },
+      { t: 'C', c1: [N2(ae * 0.68), N2(prof * 1.16)], c2: [N2(ae * 0.80), N2(prof * 0.32)], p: [N2(ae), 0] }
+    ]
+  };
+  if (forma === 'barco') return { y0: prof * 0.55, segs: [{ t: 'C', c1: [N2(ae * 0.34), N2(prof * 0.22)], c2: [N2(ae * 0.70), N2(prof * 0.10)], p: [N2(ae), 0] }] };
+  return { y0: prof, segs: [{ t: 'C', c1: [N2(ae * 0.18), N2(prof * 0.3)], c2: [N2(ae * 0.62), 0], p: [N2(ae), 0] }] };
+}
+
+function cuerpoBase(prof, pinza, forma) {
   const holg = 6;
   const ap = (M.pecho + holg) / 4, ah = ap * 0.70, ac = ap * 0.97, ab = ap * 1.02;
   const ps = M.pecho / 10 + 10.5 + holg / 4, ae = M.pecho / 20 + 2.2, ch = 4.5;
   const L = largoPrenda().base;
   const lc = L * 0.42;
+  const es = curvaEscote(forma || 'redondo', ae, prof);
   const segs = [
-    { t: 'C', c1: [N2(ae * 0.18), N2(prof * 0.3)], c2: [N2(ae * 0.62), 0], p: [N2(ae), 0] },
+    ...es.segs,
     { t: 'L', p: [N2(ae + ah), N2(ch)] },
     { t: 'C', c1: [N2(ae + ah + 1.4), N2(ch + ps * 0.30)], c2: [N2(ap * 1.02), N2(ps * 0.72)], p: [N2(ap), N2(ps)] },
     { t: 'L', p: [N2(ac), N2(lc)] },
     { t: 'L', p: [N2(ab), N2(L)] },
     { t: 'L', p: [0, N2(L)] },
-    { t: 'L', p: [0, N2(prof)] }
+    { t: 'L', p: [0, N2(es.y0)] }
   ];
   const ent = pinza ? pinza.ent : 0;
   const xP = N2(ac * (pinza && pinza.back ? 0.55 : 0.60));
   return {
-    ap, ah, ac, ab, ps, ae, ch, L, lc,
-    p0: [0, N2(prof)], segs,
+    ap, ah, ac, ab, ps, ae, ch, L, lc, forma: forma || 'redondo',
+    p0: [0, N2(es.y0)], segs,
     pinzas: ent ? [{ a: [xP, N2(L)], apex: [N2(xP + ent / 2), N2(ps * pinza.fr)], b: [N2(xP + ent), N2(L)] }] : [],
-    piquetes: [{ si: 1, u: 0.5 }, { si: 2, u: 0.5 }, { si: 4, u: 0.5 }]
+    piquetes: [{ si: es.segs.length, u: 0.5 }, { si: es.segs.length + 1, u: 0.5 }, { si: es.segs.length + 3, u: 0.5 }]
   };
 }
 
@@ -1662,13 +1689,21 @@ function piezasPatron() {
   const c = cotas(), lp = largoPrenda();
   const piezas = [];
   if (M.prenda === 'falda') {
-    const wc = (M.cintura / 4) + 1.5, wk = (M.cadera / 4) * 1.42, L = lp.base;
+    const L = lp.base, ev = M.falda === 'evase';
+    const wc = (M.cintura / 4) + 1.5, wk = (M.cadera / 4) * 1.42 + (ev ? L * 0.30 : 0);
     const mk = (n, cortar, xP, ent) => ({
       n, cortar, p0: [0, 0], w: N2(wk), h: N2(L),
-      segs: [{ t: 'L', p: [N2(wc), 0] }, { t: 'L', p: [N2(wk), N2(L)] }, { t: 'L', p: [0, N2(L)] }, { t: 'L', p: [0, 0] }],
+      segs: [
+        { t: 'L', p: [N2(wc), 0] },
+        ev
+          ? { t: 'C', c1: [N2(wc + (wk - wc) * 0.18), N2(L * 0.30)], c2: [N2(wc + (wk - wc) * 0.62), N2(L * 0.78)], p: [N2(wk), N2(L)] }
+          : { t: 'L', p: [N2(wk), N2(L)] },
+        { t: 'L', p: [0, N2(L)] },
+        { t: 'L', p: [0, 0] }
+      ],
       pinzas: [{ a: [N2(xP), 0], apex: [N2(xP + ent / 2), N2(L * 0.38)], b: [N2(xP + ent), 0] }],
       piquetes: [{ si: 1, u: 0.42 }],
-      m: 'cintura ' + wc.toFixed(1) + ' · bajo ' + wk.toFixed(1) + ' · pinza ' + ent.toFixed(1) + ' cm'
+      m: 'cintura ' + wc.toFixed(1) + ' · bajo ' + wk.toFixed(1) + (ev ? ' · evasé' : '') + ' · pinza ' + ent.toFixed(1) + ' cm'
     });
     piezas.push(mk('Delantero', 'cortar 1 al doblez', wc * 0.55, 1.5));
     piezas.push(mk('Trasero', 'cortar 2', wc * 0.52, 2.0));
@@ -1687,8 +1722,8 @@ function piezasPatron() {
     piezas.push({ n: 'Pierna delantera', cortar: 'cortar 2', p0: [0, 0], segs, w: N2(wc), h: N2(L), pinzas: [], piquetes: [{ si: 1, u: 0.5 }], m: 'tiro ' + tiro.toFixed(1) + ' · bajo ' + wr.toFixed(1) });
     piezas.push({ n: 'Pierna trasera', cortar: 'cortar 2', p0: [0, 0], segs, w: N2(wc), h: N2(L), pinzas: [], piquetes: [{ si: 1, u: 0.5 }], m: 'tiro 2 cm más bajo' });
   } else {
-    const del = cuerpoBase(cuerpoEscote('del'), { ent: 2.5, fr: 0.92 });
-    piezas.push({ n: 'Delantero', cortar: 'cortar 1', p0: del.p0, segs: del.segs, pinzas: del.pinzas, piquetes: del.piquetes, w: del.ab, h: del.L, m: 'sisa ' + del.ps.toFixed(1) + ' · escote ' + del.ae.toFixed(1) + ' · pinza 2,5 cm' });
+    const del = cuerpoBase(cuerpoEscote('del'), { ent: 2.5, fr: 0.92 }, M.escote);
+    piezas.push({ n: 'Delantero', cortar: 'cortar 1', p0: del.p0, segs: del.segs, pinzas: del.pinzas, piquetes: del.piquetes, w: del.ab, h: del.L, m: 'sisa ' + del.ps.toFixed(1) + ' · escote ' + FORMA_ESCOTE[del.forma] + ' ' + del.ae.toFixed(1) + ' · pinza 2,5 cm' });
     const tra = cuerpoBase(cuerpoEscote('tra'), { ent: 2.0, fr: 0.60, back: true });
     piezas.push({ n: 'Trasero', cortar: 'cortar 1', p0: tra.p0, segs: tra.segs, pinzas: tra.pinzas, piquetes: tra.piquetes, w: tra.ab, h: tra.L, m: 'escote 1/3 de profundo · pinza 2 cm' });
     const am = M.pecho / 3.4, lm = lp.base * 0.42, copa = am * 0.34;
@@ -1703,6 +1738,15 @@ function piezasPatron() {
       pinzas: [], piquetes: [{ si: 0, u: 0.35 }, { si: 0, u: 0.65 }],
       m: 'copa ' + copa.toFixed(1) + ' · largo ' + lm.toFixed(1)
     });
+    if (M.prenda === 'vestido') {
+      const wb = M.cintura / 2 + 8;
+      piezas.push({
+        n: 'Cinturón', cortar: 'cortar 1 + entretela', p0: [0, 0], w: N2(wb), h: 6,
+        segs: [{ t: 'L', p: [N2(wb), 0] }, { t: 'L', p: [N2(wb), 6] }, { t: 'L', p: [0, 6] }, { t: 'L', p: [0, 0] }],
+        pinzas: [], piquetes: [{ si: 0, u: 0.5 }, { si: 2, u: 0.5 }],
+        m: 'entretelar el centro · alto 6 cm · ciñe en la cintura'
+      });
+    }
   }
   return piezas;
 }
@@ -2069,13 +2113,18 @@ try {
     const holg = 4.5, y0 = lp.desde, y1 = lp.hasta;
     const mat = (M.prenda === 'vestido' || M.prenda === 'falda') ? matAcento : matPrenda;
     const rHombroP = c.rp * 1.44 + holg;
-    const rCuello = c.rp * 0.46;
+    const PROF_ESC = { redondo: 0.46, v: 0.54, corazon: 0.50, barco: 0.62 };
+    const ALTO_ESC = { redondo: 1.5, v: 0.3, corazon: 0.9, barco: 2.2 };
+    const rCuello = c.rp * (PROF_ESC[M.escote] || 0.46);
+    const yCuello = y0 + (ALTO_ESC[M.escote] || 1.5);
 
     if (M.prenda === 'falda') {
       const perfil = [];
+      const evase = M.falda === 'evase';
+      const fin = c.rk * (evase ? 1.80 : 1.34) + holg;
       for (let i = 0; i <= 10; i++) {
         const t = i / 10, y = y0 - (y0 - y1) * t;
-        const rx = (c.rc * 1.04 + holg) + ((c.rk * 1.34 + holg) - (c.rc * 1.04 + holg)) * Math.pow(t, 0.75);
+        const rx = (c.rc * 1.04 + holg) + (fin - (c.rc * 1.04 + holg)) * Math.pow(t, evase ? 0.60 : 0.75);
         perfil.push({ y, rx, rz: rx * 0.76 });
       }
       g.add(new THREE.Mesh(anillos(perfil, 40, Math.PI * 2, -Math.PI / 2, true), mat));
@@ -2107,7 +2156,7 @@ try {
     const inicio = -Math.PI / 2 - arco / 2;
     const perfil = [];
     const niveles = [
-      { t: 0.00, y: y0 + 1.5, rx: rCuello },
+      { t: 0.00, y: yCuello, rx: rCuello },
       { t: 0.05, y: y0 - 1, rx: rHombroP },
       { t: 0.20, y: c.pecho, rx: c.rp * 1.06 + holg },
       { t: 0.40, y: (c.pecho + c.cintura) / 2, rx: c.rc * 1.06 + holg },
@@ -2122,6 +2171,16 @@ try {
       perfil.push({ y, rx, rz: rx * 0.74 });
     }
     g.add(new THREE.Mesh(anillos(perfil, 38, arco, inicio, true), mat));
+
+    if (M.prenda === 'vestido') {
+      const cint = [];
+      for (let i = 0; i <= 3; i++) {
+        const t = i / 3, y = c.cintura + 1.4 - 2.6 * t;
+        const rx = c.rc * 1.06 + holg + 0.55 - 0.18 * Math.sin(t * Math.PI);
+        cint.push({ y, rx, rz: rx * 0.74 });
+      }
+      g.add(new THREE.Mesh(anillos(cint, 38, arco, inicio, true), matPrenda));
+    }
 
     const brazoR = c.rp * 0.31 + 1.6, brazoLargo = c.H * (abierta ? 0.30 : 0.17);
     const brazoX = c.rp * 1.44 * 0.90, brazoY = c.hombro - brazoLargo / 2 + 1;
@@ -2182,7 +2241,12 @@ try {
 }
 
 /* ---------- controles ---------- */
-function refrescar() { medidas(); pintarPatron(); rebuild(); }
+function refrescar() { medidas(); pintarPatron(); rebuild(); sincronizarSegs(); }
+function sincronizarSegs() {
+  const torso = M.prenda !== 'falda' && M.prenda !== 'pantalon';
+  $('segEscote').style.display = torso ? '' : 'none';
+  $('segFalda').style.display = M.prenda === 'falda' ? '' : 'none';
+}
 Object.values(CTRL).forEach((c) => c.addEventListener('input', refrescar));
 $('verCuerpo').addEventListener('change', rebuild);
 document.querySelectorAll('#segPrenda button').forEach((b) => {
@@ -2190,6 +2254,22 @@ document.querySelectorAll('#segPrenda button').forEach((b) => {
     document.querySelectorAll('#segPrenda button').forEach((o) => o.setAttribute('aria-selected', 'false'));
     b.setAttribute('aria-selected', 'true');
     M.prenda = b.getAttribute('data-prenda');
+    refrescar();
+  });
+});
+document.querySelectorAll('#segEscote button').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#segEscote button').forEach((o) => o.setAttribute('aria-selected', 'false'));
+    b.setAttribute('aria-selected', 'true');
+    M.escote = b.getAttribute('data-escote');
+    refrescar();
+  });
+});
+document.querySelectorAll('#segFalda button').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#segFalda button').forEach((o) => o.setAttribute('aria-selected', 'false'));
+    b.setAttribute('aria-selected', 'true');
+    M.falda = b.getAttribute('data-falda');
     refrescar();
   });
 });

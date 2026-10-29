@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="73.06cm" height="130.60cm" viewBox="0 0 73.06 130.60">
-<rect x="0" y="0" width="73.06" height="130.60" fill="#ffffff"/>
-<line x1="0" y1="0" x2="0" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="1" y1="0" x2="1" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="2" y1="0" x2="2" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="3" y1="0" x2="3" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="4" y1="0" x2="4" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="5" y1="0" x2="5" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="6" y1="0" x2="6" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="7" y1="0" x2="7" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="8" y1="0" x2="8" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="9" y1="0" x2="9" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="10" y1="0" x2="10" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="11" y1="0" x2="11" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="12" y1="0" x2="12" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="13" y1="0" x2="13" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="14" y1="0" x2="14" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="15" y1="0" x2="15" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="16" y1="0" x2="16" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="17" y1="0" x2="17" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="18" y1="0" x2="18" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="19" y1="0" x2="19" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="20" y1="0" x2="20" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="21" y1="0" x2="21" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="22" y1="0" x2="22" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="23" y1="0" x2="23" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="24" y1="0" x2="24" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="25" y1="0" x2="25" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="26" y1="0" x2="26" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="27" y1="0" x2="27" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="28" y1="0" x2="28" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="29" y1="0" x2="29" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="30" y1="0" x2="30" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="31" y1="0" x2="31" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="32" y1="0" x2="32" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="33" y1="0" x2="33" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="34" y1="0" x2="34" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="35" y1="0" x2="35" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="36" y1="0" x2="36" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="37" y1="0" x2="37" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="38" y1="0" x2="38" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="39" y1="0" x2="39" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="40" y1="0" x2="40" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="41" y1="0" x2="41" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="42" y1="0" x2="42" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="43" y1="0" x2="43" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="44" y1="0" x2="44" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="45" y1="0" x2="45" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="46" y1="0" x2="46" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="47" y1="0" x2="47" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="48" y1="0" x2="48" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="49" y1="0" x2="49" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="50" y1="0" x2="50" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="51" y1="0" x2="51" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="52" y1="0" x2="52" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="53" y1="0" x2="53" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="54" y1="0" x2="54" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="55" y1="0" x2="55" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="56" y1="0" x2="56" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="57" y1="0" x2="57" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="58" y1="0" x2="58" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="59" y1="0" x2="59" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="60" y1="0" x2="60" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="61" y1="0" x2="61" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="62" y1="0" x2="62" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="63" y1="0" x2="63" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="64" y1="0" x2="64" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="65" y1="0" x2="65" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="66" y1="0" x2="66" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="67" y1="0" x2="67" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="68" y1="0" x2="68" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="69" y1="0" x2="69" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="70" y1="0" x2="70" y2="130.60" stroke="#c9d2e4" stroke-width="0.06"/>
-<line x1="71" y1="0" x2="71" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="72" y1="0" x2="72" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
-<line x1="73" y1="0" x2="73" y2="130.60" stroke="#e9edf5" stroke-width="0.025"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="73.06cm" height="130.64cm" viewBox="0 0 73.06 130.64">
+<rect x="0" y="0" width="73.06" height="130.64" fill="#ffffff"/>
+<line x1="0" y1="0" x2="0" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="1" y1="0" x2="1" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="2" y1="0" x2="2" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="3" y1="0" x2="3" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="4" y1="0" x2="4" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="5" y1="0" x2="5" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="6" y1="0" x2="6" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="7" y1="0" x2="7" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="8" y1="0" x2="8" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="9" y1="0" x2="9" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="10" y1="0" x2="10" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="11" y1="0" x2="11" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="12" y1="0" x2="12" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="13" y1="0" x2="13" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="14" y1="0" x2="14" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="15" y1="0" x2="15" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="16" y1="0" x2="16" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="17" y1="0" x2="17" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="18" y1="0" x2="18" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="19" y1="0" x2="19" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="20" y1="0" x2="20" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="21" y1="0" x2="21" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="22" y1="0" x2="22" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="23" y1="0" x2="23" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="24" y1="0" x2="24" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="25" y1="0" x2="25" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="26" y1="0" x2="26" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="27" y1="0" x2="27" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="28" y1="0" x2="28" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="29" y1="0" x2="29" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="30" y1="0" x2="30" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="31" y1="0" x2="31" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="32" y1="0" x2="32" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="33" y1="0" x2="33" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="34" y1="0" x2="34" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="35" y1="0" x2="35" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="36" y1="0" x2="36" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="37" y1="0" x2="37" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="38" y1="0" x2="38" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="39" y1="0" x2="39" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="40" y1="0" x2="40" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="41" y1="0" x2="41" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="42" y1="0" x2="42" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="43" y1="0" x2="43" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="44" y1="0" x2="44" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="45" y1="0" x2="45" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="46" y1="0" x2="46" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="47" y1="0" x2="47" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="48" y1="0" x2="48" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="49" y1="0" x2="49" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="50" y1="0" x2="50" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="51" y1="0" x2="51" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="52" y1="0" x2="52" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="53" y1="0" x2="53" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="54" y1="0" x2="54" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="55" y1="0" x2="55" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="56" y1="0" x2="56" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="57" y1="0" x2="57" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="58" y1="0" x2="58" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="59" y1="0" x2="59" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="60" y1="0" x2="60" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="61" y1="0" x2="61" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="62" y1="0" x2="62" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="63" y1="0" x2="63" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="64" y1="0" x2="64" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="65" y1="0" x2="65" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="66" y1="0" x2="66" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="67" y1="0" x2="67" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="68" y1="0" x2="68" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="69" y1="0" x2="69" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="70" y1="0" x2="70" y2="130.64" stroke="#c9d2e4" stroke-width="0.06"/>
+<line x1="71" y1="0" x2="71" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="72" y1="0" x2="72" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
+<line x1="73" y1="0" x2="73" y2="130.64" stroke="#e9edf5" stroke-width="0.025"/>
 <line x1="0" y1="0" x2="73.06" y2="0" stroke="#c9d2e4" stroke-width="0.06"/>
 <line x1="0" y1="1" x2="73.06" y2="1" stroke="#e9edf5" stroke-width="0.025"/>
 <line x1="0" y1="2" x2="73.06" y2="2" stroke="#e9edf5" stroke-width="0.025"/>
@@ -221,9 +221,9 @@
 <line x1="14" y1="6.1" x2="14" y2="7" stroke="#0f172a" stroke-width="0.14"/>
 <text x="14.6" y="7.4" font-family="sans-serif" font-size="0.62" fill="#0f172a">10 cm de verificación · imprimir al 100 % (escala real)</text>
 </g>
-<g transform="translate(4.00 13.01)">
-<path d="M -1.00 7.69 L -0.67 6.42 L -0.31 5.32 L 0.10 4.31 L 0.55 3.40 L 1.05 2.57 L 1.59 1.82 L 2.17 1.16 L 2.78 0.59 L 3.41 0.11 L 4.07 -0.29 L 4.74 -0.60 L 5.42 -0.82 L 6.11 -0.96 L 6.90 -1.01 L 24.80 3.69 L 25.21 5.65 L 25.43 6.96 L 25.62 8.23 L 25.75 9.46 L 25.85 10.66 L 25.91 11.84 L 25.93 13.00 L 25.93 14.15 L 25.90 15.30 L 25.85 16.46 L 25.78 17.62 L 25.69 18.81 L 25.60 20.03 L 25.48 21.52 L 24.78 22.65 L 26.03 54.30 L -1.00 54.30 L -1.00 7.82 Z" fill="#eef3ff" stroke="#0057ff" stroke-width="0.2" stroke-linejoin="round"/>
-<path d="M 0 7.82 C 1.22 2.35 4.22 0 6.8 0 L 23.95 4.5 C 25.35 10.86 24.99 15.26 24.5 21.2 L 23.77 22.39 L 24.99 53.3 L 0 53.3 L 0 7.82 Z" fill="none" stroke="#334155" stroke-width="0.15" stroke-dasharray="0.9 1.1" stroke-linejoin="round"/>
+<g transform="translate(4.00 13.05)">
+<path d="M -1.00 3.90 L -0.21 3.07 L 0.32 2.55 L 0.86 2.08 L 1.40 1.66 L 1.94 1.27 L 2.48 0.92 L 3.01 0.61 L 3.53 0.32 L 4.05 0.06 L 4.56 -0.17 L 5.05 -0.38 L 5.53 -0.58 L 6.00 -0.76 L 6.74 -1.05 L 24.80 3.69 L 25.21 5.65 L 25.43 6.96 L 25.62 8.23 L 25.75 9.46 L 25.85 10.66 L 25.91 11.84 L 25.93 13.00 L 25.93 14.15 L 25.90 15.30 L 25.85 16.46 L 25.78 17.62 L 25.69 18.81 L 25.60 20.03 L 25.48 21.52 L 24.78 22.65 L 26.03 54.30 L -1.00 54.30 L -1.00 4.30 Z" fill="#eef3ff" stroke="#0057ff" stroke-width="0.2" stroke-linejoin="round"/>
+<path d="M 0 4.3 C 2.31 1.72 4.76 0.78 6.8 0 L 23.95 4.5 C 25.35 10.86 24.99 15.26 24.5 21.2 L 23.77 22.39 L 24.99 53.3 L 0 53.3 L 0 4.3 Z" fill="none" stroke="#334155" stroke-width="0.15" stroke-dasharray="0.9 1.1" stroke-linejoin="round"/>
 <path d="M 14.26 53.3 L 15.51 19.5 L 16.76 53.3" fill="none" stroke="#334155" stroke-width="0.14"/>
 <line x1="15.51" y1="53.30" x2="15.51" y2="19.5" stroke="#94a3b8" stroke-width="0.1" stroke-dasharray="0.5 0.6"/>
 <line x1="15.27" y1="2.64" x2="15.48" y2="1.86" stroke="#ff6a00" stroke-width="0.2"/>
@@ -245,7 +245,7 @@
 <text x="0" y="-1.6" font-family="sans-serif" font-size="0.72" font-weight="bold" fill="#0f172a">Trasero · cortar 1</text>
 <text x="0" y="-0.5" font-family="sans-serif" font-size="0.55" fill="#5b6472">25.0 × 53.3 cm · hilo paralelo al centro</text>
 </g>
-<g transform="translate(4.04 85.21)">
+<g transform="translate(4.04 85.25)">
 <path d="M -1.04 -0.35 L 0.99 -2.55 L 2.88 -4.18 L 4.88 -5.51 L 6.96 -6.56 L 9.12 -7.30 L 11.31 -7.75 L 13.53 -7.90 L 15.75 -7.75 L 17.94 -7.30 L 20.10 -6.56 L 22.18 -5.51 L 24.18 -4.18 L 26.07 -2.55 L 28.10 -0.35 L 25.80 23.39 L 1.25 23.39 L -1.00 0.10 Z" fill="#eef3ff" stroke="#0057ff" stroke-width="0.2" stroke-linejoin="round"/>
 <path d="M 0 0 C 7.58 -9.2 19.48 -9.2 27.06 0 L 24.89 22.39 L 2.16 22.39 L 0 0 Z" fill="none" stroke="#334155" stroke-width="0.15" stroke-dasharray="0.9 1.1" stroke-linejoin="round"/>
 <line x1="9.28" y1="-5.89" x2="9.07" y2="-6.67" stroke="#ff6a00" stroke-width="0.2"/>
@@ -254,6 +254,6 @@
 <text x="0" y="-1.6" font-family="sans-serif" font-size="0.72" font-weight="bold" fill="#0f172a">Manga · cortar 2</text>
 <text x="0" y="-0.5" font-family="sans-serif" font-size="0.55" fill="#5b6472">27.1 × 31.6 cm · hilo paralelo al centro</text>
 </g>
-<text x="4" y="127.60" font-family="sans-serif" font-size="0.7" font-weight="bold" fill="#0f172a">PATRÓN CAMISETA · ESCALA 1:1 · margen de costura 1 cm</text>
-<text x="4" y="128.80" font-family="sans-serif" font-size="0.6" fill="#5b6472">medidas: altura 170 · pecho 92 · cintura 74 · cadera 98 · largo 100% · 2026-10-29 · discontinua = línea de costura · naranja = piquetes de correspondencia</text>
+<text x="4" y="127.64" font-family="sans-serif" font-size="0.7" font-weight="bold" fill="#0f172a">PATRÓN CAMISETA · ESCALA 1:1 · margen de costura 1 cm</text>
+<text x="4" y="128.84" font-family="sans-serif" font-size="0.6" fill="#5b6472">medidas: altura 170 · pecho 92 · cintura 74 · cadera 98 · largo 100% · 2026-10-29 · discontinua = línea de costura · naranja = piquetes de correspondencia</text>
 </svg>
