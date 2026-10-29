@@ -2006,6 +2006,7 @@ function dxfR12() {
 }
 
 /* gancho de prueba headless: dom + exportaciones en base64 */
+window.__piezasJson = function () { return JSON.stringify(piezasPatron()); };
 window.__patronTest = function () {
   const q = (sel) => document.querySelectorAll('#piezasProbador [data-rol="' + sel + '"]').length;
   const dom = {
@@ -2361,6 +2362,52 @@ if (pre && NOMBRE[pre]) {
         b.onclick = () => poner(n);
         caja.appendChild(b);
       });
+      /* --- Tela cosida en Blender: 4 piezas de patrón -> costuras -> cloth --- */
+      let modoRig = 'anim';
+      let cosido = null;
+      const btnCosido = document.createElement('button');
+      btnCosido.type = 'button'; btnCosido.textContent = 'Cosido en Blender';
+      btnCosido.setAttribute('aria-pressed', 'false');
+      btnCosido.className = 'nz-btn nz-btn--sm nz-btn--soft';
+      caja.appendChild(btnCosido);
+      const activarCosido = async () => {
+        if (!cosido) {
+          estado.textContent = 'Cargando tela cosida…';
+          const resp2 = await fetch('assets/vestido-cosido.glb');
+          if (!resp2.ok) throw new Error('glb cosido ' + resp2.status);
+          const glb2 = await resp2.arrayBuffer();
+          const r2 = await new Promise((res, rej) => new GLTFLoader().parse(glb2, '', res, rej));
+          const bb = new THREE.Box3().setFromObject(r2.scene);
+          const c = bb.getCenter(new THREE.Vector3());
+          r2.scene.position.set(-c.x, -bb.min.y, -c.z);
+          cosido = r2.scene;
+        }
+        escena.remove(r.scene); escena.add(cosido);
+        modoRig = 'cosido';
+        mixer.stopAllAction();
+        caja.querySelectorAll('button[data-clip]').forEach((b) => { b.style.display = 'none'; });
+        btnCosido.textContent = '← Rig animado';
+        btnCosido.setAttribute('aria-pressed', 'true');
+        btnCosido.className = 'nz-btn nz-btn--sm nz-btn--primary';
+        estado.textContent = 'Tela cosida en Blender: 4 piezas de patrón cosidas (costura = continuidad) y simuladas como tela (pliegues reales). Arrastra para girar.';
+      };
+      const volverAnim = () => {
+        if (cosido) escena.remove(cosido);
+        escena.add(r.scene);
+        modoRig = 'anim';
+        caja.querySelectorAll('button[data-clip]').forEach((b) => { b.style.display = ''; });
+        btnCosido.textContent = 'Cosido en Blender';
+        btnCosido.setAttribute('aria-pressed', 'false');
+        btnCosido.className = 'nz-btn nz-btn--sm nz-btn--soft';
+        poner('Idle_A');
+      };
+      btnCosido.onclick = () => {
+        if (modoRig === 'anim') {
+          activarCosido().catch((e) => {
+            estado.textContent = 'La tela cosida aún no está publicada: ' + e.message;
+          });
+        } else volverAnim();
+      };
       const ajustar = () => {
         const w = lienzo.clientWidth, h = lienzo.clientHeight || 380;
         renderer.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
@@ -2378,6 +2425,9 @@ if (pre && NOMBRE[pre]) {
       if (es.some((x) => x.isIntersecting)) { io.disconnect(); arrancar(); }
     }, { rootMargin: '300px' });
     io.observe(lienzo);
+    /* red de seguridad: si el IO no dispara (pestaña en segundo plano,
+       navegadores embebidos), el visor arranca igualmente por timeout */
+    setTimeout(() => arrancar(), 1500);
   } else { arrancar(); }
 })();
 </script>
