@@ -1,0 +1,10 @@
+{
+  "piezas": 3,
+  "margen": 3,
+  "costura": 3,
+  "pinza": 4,
+  "piquete": 8,
+  "hilo": 3,
+  "prenda": "camiseta",
+  "overflow": false
+}

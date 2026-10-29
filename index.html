@@ -643,7 +643,12 @@
 
       <div class="nodisp" style="display:flex;flex-wrap:wrap;gap:var(--nz-space-3);align-items:center;margin-block:var(--nz-space-2)">
         <label class="nz-switch"><input type="checkbox" id="verCuerpo" checked><span class="nz-switch__track"><span class="nz-switch__thumb"></span></span><span class="nz-switch__label">Ver cuerpo</span></label>
-        <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" id="btnSvg">Descargar patrón SVG</button>
+        <label class="nz-switch"><input type="checkbox" id="verMargen" checked><span class="nz-switch__track"><span class="nz-switch__thumb"></span></span><span class="nz-switch__label">Margen de costura 1 cm</span></label>
+      </div>
+      <div class="nodisp" style="display:flex;flex-wrap:wrap;gap:var(--nz-space-3);margin-block:var(--nz-space-2)">
+        <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" id="btnSvg">Descargar SVG 1:1</button>
+        <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" id="btnPdf">PDF A4 por teselas</button>
+        <button class="nz-btn nz-btn--soft nz-btn--sm" type="button" id="btnDxf">DXF (Seamly2D)</button>
       </div>
       <p class="cm-mini" style="margin:var(--nz-space-2) 0 0">Si el motor 3D no carga (sin red), el patrón 2D sigue funcionando: es el mismo cálculo, sin malla.</p>
     </div>
@@ -662,7 +667,7 @@
         </div>
         <div>
           <div id="listaPiezas" class="cm-pieza"></div>
-          <p class="cm-mini" style="margin-top:var(--nz-space-3)">En clase esto se exporta a SVG a escala 1:1, se imprime en A4 por teselas, se pega y se corta. La simulación te dice si vale la pena; la tela te dice la verdad.</p>
+          <p class="cm-mini" style="margin-top:var(--nz-space-3)">Los botones de arriba exportan el patrón a escala real: <strong>SVG 1:1</strong> con rejilla en cm, <strong>PDF A4 por teselas</strong> con cruces de pegado y <strong>DXF</strong> para Seamly2D o el plotter de corte — con margen de costura, pinzas y piquetes. Imprime al 100 % y mide la barra de verificación. La simulación te dice si vale la pena; la tela te dice la verdad.</p>
         </div>
       </div>
     </div>
@@ -1551,20 +1556,105 @@ function largoPrenda() {
   return { desde, hasta: desde - base * f, base: base * f };
 }
 
-/* ---------- patrón 2D ---------- */
-function cuerpoBase(prof) {
+/* ---------- patrón 2D: piezas estructuradas (unidades: cm) ----------
+   Cada pieza declara su línea de costura; el margen de costura (offset
+   real), las pinzas, los piquetes y el hilo derivan del mismo dato. El
+   dibujo y las tres exportaciones (SVG 1:1, PDF A4, DXF) salen de aquí. */
+const N2 = (v) => +v.toFixed(2);
+const asci = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[·—]/g, '-');
+
+function dSegs(pz) {
+  let d = 'M ' + pz.p0[0] + ' ' + pz.p0[1];
+  pz.segs.forEach((s) => {
+    d += s.t === 'C'
+      ? ' C ' + s.c1[0] + ' ' + s.c1[1] + ' ' + s.c2[0] + ' ' + s.c2[1] + ' ' + s.p[0] + ' ' + s.p[1]
+      : ' L ' + s.p[0] + ' ' + s.p[1];
+  });
+  return d + ' Z';
+}
+
+function dAnillo(pts) {
+  let d = 'M ' + pts[0][0].toFixed(2) + ' ' + pts[0][1].toFixed(2);
+  for (let i = 1; i < pts.length; i++) d += ' L ' + pts[i][0].toFixed(2) + ' ' + pts[i][1].toFixed(2);
+  return d + ' Z';
+}
+
+function evalSeg(a, s, u) {
+  if (s.t === 'L') return [a[0] + (s.p[0] - a[0]) * u, a[1] + (s.p[1] - a[1]) * u];
+  const v = 1 - u;
+  return [
+    v * v * v * a[0] + 3 * v * v * u * s.c1[0] + 3 * v * u * u * s.c2[0] + u * u * u * s.p[0],
+    v * v * v * a[1] + 3 * v * v * u * s.c1[1] + 3 * v * u * u * s.c2[1] + u * u * u * s.p[1]
+  ];
+}
+
+function aplanar(pz, n) {
+  const pts = [pz.p0.slice()];
+  let a = pz.p0;
+  pz.segs.forEach((s) => {
+    if (s.t === 'L') pts.push(s.p.slice());
+    else for (let k = 1; k <= n; k++) pts.push(evalSeg(a, s, k / n));
+    a = s.p;
+  });
+  return pts;
+}
+
+function offsetAnillo(pts, d) {
+  const n = pts.length, ce = [0, 0];
+  pts.forEach((p) => { ce[0] += p[0] / n; ce[1] += p[1] / n; });
+  const nrm = (v) => { const m = Math.hypot(v[0], v[1]); return m < 1e-9 ? null : [v[0] / m, v[1] / m]; };
+  const N = []; let last = [0, 1];
+  for (let i = 0; i < n; i++) {
+    const p = pts[i], q = pts[(i + 1) % n];
+    const dx = q[0] - p[0], dy = q[1] - p[1];
+    const mid = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+    const c1 = [dy, -dx], c2 = [-dy, dx];
+    const d1 = Math.hypot(mid[0] + c1[0] - ce[0], mid[1] + c1[1] - ce[1]);
+    const d2 = Math.hypot(mid[0] + c2[0] - ce[0], mid[1] + c2[1] - ce[1]);
+    const v = nrm(d1 > d2 ? c1 : c2) || last;
+    N.push(v); last = v;
+  }
+  const off = [];
+  for (let i = 0; i < n; i++) {
+    const a0 = N[(i - 1 + n) % n], a1 = N[i];
+    const m = nrm([a0[0] + a1[0], a0[1] + a1[1]]) || a1;
+    const cos = Math.max(0.4, m[0] * a1[0] + m[1] * a1[1]);
+    off.push([pts[i][0] + (m[0] * d) / cos, pts[i][1] + (m[1] * d) / cos]);
+  }
+  return off;
+}
+
+function ptoBordes(pz, si, u) {
+  let a = pz.p0;
+  for (let i = 0; i < si; i++) a = pz.segs[i].p;
+  const s = pz.segs[si];
+  const p = evalSeg(a, s, u), q = evalSeg(a, s, Math.min(1, u + 0.02));
+  const t = [q[0] - p[0], q[1] - p[1]], m = Math.hypot(t[0], t[1]) || 1;
+  return { p, t: [t[0] / m, t[1] / m] };
+}
+
+function cuerpoBase(prof, pinza) {
   const holg = 6;
   const ap = (M.pecho + holg) / 4, ah = ap * 0.70, ac = ap * 0.97, ab = ap * 1.02;
   const ps = M.pecho / 10 + 10.5 + holg / 4, ae = M.pecho / 20 + 2.2, ch = 4.5;
   const L = largoPrenda().base;
   const lc = L * 0.42;
+  const segs = [
+    { t: 'C', c1: [N2(ae * 0.18), N2(prof * 0.3)], c2: [N2(ae * 0.62), 0], p: [N2(ae), 0] },
+    { t: 'L', p: [N2(ae + ah), N2(ch)] },
+    { t: 'C', c1: [N2(ae + ah + 1.4), N2(ch + ps * 0.30)], c2: [N2(ap * 1.02), N2(ps * 0.72)], p: [N2(ap), N2(ps)] },
+    { t: 'L', p: [N2(ac), N2(lc)] },
+    { t: 'L', p: [N2(ab), N2(L)] },
+    { t: 'L', p: [0, N2(L)] },
+    { t: 'L', p: [0, N2(prof)] }
+  ];
+  const ent = pinza ? pinza.ent : 0;
+  const xP = N2(ac * (pinza && pinza.back ? 0.55 : 0.60));
   return {
     ap, ah, ac, ab, ps, ae, ch, L, lc,
-    d: 'M 0 ' + prof.toFixed(2) +
-      ' C ' + (ae * 0.18).toFixed(2) + ' ' + (prof * 0.3).toFixed(2) + ' ' + (ae * 0.62).toFixed(2) + ' 0 ' + ae.toFixed(2) + ' 0' +
-      ' L ' + (ae + ah).toFixed(2) + ' ' + ch.toFixed(2) + ' ' +
-      'C ' + (ae + ah + 1.4).toFixed(2) + ' ' + (ch + ps * 0.30).toFixed(2) + ' ' + (ap * 1.02).toFixed(2) + ' ' + (ps * 0.72).toFixed(2) + ' ' + ap.toFixed(2) + ' ' + ps.toFixed(2) + ' ' +
-      'L ' + ac.toFixed(2) + ' ' + lc.toFixed(2) + ' L ' + ab.toFixed(2) + ' ' + L.toFixed(2) + ' L 0 ' + L.toFixed(2) + ' Z'
+    p0: [0, N2(prof)], segs,
+    pinzas: ent ? [{ a: [xP, N2(L)], apex: [N2(xP + ent / 2), N2(ps * pinza.fr)], b: [N2(xP + ent), N2(L)] }] : [],
+    piquetes: [{ si: 1, u: 0.5 }, { si: 2, u: 0.5 }, { si: 4, u: 0.5 }]
   };
 }
 
@@ -1573,26 +1663,46 @@ function piezasPatron() {
   const piezas = [];
   if (M.prenda === 'falda') {
     const wc = (M.cintura / 4) + 1.5, wk = (M.cadera / 4) * 1.42, L = lp.base;
-    const d = 'M 0 0 L ' + wc.toFixed(2) + ' 0 L ' + wk.toFixed(2) + ' ' + L.toFixed(2) + ' L 0 ' + L.toFixed(2) + ' Z';
-    piezas.push({ n: 'Delantero', d, w: wk, h: L, m: 'cintura ' + wc.toFixed(1) + ' · bajo ' + wk.toFixed(1) });
-    piezas.push({ n: 'Trasero', d, w: wk, h: L, m: 'igual + pinza de 2 cm' });
+    const mk = (n, cortar, xP, ent) => ({
+      n, cortar, p0: [0, 0], w: N2(wk), h: N2(L),
+      segs: [{ t: 'L', p: [N2(wc), 0] }, { t: 'L', p: [N2(wk), N2(L)] }, { t: 'L', p: [0, N2(L)] }, { t: 'L', p: [0, 0] }],
+      pinzas: [{ a: [N2(xP), 0], apex: [N2(xP + ent / 2), N2(L * 0.38)], b: [N2(xP + ent), 0] }],
+      piquetes: [{ si: 1, u: 0.42 }],
+      m: 'cintura ' + wc.toFixed(1) + ' · bajo ' + wk.toFixed(1) + ' · pinza ' + ent.toFixed(1) + ' cm'
+    });
+    piezas.push(mk('Delantero', 'cortar 1 al doblez', wc * 0.55, 1.5));
+    piezas.push(mk('Trasero', 'cortar 2', wc * 0.52, 2.0));
   } else if (M.prenda === 'pantalon') {
     const wc = (M.cadera / 4) + 1.5, wr = (M.cadera / 4) * 0.60, tiro = M.cadera * 0.115, L = lp.base;
-    const d = 'M 0 0 L ' + wc.toFixed(2) + ' 0 L ' + wc.toFixed(2) + ' ' + tiro.toFixed(2) +
-      ' L ' + (wc * 0.74).toFixed(2) + ' ' + tiro.toFixed(2) +
-      ' L ' + wr.toFixed(2) + ' ' + L.toFixed(2) + ' L ' + (wr * 0.42).toFixed(2) + ' ' + L.toFixed(2) +
-      ' L ' + (wc * 0.30).toFixed(2) + ' ' + tiro.toFixed(2) + ' L 0 ' + tiro.toFixed(2) + ' Z';
-    piezas.push({ n: 'Pierna delantera', d, w: wc, h: L, m: 'tiro ' + tiro.toFixed(1) + ' · bajo ' + wr.toFixed(1) });
-    piezas.push({ n: 'Pierna trasera', d, w: wc, h: L, m: 'tiro 2 cm más bajo' });
+    const segs = [
+      { t: 'L', p: [N2(wc), 0] },
+      { t: 'L', p: [N2(wc), N2(tiro)] },
+      { t: 'L', p: [N2(wc * 0.74), N2(tiro)] },
+      { t: 'L', p: [N2(wr), N2(L)] },
+      { t: 'L', p: [N2(wr * 0.42), N2(L)] },
+      { t: 'L', p: [N2(wc * 0.30), N2(tiro)] },
+      { t: 'L', p: [0, N2(tiro)] },
+      { t: 'L', p: [0, 0] }
+    ];
+    piezas.push({ n: 'Pierna delantera', cortar: 'cortar 2', p0: [0, 0], segs, w: N2(wc), h: N2(L), pinzas: [], piquetes: [{ si: 1, u: 0.5 }], m: 'tiro ' + tiro.toFixed(1) + ' · bajo ' + wr.toFixed(1) });
+    piezas.push({ n: 'Pierna trasera', cortar: 'cortar 2', p0: [0, 0], segs, w: N2(wc), h: N2(L), pinzas: [], piquetes: [{ si: 1, u: 0.5 }], m: 'tiro 2 cm más bajo' });
   } else {
-    const del = cuerpoBase(cuerpoEscote('del'));
-    piezas.push({ n: 'Delantero', d: del.d, w: del.ab, h: del.L, m: 'sisa ' + del.ps.toFixed(1) + ' · escote ' + del.ae.toFixed(1) });
-    const tra = cuerpoBase(cuerpoEscote('tra'));
-    piezas.push({ n: 'Trasero', d: tra.d, w: tra.ab, h: tra.L, m: 'escote 1/3 de profundo' });
+    const del = cuerpoBase(cuerpoEscote('del'), { ent: 2.5, fr: 0.92 });
+    piezas.push({ n: 'Delantero', cortar: 'cortar 1', p0: del.p0, segs: del.segs, pinzas: del.pinzas, piquetes: del.piquetes, w: del.ab, h: del.L, m: 'sisa ' + del.ps.toFixed(1) + ' · escote ' + del.ae.toFixed(1) + ' · pinza 2,5 cm' });
+    const tra = cuerpoBase(cuerpoEscote('tra'), { ent: 2.0, fr: 0.60, back: true });
+    piezas.push({ n: 'Trasero', cortar: 'cortar 1', p0: tra.p0, segs: tra.segs, pinzas: tra.pinzas, piquetes: tra.piquetes, w: tra.ab, h: tra.L, m: 'escote 1/3 de profundo · pinza 2 cm' });
     const am = M.pecho / 3.4, lm = lp.base * 0.42, copa = am * 0.34;
-    const manga = 'M 0 0 C ' + (am * 0.28).toFixed(2) + ' ' + (-copa).toFixed(2) + ' ' + (am * 0.72).toFixed(2) + ' ' + (-copa).toFixed(2) + ' ' + am.toFixed(2) + ' 0' +
-      ' L ' + (am * 0.92).toFixed(2) + ' ' + lm.toFixed(2) + ' L ' + (am * 0.08).toFixed(2) + ' ' + lm.toFixed(2) + ' Z';
-    piezas.push({ n: 'Manga', d: manga, w: am, h: lm + copa, m: 'copa ' + copa.toFixed(1) + ' · largo ' + lm.toFixed(1) });
+    piezas.push({
+      n: 'Manga', cortar: 'cortar 2', p0: [0, 0], w: N2(am), h: N2(lm + copa),
+      segs: [
+        { t: 'C', c1: [N2(am * 0.28), N2(-copa)], c2: [N2(am * 0.72), N2(-copa)], p: [N2(am), 0] },
+        { t: 'L', p: [N2(am * 0.92), N2(lm)] },
+        { t: 'L', p: [N2(am * 0.08), N2(lm)] },
+        { t: 'L', p: [0, 0] }
+      ],
+      pinzas: [], piquetes: [{ si: 0, u: 0.35 }, { si: 0, u: 0.65 }],
+      m: 'copa ' + copa.toFixed(1) + ' · largo ' + lm.toFixed(1)
+    });
   }
   return piezas;
 }
@@ -1604,28 +1714,268 @@ function cuerpoEscote(tipo) {
 
 function pintarPatron() {
   const piezas = piezasPatron(), g = $('piezasProbador'), svg = $('svgProbador');
+  const margen = $('verMargen') && $('verMargen').checked ? 1 : 0;
   $('svgVacio').setAttribute('opacity', '0');
   g.innerHTML = '';
   let x = 8;
   const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, at) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); return e; };
   piezas.forEach((pz) => {
-    const path = document.createElementNS(NS, 'path');
-    path.setAttribute('d', pz.d);
-    path.setAttribute('transform', 'translate(' + x.toFixed(1) + ',10)');
-    g.appendChild(path);
-    const t = document.createElementNS(NS, 'text');
-    t.setAttribute('x', x.toFixed(1)); t.setAttribute('y', '6'); t.setAttribute('font-size', '3.4');
-    t.setAttribute('fill', 'var(--nz-text-soft)'); t.textContent = pz.n;
-    g.appendChild(t);
-    x += pz.w + 12;
+    const pts = aplanar(pz, 12);
+    const off = margen ? offsetAnillo(pts, margen) : pts;
+    const xs = off.map((p) => p[0]);
+    const wTot = Math.max(...xs) - Math.min(...xs);
+    const grp = mk('g', { transform: 'translate(' + x.toFixed(1) + ',16)', 'data-rol': 'pieza' });
+    if (margen) grp.appendChild(mk('path', { d: dAnillo(off), 'data-rol': 'margen', fill: 'var(--nz-brand)', 'fill-opacity': '0.05', stroke: 'var(--nz-brand)', 'stroke-width': '0.45', 'stroke-linejoin': 'round' }));
+    grp.appendChild(mk('path', { d: dSegs(pz), 'data-rol': 'costura', fill: 'none', stroke: margen ? 'var(--nz-text-soft)' : 'var(--nz-brand)', 'stroke-width': '0.35', 'stroke-dasharray': margen ? '0.9 1.1' : 'none', 'stroke-linejoin': 'round' }));
+    pz.pinzas.forEach((z) => {
+      grp.appendChild(mk('path', { d: 'M ' + z.a[0] + ' ' + z.a[1] + ' L ' + z.apex[0] + ' ' + z.apex[1] + ' L ' + z.b[0] + ' ' + z.b[1], 'data-rol': 'pinza', fill: 'none', stroke: 'var(--nz-text-soft)', 'stroke-width': '0.3' }));
+      grp.appendChild(mk('line', { x1: (z.a[0] + z.b[0]) / 2, y1: (z.a[1] + z.b[1]) / 2, x2: z.apex[0], y2: z.apex[1], 'data-rol': 'pinza', stroke: 'var(--nz-text-soft)', 'stroke-width': '0.22', 'stroke-dasharray': '0.5 0.6' }));
+      grp.appendChild(mk('circle', { cx: z.apex[0], cy: z.apex[1], r: '0.22', fill: 'none', stroke: 'var(--nz-text-soft)', 'stroke-width': '0.2' }));
+    });
+    pz.piquetes.forEach((q) => {
+      const b = ptoBordes(pz, q.si, q.u);
+      grp.appendChild(mk('line', { x1: b.p[0] - b.t[1] * 0.4, y1: b.p[1] + b.t[0] * 0.4, x2: b.p[0] + b.t[1] * 0.4, y2: b.p[1] - b.t[0] * 0.4, 'data-rol': 'piquete', stroke: 'var(--nz-accent)', 'stroke-width': '0.35' }));
+    });
+    const yT = Math.min(...pts.map((p) => p[1])), yB = Math.max(...pts.map((p) => p[1]));
+    grp.appendChild(mk('line', { x1: pz.w / 2, y1: yT + 0.4, x2: pz.w / 2, y2: yB - 0.4, 'data-rol': 'hilo', stroke: 'var(--nz-border-strong)', 'stroke-width': '0.28', 'stroke-dasharray': '2.4 0.9 0.5 0.9' }));
+    const t1 = mk('text', { x: 0, y: -4.6, 'font-size': '3.4', fill: 'var(--nz-text)' }); t1.textContent = pz.n; grp.appendChild(t1);
+    const t2 = mk('text', { x: 0, y: -2.2, 'font-size': '2.4', fill: 'var(--nz-text-soft)' }); t2.textContent = pz.cortar + (margen ? ' · margen ' + margen + ' cm' : ''); grp.appendChild(t2);
+    g.appendChild(grp);
+    x += wTot + 11;
   });
   let box;
   try { box = g.getBBox(); } catch (e) { box = { x: 0, y: 0, width: 120, height: 80 }; }
   svg.setAttribute('viewBox', (box.x - 4).toFixed(0) + ' ' + (box.y - 4).toFixed(0) + ' ' + (box.width + 8).toFixed(0) + ' ' + (box.height + 10).toFixed(0));
   $('listaPiezas').innerHTML = piezas.map((pz) =>
     '<div class="cm-pieza"><div class="cm-pieza__t"><strong>' + pz.n + '</strong><span>' +
-    pz.w.toFixed(1) + ' × ' + pz.h.toFixed(1) + ' cm</span></div><span class="cm-mini">' + pz.m + '</span></div>').join('');
+    pz.w.toFixed(1) + ' × ' + pz.h.toFixed(1) + ' cm</span></div><span class="cm-mini">' + pz.m + ' · ' + pz.cortar + '</span></div>').join('');
   $('badgePrenda').textContent = NOMBRE[M.prenda].toLowerCase();
+}
+
+/* ---------- exportaciones reales: SVG 1:1, PDF A4 por teselas, DXF ---------- */
+function maquetar() {
+  const margen = $('verMargen').checked ? 1 : 0;
+  const piezas = piezasPatron().map((pz) => {
+    const pts = aplanar(pz, 14);
+    const off = margen ? offsetAnillo(pts, margen) : pts;
+    const xs = off.map((p) => p[0]), ys = off.map((p) => p[1]);
+    const minX = Math.min(...xs), minY = Math.min(...ys);
+    return { pz, pts, off, margen, minX, minY, w: Math.max(...xs) - minX, h: Math.max(...ys) - minY };
+  });
+  let x = 3, y = 12, rowH = 0, maxX = 0;
+  piezas.forEach((o) => {
+    if (x + o.w > 78) { x = 3; y += rowH + 10; rowH = 0; }
+    o.ox = x - o.minX; o.oy = y - o.minY;
+    x += o.w + 7; rowH = Math.max(rowH, o.h); maxX = Math.max(maxX, o.ox + o.w);
+  });
+  return { piezas, W: maxX + 4, H: y + rowH + 8, margen };
+}
+
+function svgUnoUno() {
+  const lay = maquetar(), W = Math.max(lay.W, 40) + 4, H = lay.H + 14;
+  const f = (v) => (+v).toFixed(2);
+  let s = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  s += '<svg xmlns="http://www.w3.org/2000/svg" width="' + f(W) + 'cm" height="' + f(H) + 'cm" viewBox="0 0 ' + f(W) + ' ' + f(H) + '">\n';
+  s += '<rect x="0" y="0" width="' + f(W) + '" height="' + f(H) + '" fill="#ffffff"/>\n';
+  for (let i = 0; i <= W; i++) s += '<line x1="' + i + '" y1="0" x2="' + i + '" y2="' + f(H) + '" stroke="' + (i % 10 === 0 ? '#c9d2e4' : '#e9edf5') + '" stroke-width="' + (i % 10 === 0 ? 0.06 : 0.025) + '"/>\n';
+  for (let j = 0; j <= H; j++) s += '<line x1="0" y1="' + j + '" x2="' + f(W) + '" y2="' + j + '" stroke="' + (j % 10 === 0 ? '#c9d2e4' : '#e9edf5') + '" stroke-width="' + (j % 10 === 0 ? 0.06 : 0.025) + '"/>\n';
+  s += '<g id="regla">\n<line x1="4" y1="7" x2="14" y2="7" stroke="#0f172a" stroke-width="0.16"/>\n';
+  for (let i = 0; i <= 10; i++) s += '<line x1="' + (4 + i) + '" y1="' + (i % 5 === 0 ? 6.1 : 6.5) + '" x2="' + (4 + i) + '" y2="7" stroke="#0f172a" stroke-width="0.14"/>\n';
+  s += '<text x="14.6" y="7.4" font-family="sans-serif" font-size="0.62" fill="#0f172a">10 cm de verificación · imprimir al 100 % (escala real)</text>\n</g>\n';
+  lay.piezas.forEach((o) => {
+    s += '<g transform="translate(' + f(o.ox) + ' ' + f(o.oy) + ')">\n';
+    if (lay.margen) s += '<path d="' + dAnillo(o.off) + '" fill="#eef3ff" stroke="#0057ff" stroke-width="0.2" stroke-linejoin="round"/>\n';
+    s += '<path d="' + dSegs(o.pz) + '" fill="none" stroke="#334155" stroke-width="0.15"' + (lay.margen ? ' stroke-dasharray="0.9 1.1"' : '') + ' stroke-linejoin="round"/>\n';
+    o.pz.pinzas.forEach((z) => {
+      s += '<path d="M ' + z.a[0] + ' ' + z.a[1] + ' L ' + z.apex[0] + ' ' + z.apex[1] + ' L ' + z.b[0] + ' ' + z.b[1] + '" fill="none" stroke="#334155" stroke-width="0.14"/>\n';
+      s += '<line x1="' + f((z.a[0] + z.b[0]) / 2) + '" y1="' + f((z.a[1] + z.b[1]) / 2) + '" x2="' + z.apex[0] + '" y2="' + z.apex[1] + '" stroke="#94a3b8" stroke-width="0.1" stroke-dasharray="0.5 0.6"/>\n';
+    });
+    o.pz.piquetes.forEach((q) => {
+      const b = ptoBordes(o.pz, q.si, q.u);
+      s += '<line x1="' + f(b.p[0] - b.t[1] * 0.4) + '" y1="' + f(b.p[1] + b.t[0] * 0.4) + '" x2="' + f(b.p[0] + b.t[1] * 0.4) + '" y2="' + f(b.p[1] - b.t[0] * 0.4) + '" stroke="#ff6a00" stroke-width="0.2"/>\n';
+    });
+    const yT = Math.min(...o.pts.map((p) => p[1])), yB = Math.max(...o.pts.map((p) => p[1]));
+    s += '<line x1="' + f(o.pz.w / 2) + '" y1="' + f(yT + 0.4) + '" x2="' + f(o.pz.w / 2) + '" y2="' + f(yB - 0.4) + '" stroke="#475569" stroke-width="0.12" stroke-dasharray="2.4 0.9 0.5 0.9"/>\n';
+    s += '<text x="0" y="-1.6" font-family="sans-serif" font-size="0.72" font-weight="bold" fill="#0f172a">' + o.pz.n + ' · ' + o.pz.cortar + '</text>\n';
+    s += '<text x="0" y="-0.5" font-family="sans-serif" font-size="0.55" fill="#5b6472">' + o.pz.w.toFixed(1) + ' × ' + o.pz.h.toFixed(1) + ' cm · hilo paralelo al centro</text>\n';
+    s += '</g>\n';
+  });
+  const c = cotas();
+  s += '<text x="4" y="' + f(H - 3) + '" font-family="sans-serif" font-size="0.7" font-weight="bold" fill="#0f172a">PATRÓN ' + NOMBRE[M.prenda].toUpperCase() + ' · ESCALA 1:1 · margen de costura ' + lay.margen + ' cm</text>\n';
+  s += '<text x="4" y="' + f(H - 1.8) + '" font-family="sans-serif" font-size="0.6" fill="#5b6472">medidas: altura ' + c.H.toFixed(0) + ' · pecho ' + M.pecho + ' · cintura ' + M.cintura + ' · cadera ' + M.cadera + ' · largo ' + M.largo + '% · ' + new Date().toISOString().slice(0, 10) + ' · discontinua = línea de costura · naranja = piquetes de correspondencia</text>\n</svg>';
+  return s;
+}
+
+function clipSeg(a, b, rc) {
+  let t0 = 0, t1 = 1;
+  const dx = b[0] - a[0], dy = b[1] - a[1];
+  const p = [-dx, dx, -dy, dy], q = [a[0] - rc[0], rc[2] - a[0], a[1] - rc[1], rc[3] - a[1]];
+  for (let i = 0; i < 4; i++) {
+    if (p[i] === 0) { if (q[i] < 0) return null; }
+    else {
+      const t = q[i] / p[i];
+      if (p[i] < 0) { if (t > t1) return null; if (t > t0) t0 = t; }
+      else { if (t < t0) return null; if (t < t1) t1 = t; }
+    }
+  }
+  return [[a[0] + dx * t0, a[1] + dy * t0], [a[0] + dx * t1, a[1] + dy * t1]];
+}
+
+function exportarPatronPdf() {
+  const lay = maquetar();
+  const PT = 28.34646, A4W = 595.28, A4H = 841.89;
+  const mX = 1.1, mTop = 1.7, mBot = 1.1;
+  const uW = 21 - 2 * mX, uH = 29.7 - mTop - mBot, sol = 1.5;
+  const cols = Math.max(1, Math.ceil((lay.W - uW) / (uW - sol)) + 1);
+  const rows = Math.max(1, Math.ceil((lay.H - uH) / (uH - sol)) + 1);
+  const N = cols * rows;
+  const esc = (s) => asci(s).replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+  const paginas = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++)
+    paginas.push({ x0: c * (uW - sol), y0: r * (uH - sol), x1: Math.min(lay.W, c * (uW - sol) + uW), y1: Math.min(lay.H, r * (uH - sol) + uH) });
+  const Bx = [...new Set(paginas.flatMap((p) => [p.x0, p.x1]))];
+  const By = [...new Set(paginas.flatMap((p) => [p.y0, p.y1]))];
+  const F = (v) => v.toFixed(2);
+
+  const contenido = (pg, idx) => {
+    const o = [];
+    const X = (v) => (v - pg.x0) * PT + mX * PT;
+    const Y = (v) => A4H - (mTop + (v - pg.y0) * PT);
+    o.push('q ' + F(mX * PT) + ' ' + F(mBot * PT) + ' ' + F(uW * PT) + ' ' + F(uH * PT) + ' re W n');
+    const seg = (a, b, w, dash, col) => {
+      const v = clipSeg(a, b, [pg.x0, pg.y0, pg.x1, pg.y1]);
+      if (!v) return;
+      o.push(col + ' RG ' + F(w) + ' w ' + (dash ? '[' + dash + '] 0 d' : '[] 0 d') + ' ' + F(X(v[0][0])) + ' ' + F(Y(v[0][1])) + ' m ' + F(X(v[1][0])) + ' ' + F(Y(v[1][1])) + ' l S');
+    };
+    const txt = (x, y, size, str) => o.push('BT /F1 ' + size + ' Tf 0.36 0.4 0.47 rg ' + F(x) + ' ' + F(y) + ' Td (' + esc(str) + ') Tj ET');
+    for (let gx = Math.ceil(pg.x0 / 10) * 10; gx <= pg.x1; gx += 10) seg([gx, pg.y0], [gx, pg.y1], 0.2, null, '0.75 0.8 0.9');
+    for (let gy = Math.ceil(pg.y0 / 10) * 10; gy <= pg.y1; gy += 10) seg([pg.x0, gy], [pg.x1, gy], 0.2, null, '0.75 0.8 0.9');
+    lay.piezas.forEach((pza) => {
+      const T = (p) => [p[0] + pza.ox, p[1] + pza.oy];
+      if (lay.margen) for (let i = 0; i < pza.off.length; i++) seg(T(pza.off[i]), T(pza.off[(i + 1) % pza.off.length]), 0.9, null, '0 0.34 1');
+      for (let i = 0; i < pza.pts.length; i++) seg(T(pza.pts[i]), T(pza.pts[(i + 1) % pza.pts.length]), lay.margen ? 0.4 : 0.9, lay.margen ? '[1.4 1.4] 0 d' : null, lay.margen ? '0.2 0.26 0.35' : '0 0.34 1');
+      pza.pz.pinzas.forEach((z) => {
+        seg(T(z.a), T(z.apex), 0.5, null, '0.2 0.26 0.35');
+        seg(T(z.apex), T(z.b), 0.5, null, '0.2 0.26 0.35');
+      });
+      pza.pz.piquetes.forEach((qq) => {
+        const b = ptoBordes(pza.pz, qq.si, qq.u), p = T(b.p), t = b.t;
+        seg(T([p[0] - t[1] * 0.4, p[1] + t[0] * 0.4]), T([p[0] + t[1] * 0.4, p[1] - t[0] * 0.4]), 1.1, null, '1 0.42 0');
+      });
+      const yT = Math.min(...pza.pts.map((p) => p[1])), yB = Math.max(...pza.pts.map((p) => p[1]));
+      seg(T([pza.pz.w / 2, yT + 0.4]), T([pza.pz.w / 2, yB - 0.4]), 0.4, '[3 1.2 0.8 1.2] 0 d', '0.3 0.36 0.45');
+      txt(pza.ox + pza.minX, pza.oy + pza.minY - 1.9, 9, pza.pz.n + ' - ' + pza.pz.cortar);
+      txt(pza.ox + pza.minX, pza.oy + pza.minY - 3.1, 7, pza.pz.w.toFixed(1) + ' x ' + pza.pz.h.toFixed(1) + ' cm - hilo paralelo al centro');
+    });
+    o.push('Q');
+    Bx.forEach((bx) => By.forEach((by) => {
+      if (bx >= pg.x0 - 1e-6 && bx <= pg.x1 + 1e-6 && by >= pg.y0 - 1e-6 && by <= pg.y1 + 1e-6) {
+        o.push('0 0 0 RG 0.8 w [] 0 d ' + F(X(bx) - 8.5) + ' ' + F(Y(by)) + ' m ' + F(X(bx) + 8.5) + ' ' + F(Y(by)) + ' l S');
+        o.push('0 0 0 RG 0.8 w [] 0 d ' + F(X(bx)) + ' ' + F(Y(by) - 8.5) + ' m ' + F(X(bx)) + ' ' + F(Y(by) + 8.5) + ' l S');
+      }
+    }));
+    const cab = 'IAModa - patron ' + asci(NOMBRE[M.prenda]) + ' - 1:1 - margen de costura ' + lay.margen + ' cm';
+    const p1 = idx === 1 ? ' - pecho ' + M.pecho + ' cintura ' + M.cintura + ' cadera ' + M.cadera + ' altura ' + M.altura : '';
+    txt(mX * PT, A4H - 0.85 * PT, 8, cab + p1);
+    const npg = 'pagina ' + idx + ' de ' + N;
+    txt(A4W - mX * PT - npg.length * 4.4, A4H - 0.85 * PT, 8, npg);
+    const pie = 'imprimir al 100 % (escala real) - pegar por las cruces - solape ' + sol + ' cm';
+    txt(A4W - mX * PT - pie.length * 3.9, 0.5 * PT, 7, pie);
+    if (idx === 1) {
+      const y = 0.55 * PT, x1 = mX * PT;
+      o.push('0.06 0.09 0.16 RG 1.2 w [] 0 d ' + F(x1) + ' ' + F(y) + ' m ' + F(x1 + 10 * PT) + ' ' + F(y) + ' l S');
+      for (let i = 0; i <= 10; i++) {
+        const hh = i % 5 === 0 ? 5 : 2.6;
+        o.push('0.06 0.09 0.16 RG 0.8 w [] 0 d ' + F(x1 + i * PT) + ' ' + F(y - hh) + ' m ' + F(x1 + i * PT) + ' ' + F(y) + ' l S');
+      }
+      txt(x1 + 10 * PT + 8, y - 2.5, 8, '10 cm - imprime al 100 % y mide');
+    }
+    return o.join('\n');
+  };
+
+  let out = '%PDF-1.4\n';
+  const offs = [];
+  const push = (s) => { offs.push(out.length); out += s + '\n'; };
+  push('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj');
+  const kids = paginas.map((_, i) => (4 + 2 * i) + ' 0 R').join(' ');
+  push('2 0 obj\n<< /Type /Pages /Kids [' + kids + '] /Count ' + N + ' >>\nendobj');
+  push('3 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>\nendobj');
+  paginas.forEach((pg, i) => {
+    const body = contenido(pg, i + 1);
+    push((4 + 2 * i) + ' 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + A4W + ' ' + A4H + '] /Resources << /Font << /F1 3 0 R >> >> /Contents ' + (5 + 2 * i) + ' 0 R >>\nendobj');
+    push((5 + 2 * i) + ' 0 obj\n<< /Length ' + body.length + ' >>\nstream\n' + body + '\nendstream\nendobj');
+  });
+  const xref = out.length;
+  out += 'xref\n0 ' + (3 + 2 * N + 1) + '\n0000000000 65535 f \n' + offs.map((v) => String(v).padStart(10, '0') + ' 00000 n \n').join('');
+  out += 'trailer\n<< /Size ' + (3 + 2 * N + 1) + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF';
+  return out;
+}
+
+function dxfR12() {
+  const lay = maquetar();
+  const e = [];
+  const put = (code, val) => { e.push(String(code)); e.push(String(val)); };
+  put(0, 'SECTION'); put(2, 'HEADER');
+  put(9, '$ACADVER'); put(1, 'AC1009');
+  put(9, '$INSUNITS'); put(70, 4);
+  put(0, 'ENDSEC');
+  put(0, 'SECTION'); put(2, 'ENTITIES');
+  lay.piezas.forEach((o) => {
+    const gy = (v) => ((lay.H - v) * 10).toFixed(2);
+    const T = (p) => [p[0] + o.ox, p[1] + o.oy];
+    if (lay.margen) {
+      put(0, 'POLYLINE'); put(8, 'MARGEN'); put(66, 1); put(70, 1);
+      o.off.forEach((p) => { const q = T(p); put(0, 'VERTEX'); put(8, 'MARGEN'); put(10, (q[0] * 10).toFixed(2)); put(20, gy(q[1])); });
+      put(0, 'SEQEND');
+    }
+    put(0, 'POLYLINE'); put(8, 'COSTURA'); put(66, 1); put(70, 1);
+    o.pts.forEach((p) => { const q = T(p); put(0, 'VERTEX'); put(8, 'COSTURA'); put(10, (q[0] * 10).toFixed(2)); put(20, gy(q[1])); });
+    put(0, 'SEQEND');
+    o.pz.pinzas.forEach((z) => {
+      [[z.a, z.apex], [z.apex, z.b]].forEach(([a, b]) => {
+        const p1 = T(a), p2 = T(b);
+        put(0, 'LINE'); put(8, 'PINZAS');
+        put(10, (p1[0] * 10).toFixed(2)); put(20, gy(p1[1]));
+        put(11, (p2[0] * 10).toFixed(2)); put(21, gy(p2[1]));
+      });
+    });
+    o.pz.piquetes.forEach((qq) => {
+      const b = ptoBordes(o.pz, qq.si, qq.u), p = T(b.p), t = b.t;
+      put(0, 'LINE'); put(8, 'PIQUETES');
+      put(10, ((p[0] - t[1] * 0.4) * 10).toFixed(2)); put(20, gy(p[1] + t[0] * 0.4));
+      put(11, ((p[0] + t[1] * 0.4) * 10).toFixed(2)); put(21, gy(p[1] - t[0] * 0.4));
+    });
+    const yT = Math.min(...o.pts.map((p) => p[1]));
+    put(0, 'TEXT'); put(8, 'ETIQUETAS');
+    put(10, (o.ox * 10).toFixed(2)); put(20, gy(o.oy + yT - 1.9));
+    put(40, '9'); put(1, asci(o.pz.n.toUpperCase() + ' - ' + o.pz.cortar));
+    put(0, 'TEXT'); put(8, 'ETIQUETAS');
+    put(10, (o.ox * 10).toFixed(2)); put(20, gy(o.oy + yT - 3.2));
+    put(40, '7'); put(1, o.pz.w.toFixed(1) + ' x ' + o.pz.h.toFixed(1) + ' cm');
+  });
+  put(0, 'TEXT'); put(8, 'ETIQUETAS');
+  put(10, '0'); put(20, ((lay.H - 2) * 10).toFixed(2));
+  put(40, '10'); put(1, 'PATRON ' + asci(NOMBRE[M.prenda]).toUpperCase() + ' 1:1 - margen ' + lay.margen + ' cm - unidades mm');
+  put(0, 'ENDSEC'); put(0, 'EOF');
+  return e.join('\n');
+}
+
+/* gancho de prueba headless: dom + exportaciones en base64 */
+window.__patronTest = function () {
+  const q = (sel) => document.querySelectorAll('#piezasProbador [data-rol="' + sel + '"]').length;
+  const dom = {
+    piezas: q('pieza'), margen: q('margen'), costura: q('costura'), pinza: q('pinza'),
+    piquete: q('piquete'), hilo: q('hilo'), prenda: M.prenda,
+    overflow: document.scrollingElement.scrollWidth > document.scrollingElement.clientWidth
+  };
+  const svg = svgUnoUno(), dxf = dxfR12(), pdf = exportarPatronPdf();
+  const b64 = (s) => btoa(unescape(encodeURIComponent(s)));
+  const b64b = (arr) => { let s = ''; for (let i = 0; i < arr.length; i += 0x8000) s += String.fromCharCode.apply(null, arr.subarray(i, i + 0x8000)); return btoa(s); };
+  return JSON.stringify({
+    dom, svg: b64(svg), dxf: b64(dxf), pdf: b64b(new TextEncoder().encode(pdf)),
+    paginasPdf: (pdf.match(/\/Type \/Page[^s]/g) || []).length
+  });
 }
 
 /* ---------- motor 3D (three.js por CDN) ---------- */
@@ -1843,22 +2193,20 @@ document.querySelectorAll('#segPrenda button').forEach((b) => {
     refrescar();
   });
 });
-$('btnSvg').addEventListener('click', () => {
-  const svg = $('svgProbador').cloneNode(true);
-  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  const vb = (svg.getAttribute('viewBox') || '0 0 120 80').split(' ');
-  svg.setAttribute('width', '900');
-  svg.setAttribute('height', String(Math.round(900 * (+vb[3]) / (+vb[2]))));
-  const st = document.createElementNS('http://www.w3.org/2000/svg', 'style');
-  st.textContent = 'path{fill:#eef3ff;stroke:#0057ff;stroke-width:.5}text{font-family:Inter,sans-serif;font-size:3.4px;fill:#5b6472}';
-  svg.insertBefore(st, svg.firstChild);
-  const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' });
+const descargar = (contenido, tipo, nombre) => {
+  const blob = new Blob([contenido], { type: tipo });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'patron-' + M.prenda + '.svg';
+  a.download = nombre;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-});
+};
+const fechaPatron = new Date().toISOString().slice(0, 10);
+const basePatron = () => 'patron-' + M.prenda + '-' + fechaPatron;
+$('verMargen').addEventListener('change', refrescar);
+$('btnSvg').addEventListener('click', () => descargar(svgUnoUno(), 'image/svg+xml', basePatron() + '.svg'));
+$('btnPdf').addEventListener('click', () => descargar(exportarPatronPdf(), 'application/pdf', basePatron() + '.pdf'));
+$('btnDxf').addEventListener('click', () => descargar(dxfR12(), 'application/dxf', basePatron() + '.dxf'));
 refrescar();
 
 /* enlace directo: index.html?prenda=vestido&pecho=110 */
